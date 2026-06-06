@@ -76,6 +76,13 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
 
 .warn{border-color:rgba(255,69,58,.15)!important}
 .warn h3{color:var(--red)}
+.hero{display:flex;gap:8px;margin-bottom:16px}
+.hero-box{flex:1;background:var(--card);border-radius:14px;padding:14px 10px;text-align:center;border:1px solid var(--border)}
+.hero-box .hv{font-size:20px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.hero-box .hl{font-size:9px;color:var(--sub);margin-top:3px;text-transform:uppercase;letter-spacing:.8px;font-weight:500}
+.chip-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.chip{padding:8px 14px;background:var(--card);border:1.5px solid var(--border);border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;white-space:nowrap;color:var(--text)}
+.chip:active{transform:scale(.96)}.chip.on{border-color:var(--accent);background:var(--accent-bg);color:var(--accent)}
 .ss{display:none}.ss.on{display:block;animation:fadeUp .3s var(--spring)}
 </style>
 </head>
@@ -88,6 +95,11 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
 </div>
 
 <div class="pnl on" id="p-apply">
+  <div class="hero">
+    <div class="hero-box"><div class="hv">50%</div><div class="hl">Max Commission</div></div>
+    <div class="hero-box"><div class="hv">1-2h</div><div class="hl">Payout</div></div>
+    <div class="hero-box"><div class="hv">5mo</div><div class="hl">Rate Protection</div></div>
+  </div>
   <div class="prog" id="prog"></div>
   <div class="ss on" id="s0">
     <div class="lbl" id="l-ty"></div>
@@ -214,12 +226,12 @@ const F={
     {k:'members',l:{ko:'멤버 수',en:'Members',tw:'成員'},p:{ko:'예: 10K',en:'e.g. 10K',tw:'例：10K'}}],
   trading:[{k:'entity',l:{ko:'팀명',en:'Team Name',tw:'團隊名稱'},p:{ko:'팀 또는 법인',en:'Team or entity',tw:'團隊或公司'}},
     {k:'uid',l:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},p:{ko:'숫자 UID',en:'Numeric UID',tw:'數字 UID'},pat:/^\d{6,}$/},
-    {k:'strategy',l:{ko:'전략',en:'Strategy',tw:'策略'},p:{ko:'MM, Arb, HFT, Prop',en:'MM, Arb, HFT, Prop',tw:'MM, Arb, HFT, Prop'}},
+    {k:'strategy',l:{ko:'전략',en:'Strategy',tw:'策略'},chips:['MM','Arb','HFT','Systematic','Prop']},
     {k:'exchange',l:{ko:'현재 거래소',en:'Exchanges',tw:'交易所'},p:{ko:'예: Binance',en:'e.g. Binance',tw:'例：Binance'}}],
   wealthtech:[{k:'company',l:{ko:'회사명',en:'Company',tw:'公司名稱'},p:{ko:'회사/서비스명',en:'Company name',tw:'公司名稱'}},
     {k:'uid',l:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},p:{ko:'숫자 UID',en:'Numeric UID',tw:'數字 UID'},pat:/^\d{6,}$/},
     {k:'aum',l:{ko:'AUM',en:'AUM',tw:'AUM'},p:{ko:'예: $5M',en:'e.g. $5M',tw:'例：$5M'}},
-    {k:'service',l:{ko:'서비스',en:'Service',tw:'服務'},p:{ko:'로보, 자산관리',en:'Robo, wealth mgmt',tw:'機器人投顧'}}]
+    {k:'service',l:{ko:'서비스',en:'Service',tw:'服務'},chips:['Robo-advisory','Wealth Mgmt','Fintech','Other']}]
 };
 const RG=[{l:'🇰🇷 Korea',v:'KR'},{l:'🇹🇼 Taiwan',v:'TW'},{l:'🇲🇳 Mongolia',v:'MN'},{l:'🇭🇰 HK',v:'HK'},{l:'🌏 Other',v:'Other'}];
 
@@ -243,7 +255,15 @@ document.querySelectorAll('.tc').forEach(c=>c.onclick=()=>{haptic('medium');
 function bF(){
   const f=F[S.ty],el=document.getElementById('s1');
   let h=`<div class="lbl">${t('det')}</div>`;
-  f.forEach(x=>{h+=`<div class="fg"><label>${x.l[LN]||x.l.en}</label><input id="f-${x.k}" placeholder="${x.p[LN]||x.p.en}" inputmode="${x.k==='uid'?'numeric':'text'}"/><div class="e" id="e-${x.k}">${t('req')}</div></div>`});
+  f.forEach(x=>{
+    if(x.chips){
+      h+=`<div class="fg"><label>${x.l[LN]||x.l.en}</label><div class="chip-row" id="cr-${x.k}">`;
+      x.chips.forEach(c=>{h+=`<div class="chip" data-ck="${x.k}" data-cv="${c}">${c}</div>`});
+      h+=`</div><div class="e" id="e-${x.k}">${t('req')}</div></div>`;
+    } else {
+      h+=`<div class="fg"><label>${x.l[LN]||x.l.en}</label><input id="f-${x.k}" placeholder="${(x.p||{})[LN]||(x.p||{}).en||''}" inputmode="${x.k==='uid'?'numeric':'text'}"/><div class="e" id="e-${x.k}">${t('req')}</div></div>`;
+    }
+  });
   h+=`<div class="lbl">${t('reg')}</div><div class="gb">`;
   RG.forEach(r=>{h+=`<div class="g rb" data-r="${r.v}">${r.l}</div>`});
   h+=`</div><div class="fg" style="margin-top:16px"><label>${t('tg')}</label><input id="f-ct" placeholder="@handle" value="${U.username?'@'+U.username:''}"/></div>`;
@@ -251,16 +271,27 @@ function bF(){
   h+=`<button class="btn bp" id="bn">${t('cont')}</button>`;
   el.innerHTML=h;
   el.querySelectorAll('.rb').forEach(b=>b.onclick=()=>{haptic();el.querySelectorAll('.rb').forEach(x=>x.classList.remove('on'));b.classList.add('on');S.rg=b.dataset.r});
+  el.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{haptic();
+    const grp=el.querySelectorAll(`.chip[data-ck="${c.dataset.ck}"]`);
+    grp.forEach(x=>x.classList.remove('on'));c.classList.add('on');
+    S.d[c.dataset.ck]=c.dataset.cv;
+  });
   document.getElementById('bn').onclick=val;go(1);
 }
 
 function val(){
   const f=F[S.ty];let ok=true;
   f.forEach(x=>{
-    const i=document.getElementById('f-'+x.k),e=document.getElementById('e-'+x.k),v=i.value.trim();
-    if(!v){e.textContent=t('req');e.style.display='block';i.style.borderColor='var(--red)';ok=false}
-    else if(x.pat&&!x.pat.test(v)){e.textContent=t('inv');e.style.display='block';i.style.borderColor='var(--red)';ok=false}
-    else{e.style.display='none';i.style.borderColor='var(--border)';S.d[x.k]=v}
+    const e=document.getElementById('e-'+x.k);
+    if(x.chips){
+      if(!S.d[x.k]){e.textContent=t('req');e.style.display='block';ok=false}
+      else{e.style.display='none'}
+    } else {
+      const i=document.getElementById('f-'+x.k),v=i.value.trim();
+      if(!v){e.textContent=t('req');e.style.display='block';i.style.borderColor='var(--red)';ok=false}
+      else if(x.pat&&!x.pat.test(v)){e.textContent=t('inv');e.style.display='block';i.style.borderColor='var(--red)';ok=false}
+      else{e.style.display='none';i.style.borderColor='var(--border)';S.d[x.k]=v}
+    }
   });
   S.d.contact=document.getElementById('f-ct').value.trim()||'@'+(U.username||'');
   S.d.region=S.rg||'';
