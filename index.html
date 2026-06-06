@@ -120,7 +120,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',Ro
   <div class="progress" id="prog"></div>
 
   <div class="step-sec active" id="s0">
-    <div class="section-title">Partner Type</div>
+    <div class="section-title" id="lbl-type">Partner Type</div>
     <div class="type-grid">
       <div class="type-card" data-type="kol"><div class="icon">&#x1F4E2;</div><div class="label">KOL / Creator</div><div class="desc">Influencers, content creators, streamers</div></div>
       <div class="type-card" data-type="community"><div class="icon">&#x1F465;</div><div class="label">Community</div><div class="desc">Groups, channels, education, signals</div></div>
@@ -138,7 +138,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',Ro
   <div class="step-sec" id="s1"></div>
 
   <div class="step-sec" id="s2">
-    <div class="section-title">Monthly Trading Volume</div>
+    <div class="section-title" id="lbl-vol">Monthly Trading Volume</div>
     <div class="grid-btns" id="vol-grid">
       <div class="grid-btn" data-v="< $1M">&lt; $1M</div>
       <div class="grid-btn" data-v="$1M-$10M">$1M-$10M</div>
@@ -151,7 +151,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',Ro
 
   <div class="step-sec" id="s3"></div>
   <div class="step-sec" id="s4">
-    <div class="success"><div class="icon">&#x2705;</div><h2>Application Submitted</h2><div class="ref" id="ref-id"></div><p>1. Review within 1-2 business days<br>2. Approval notification via Telegram<br>3. Referral link + marketing kit delivered</p></div>
+    <div class="success"><div class="icon">&#x2705;</div><h2 id="suc-title">Application Submitted</h2><div class="ref" id="ref-id"></div><p id="suc-body">1. Review within 1-2 business days<br>2. Approval notification via Telegram<br>3. Referral link + marketing kit delivered</p></div>
   </div>
 </div>
 
@@ -246,42 +246,103 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',Ro
     <div class="badge">Contact: institutional@okx.com</div>
   </div>
 
-  <button class="btn btn-primary" onclick="goTab('apply')">Apply for VIP Track</button>
+  <button class="btn btn-primary" onclick="goTab('apply')" id="vip-apply-btn">Apply for VIP Track</button>
 </div>
+
+<!-- ===== COMPLIANCE (inside VIP tab bottom) ===== -->
 
 <script>
 const tg=window.Telegram?.WebApp;
 if(tg){tg.ready();tg.expand();try{tg.setHeaderColor('#121212');tg.setBackgroundColor('#121212')}catch(e){}}
 const user=tg?.initDataUnsafe?.user||{};
 
+// i18n
+const LANG_CODE=(user.language_code||navigator.language||'en').toLowerCase();
+const LANG=LANG_CODE.startsWith('ko')?'ko':LANG_CODE.startsWith('zh')?'tw':'en';
+
+const I18N={
+  apply:{ko:'신청',en:'Apply',tw:'申請'},
+  programs:{ko:'프로그램',en:'Programs',tw:'項目'},
+  vipFees:{ko:'VIP 수수료',en:'VIP & Fees',tw:'VIP 費率'},
+  partnerType:{ko:'파트너 유형',en:'Partner Type',tw:'合作類型'},
+  estEarnings:{ko:'예상 월 수익',en:'Estimated Monthly Earnings',tw:'預估月收益'},
+  upTo50:{ko:'최대 50% 커미션 기준',en:'Based on up to 50% commission',tw:'最高 50% 佣金'},
+  yourDetails:{ko:'상세 정보',en:'Your Details',tw:'詳細資訊'},
+  region:{ko:'지역',en:'Region',tw:'地區'},
+  tgContact:{ko:'텔레그램 연락처',en:'Telegram Contact',tw:'Telegram 聯繫方式'},
+  continue:{ko:'계속',en:'Continue',tw:'繼續'},
+  monthlyVol:{ko:'월 거래량',en:'Monthly Trading Volume',tw:'月交易量'},
+  review:{ko:'신청 내용 확인',en:'Review Application',tw:'確認申請'},
+  submit:{ko:'제출',en:'Submit Application',tw:'提交申請'},
+  edit:{ko:'수정',en:'Edit Details',tw:'編輯'},
+  submitted:{ko:'신청 완료',en:'Application Submitted',tw:'申請已提交'},
+  step1:{ko:'1~2 영업일 내 검토',en:'Review within 1-2 business days',tw:'1~2 個工作日內審核'},
+  step2:{ko:'텔레그램으로 승인 알림',en:'Approval notification via Telegram',tw:'透過 Telegram 通知審核結果'},
+  step3:{ko:'레퍼럴 링크 + 마케팅 자료 전달',en:'Referral link + marketing kit delivered',tw:'推薦連結 + 行銷素材'},
+  applyNow:{ko:'지금 신청',en:'Apply Now',tw:'立即申請'},
+  applyVip:{ko:'VIP 트랙 신청',en:'Apply for VIP Track',tw:'申請 VIP 通道'},
+  required:{ko:'필수 항목',en:'Required',tw:'必填'},
+  invalidFmt:{ko:'형식이 올바르지 않습니다',en:'Invalid format',tw:'格式不正確'},
+  submitting:{ko:'제출 중...',en:'Submitting...',tw:'提交中...'},
+  compliance:{ko:'컴플라이언스',en:'Compliance',tw:'合規'},
+  compText:{ko:'OKX 공식 사이트/SNS 모방, 브랜드 키워드 광고, 유사 URL 사용 시 파트너 자격이 박탈됩니다.',en:'Impersonating OKX sites/handles, bidding on OKX brand keywords, or using look-alike URLs will result in partner disqualification.',tw:'仿冒 OKX 官方網站/帳號、競價 OKX 品牌關鍵字、或使用相似 URL，將導致合作資格被取消。'},
+};
+function L(k){return I18N[k]?.[LANG]||I18N[k]?.en||k}
+
+// Apply i18n to static elements
+document.querySelectorAll('.tab').forEach(t=>{
+  const map={apply:'apply',programs:'programs',vip:'vipFees'};
+  if(map[t.dataset.tab])t.textContent=L(map[t.dataset.tab]);
+});
+document.getElementById('vip-apply-btn').textContent=L('applyVip');
+document.getElementById('lbl-type').textContent=L('partnerType');
+document.getElementById('suc-title').textContent=L('submitted');
+document.getElementById('suc-body').innerHTML='1. '+L('step1')+'<br>2. '+L('step2')+'<br>3. '+L('step3');
+// Programs tab Apply Now button
+document.querySelectorAll('.btn-primary').forEach(b=>{if(b.textContent==='Apply Now')b.textContent=L('applyNow')});
+document.getElementById('lbl-vol').textContent=L('monthlyVol');
+
 const FIELDS={
   kol:[
-    {key:'name',label:'KOL / Creator Name',ph:'Your creator or channel name'},
-    {key:'uid',label:'OKX UID',ph:'Numeric UID (KYC verified)',pat:/^\d{6,}$/},
-    {key:'channel',label:'Main Channel Link',ph:'https://...'},
-    {key:'followers',label:'Followers / Subscribers',ph:'e.g. 50K, 200K'},
+    {key:'name',label:{ko:'KOL / 활동명',en:'KOL / Creator Name',tw:'KOL 名稱'},ph:{ko:'활동명 또는 채널명',en:'Your creator or channel name',tw:'創作者或頻道名稱'}},
+    {key:'uid',label:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},ph:{ko:'숫자 UID (KYC 완료)',en:'Numeric UID (KYC verified)',tw:'數字 UID（已完成 KYC）'},pat:/^\d{6,}$/},
+    {key:'channel',label:{ko:'메인 채널 링크',en:'Main Channel Link',tw:'主要頻道連結'},ph:{ko:'https://...',en:'https://...',tw:'https://...'}},
+    {key:'followers',label:{ko:'팔로워 수',en:'Followers / Subscribers',tw:'追蹤者數'},ph:{ko:'예: 50K, 200K',en:'e.g. 50K, 200K',tw:'例：50K, 200K'}},
   ],
   community:[
-    {key:'name',label:'Community / Group Name',ph:'Your community name'},
-    {key:'uid',label:'OKX UID',ph:'Numeric UID (KYC verified)',pat:/^\d{6,}$/},
-    {key:'channel',label:'Channel / Group Link',ph:'https://t.me/...'},
-    {key:'members',label:'Total Members',ph:'e.g. 10K'},
+    {key:'name',label:{ko:'커뮤니티 이름',en:'Community / Group Name',tw:'社群名稱'},ph:{ko:'커뮤니티 또는 그룹명',en:'Your community name',tw:'您的社群名稱'}},
+    {key:'uid',label:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},ph:{ko:'숫자 UID (KYC 완료)',en:'Numeric UID (KYC verified)',tw:'數字 UID（已完成 KYC）'},pat:/^\d{6,}$/},
+    {key:'channel',label:{ko:'채널/그룹 링크',en:'Channel / Group Link',tw:'頻道/群組連結'},ph:{ko:'https://t.me/...',en:'https://t.me/...',tw:'https://t.me/...'}},
+    {key:'members',label:{ko:'멤버 수',en:'Total Members',tw:'成員數'},ph:{ko:'예: 10K',en:'e.g. 10K',tw:'例：10K'}},
   ],
   trading:[
-    {key:'entity',label:'Team / Entity Name',ph:'Your team or company'},
-    {key:'uid',label:'OKX UID',ph:'Numeric UID (KYC verified)',pat:/^\d{6,}$/},
-    {key:'strategy',label:'Strategy Type',ph:'MM, Arb, HFT, Systematic, Prop'},
-    {key:'exchange',label:'Current Exchanges',ph:'e.g. Binance, Bybit'},
+    {key:'entity',label:{ko:'팀/법인명',en:'Team / Entity Name',tw:'團隊/公司名稱'},ph:{ko:'팀 또는 법인명',en:'Your team or company',tw:'您的團隊或公司'}},
+    {key:'uid',label:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},ph:{ko:'숫자 UID (KYC 완료)',en:'Numeric UID (KYC verified)',tw:'數字 UID（已完成 KYC）'},pat:/^\d{6,}$/},
+    {key:'strategy',label:{ko:'전략 유형',en:'Strategy Type',tw:'策略類型'},ph:{ko:'MM, Arb, HFT, Systematic, Prop',en:'MM, Arb, HFT, Systematic, Prop',tw:'MM, Arb, HFT, Systematic, Prop'}},
+    {key:'exchange',label:{ko:'현재 거래소',en:'Current Exchanges',tw:'目前交易所'},ph:{ko:'예: Binance, Bybit',en:'e.g. Binance, Bybit',tw:'例：Binance, Bybit'}},
   ],
   wealthtech:[
-    {key:'company',label:'Company / Service',ph:'Your company name'},
-    {key:'uid',label:'OKX UID',ph:'Numeric UID (KYC verified)',pat:/^\d{6,}$/},
-    {key:'aum',label:'AUM (Assets Under Mgmt)',ph:'e.g. $5M, $50M'},
-    {key:'service',label:'Main Service',ph:'Robo-advisory, Wealth Mgmt, etc.'},
+    {key:'company',label:{ko:'회사/서비스명',en:'Company / Service',tw:'公司/服務名稱'},ph:{ko:'회사명',en:'Your company name',tw:'您的公司名稱'}},
+    {key:'uid',label:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},ph:{ko:'숫자 UID (KYC 완료)',en:'Numeric UID (KYC verified)',tw:'數字 UID（已完成 KYC）'},pat:/^\d{6,}$/},
+    {key:'aum',label:{ko:'운용 자산(AUM)',en:'AUM (Assets Under Mgmt)',tw:'管理資產規模'},ph:{ko:'예: $5M, $50M',en:'e.g. $5M, $50M',tw:'例：$5M, $50M'}},
+    {key:'service',label:{ko:'주요 서비스',en:'Main Service',tw:'主要服務'},ph:{ko:'로보어드바이저, 자산관리 등',en:'Robo-advisory, Wealth Mgmt, etc.',tw:'機器人投顧、資產管理等'}},
   ]
 };
 const REGIONS=[{l:'🇰🇷 Korea',v:'KR'},{l:'🇹🇼 Taiwan',v:'TW'},{l:'🇲🇳 Mongolia',v:'MN'},{l:'🇭🇰 Hong Kong',v:'HK'},{l:'🌏 Other',v:'Other'}];
-const SIMS={kol:{amt:'$800 ~ $3,000',tier:'Avg KOL with 50K+ followers at L2 (35%)'},community:{amt:'$500 ~ $2,000',tier:'Active community with 10K+ members at L1-L2'},trading:{amt:'Custom VIP',tier:'Volume partners get VIP fee tiers + dedicated RM'},wealthtech:{amt:'Custom VIP',tier:'Institutional track with negotiated structures'}};
+
+function calcSim(type,val){
+  const n=parseFloat(val.replace(/[^0-9.]/g,''));
+  const m=val.toLowerCase().includes('m')?1e6:val.toLowerCase().includes('k')?1e3:1;
+  const f=n*m;
+  if(type==='kol'||type==='community'){
+    if(f>=1e6)return{lo:'$12,000',hi:'$50,000+',tier:'L4-L5 (45-50%)'};
+    if(f>=200e3)return{lo:'$3,000',hi:'$12,000',tier:'L3-L4 (40-45%)'};
+    if(f>=50e3)return{lo:'$800',hi:'$3,000',tier:'L2 (35%)'};
+    if(f>=10e3)return{lo:'$200',hi:'$800',tier:'L1 (30%)'};
+    return{lo:'$50',hi:'$200',tier:'L1 (30%)'};
+  }
+  return null;
+}
 
 let S={type:null,step:0,data:{},vol:null,region:null};
 const STEPS=5;
@@ -304,9 +365,14 @@ document.querySelectorAll('.type-card').forEach(c=>{
   c.onclick=()=>{
     document.querySelectorAll('.type-card').forEach(x=>x.classList.remove('selected'));
     c.classList.add('selected');S.type=c.dataset.type;
-    const s=SIMS[S.type],sim=document.getElementById('sim');
-    document.getElementById('sim-amt').textContent=s.amt;
-    document.getElementById('sim-tier').textContent=s.tier;
+    const sim=document.getElementById('sim');
+    if(S.type==='kol'||S.type==='community'){
+      document.getElementById('sim-amt').textContent='$800 ~ $3,000';
+      document.getElementById('sim-tier').textContent=(S.type==='kol'?'50K+ followers':'10K+ members')+' at L2 (35%)';
+    }else{
+      document.getElementById('sim-amt').textContent='Custom VIP';
+      document.getElementById('sim-tier').textContent=S.type==='trading'?'VIP fee tiers + dedicated RM':'Institutional negotiated structures';
+    }
     sim.classList.add('show');
     setTimeout(()=>buildForm(),350);
   }
@@ -314,15 +380,29 @@ document.querySelectorAll('.type-card').forEach(c=>{
 
 function buildForm(){
   const f=FIELDS[S.type],el=document.getElementById('s1');
-  let h='<div class="section-title">Your Details</div>';
+  let h=`<div class="section-title">${L('yourDetails')}</div>`;
   f.forEach(x=>{
-    h+=`<div class="form-group"><label>${x.label}</label><input id="f-${x.key}" placeholder="${x.ph}"/><div class="err" id="e-${x.key}">Required</div></div>`;
+    const label=x.label[LANG]||x.label.en, ph=x.ph[LANG]||x.ph.en;
+    h+=`<div class="form-group"><label>${label}</label><input id="f-${x.key}" placeholder="${ph}"/><div class="err" id="e-${x.key}">${L('required')}</div></div>`;
   });
-  h+='<div class="section-title">Region</div><div class="grid-btns">';
+  // Live sim for KOL/community
+  if(S.type==='kol'||S.type==='community'){
+    const fKey=S.type==='kol'?'followers':'members';
+    setTimeout(()=>{
+      const inp=document.getElementById('f-'+fKey);
+      if(inp)inp.addEventListener('input',()=>{
+        const r=calcSim(S.type,inp.value);
+        if(r){document.getElementById('sim-amt').textContent=r.lo+' ~ '+r.hi;document.getElementById('sim-tier').textContent=r.tier}
+      });
+    },100);
+  }
+  h+=`<div class="section-title">${L('region')}</div><div class="grid-btns">`;
   REGIONS.forEach(r=>{h+=`<div class="grid-btn rbtn" data-r="${r.v}">${r.l}</div>`});
   h+='</div>';
-  h+=`<div class="form-group" style="margin-top:14px"><label>Telegram Contact</label><input id="f-contact" placeholder="@handle" value="${user.username?'@'+user.username:''}"/></div>`;
-  h+='<button class="btn btn-primary" id="btn-next">Continue</button>';
+  h+=`<div class="form-group" style="margin-top:14px"><label>${L('tgContact')}</label><input id="f-contact" placeholder="@handle" value="${user.username?'@'+user.username:''}"/></div>`;
+  // Compliance notice
+  h+=`<div class="info-card" style="margin-top:14px;border-color:var(--red);border-width:1px"><h3 style="color:var(--red)">&#x26A0;&#xFE0F; ${L('compliance')}</h3><p style="font-size:12px">${L('compText')}</p></div>`;
+  h+=`<button class="btn btn-primary" id="btn-next">${L('continue')}</button>`;
   el.innerHTML=h;
   el.querySelectorAll('.rbtn').forEach(b=>b.onclick=()=>{el.querySelectorAll('.rbtn').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');S.region=b.dataset.r});
   document.getElementById('btn-next').onclick=validate;
@@ -333,8 +413,8 @@ function validate(){
   const f=FIELDS[S.type];let ok=true;
   f.forEach(x=>{
     const inp=document.getElementById('f-'+x.key),err=document.getElementById('e-'+x.key),v=inp.value.trim();
-    if(!v){err.style.display='block';inp.style.borderColor='var(--red)';ok=false}
-    else if(x.pat&&!x.pat.test(v)){err.textContent='Invalid format';err.style.display='block';inp.style.borderColor='var(--red)';ok=false}
+    if(!v){err.textContent=L('required');err.style.display='block';inp.style.borderColor='var(--red)';ok=false}
+    else if(x.pat&&!x.pat.test(v)){err.textContent=L('invalidFmt');err.style.display='block';inp.style.borderColor='var(--red)';ok=false}
     else{err.style.display='none';inp.style.borderColor='var(--border)';S.data[x.key]=v}
   });
   S.data.contact=document.getElementById('f-contact').value.trim()||'@'+(user.username||'');
@@ -350,21 +430,21 @@ document.querySelectorAll('#vol-grid .grid-btn').forEach(b=>b.onclick=()=>{
 function buildReview(){
   S.data.volume=S.vol;S.data.partner_type=S.type;
   const el=document.getElementById('s3');
-  let h='<div class="section-title">Review Application</div>';
-  const labels={name:'Name',entity:'Entity',company:'Company',uid:'OKX UID',channel:'Channel',followers:'Followers',members:'Members',strategy:'Strategy',exchange:'Exchanges',aum:'AUM',service:'Service',contact:'Contact',region:'Region',volume:'Volume'};
+  let h=`<div class="section-title">${L('review')}</div>`;
+  const labels={name:{ko:'이름',en:'Name',tw:'名稱'},entity:{ko:'팀명',en:'Entity',tw:'團隊'},company:{ko:'회사',en:'Company',tw:'公司'},uid:{ko:'UID',en:'UID',tw:'UID'},channel:{ko:'채널',en:'Channel',tw:'頻道'},followers:{ko:'팔로워',en:'Followers',tw:'追蹤者'},members:{ko:'멤버',en:'Members',tw:'成員'},strategy:{ko:'전략',en:'Strategy',tw:'策略'},exchange:{ko:'거래소',en:'Exchanges',tw:'交易所'},aum:{ko:'AUM',en:'AUM',tw:'AUM'},service:{ko:'서비스',en:'Service',tw:'服務'},contact:{ko:'연락처',en:'Contact',tw:'聯繫'},region:{ko:'지역',en:'Region',tw:'地區'},volume:{ko:'거래량',en:'Volume',tw:'交易量'}};
   for(const[k,v]of Object.entries(S.data)){
-    if(v&&k!=='partner_type'){h+=`<div class="review-row"><span class="k">${labels[k]||k}</span><span class="v">${v}</span></div>`}
+    if(v&&k!=='partner_type'){const lb=labels[k]?labels[k][LANG]||labels[k].en:k;h+=`<div class="review-row"><span class="k">${lb}</span><span class="v">${v}</span></div>`}
   }
-  h+='<button class="btn btn-primary" id="btn-sub">Submit Application</button>';
-  h+='<button class="btn btn-secondary" onclick="showStep(1)">Edit Details</button>';
+  h+=`<button class="btn btn-primary" id="btn-sub">${L('submit')}</button>`;
+  h+=`<button class="btn btn-secondary" onclick="showStep(1)">${L('edit')}</button>`;
   el.innerHTML=h;
-  document.getElementById('btn-sub').onclick=submit;
+  document.getElementById('btn-sub').onclick=doSubmit;
   showStep(3);
 }
 
-function submit(){
-  const btn=document.getElementById('btn-sub');btn.disabled=true;btn.textContent='Submitting...';
-  const payload=JSON.stringify({action:'partner_apply',type:S.type,...S.data,tg_id:user.id,tg_user:user.username});
+function doSubmit(){
+  const btn=document.getElementById('btn-sub');btn.disabled=true;btn.textContent=L('submitting');
+  const payload=JSON.stringify({action:'partner_apply',type:S.type,lang:LANG,...S.data,tg_id:user.id,tg_user:user.username});
   if(tg){tg.sendData(payload)}
   else{document.getElementById('ref-id').textContent='OKX-'+new Date().toISOString().slice(0,10).replace(/-/g,'')+'-0001';showStep(4)}
 }
