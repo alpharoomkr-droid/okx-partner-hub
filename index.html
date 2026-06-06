@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>OKX NEA Partnerships</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{--bg:#0d0d0d;--card:#1a1a1a;--border:#2a2a2a;--text:#fff;--sub:#999;--accent:#00c853;--accent2:#00e676;--input-bg:#111;--radius:12px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:0 0 80px}
+.header{padding:24px 20px 16px;text-align:center;border-bottom:1px solid var(--border)}
+.header h1{font-size:18px;font-weight:600;letter-spacing:.5px}
+.header p{font-size:13px;color:var(--sub);margin-top:4px}
+.tabs{display:flex;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:10}
+.tab{flex:1;padding:14px 0;text-align:center;font-size:13px;font-weight:500;color:var(--sub);cursor:pointer;border-bottom:2px solid transparent;transition:.2s}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.panel{display:none;padding:20px;animation:fadeIn .3s}
+.panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.type-card{background:var(--card);border:2px solid var(--border);border-radius:var(--radius);padding:16px 12px;text-align:center;cursor:pointer;transition:.2s}
+.type-card:hover,.type-card.selected{border-color:var(--accent);background:#0a1f0a}
+.type-card .icon{font-size:24px;margin-bottom:6px}
+.type-card .label{font-size:13px;font-weight:500}
+.type-card .desc{font-size:11px;color:var(--sub);margin-top:4px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:12px;color:var(--sub);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 14px;background:var(--input-bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:15px;outline:none;transition:.2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent)}
+.form-group input::placeholder{color:#555}
+.form-group .hint{font-size:11px;color:var(--sub);margin-top:4px}
+.form-group .error{color:#ff5252;font-size:11px;margin-top:4px;display:none}
+.volume-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.vol-btn{padding:10px;background:var(--card);border:1px solid var(--border);border-radius:8px;text-align:center;cursor:pointer;font-size:13px;transition:.2s}
+.vol-btn:hover,.vol-btn.selected{border-color:var(--accent);background:#0a1f0a}
+.region-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.region-btn{padding:10px;background:var(--card);border:1px solid var(--border);border-radius:8px;text-align:center;cursor:pointer;font-size:13px;transition:.2s}
+.region-btn:hover,.region-btn.selected{border-color:var(--accent);background:#0a1f0a}
+.progress{display:flex;gap:4px;margin-bottom:20px}
+.progress .step{flex:1;height:3px;border-radius:2px;background:var(--border);transition:.3s}
+.progress .step.done{background:var(--accent)}
+.progress .step.current{background:var(--accent2)}
+.info-card{background:var(--card);border-radius:var(--radius);padding:16px;margin-bottom:12px}
+.info-card h3{font-size:15px;margin-bottom:8px}
+.info-card p{font-size:13px;color:var(--sub);line-height:1.5}
+.info-card .tag{display:inline-block;background:#0a1f0a;color:var(--accent);padding:2px 8px;border-radius:4px;font-size:11px;margin-top:8px}
+.fee-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+.fee-table th{text-align:left;color:var(--sub);font-weight:500;padding:8px 0;border-bottom:1px solid var(--border)}
+.fee-table td{padding:8px 0;border-bottom:1px solid var(--border)}
+.fee-table td:last-child{text-align:right;color:var(--accent)}
+.sim-result{background:linear-gradient(135deg,#0a1f0a,#1a1a1a);border:1px solid var(--accent);border-radius:var(--radius);padding:20px;text-align:center;margin:16px 0}
+.sim-result .amount{font-size:28px;font-weight:700;color:var(--accent)}
+.sim-result .note{font-size:12px;color:var(--sub);margin-top:8px}
+.btn-primary{width:100%;padding:14px;background:var(--accent);color:#000;border:none;border-radius:var(--radius);font-size:15px;font-weight:600;cursor:pointer;transition:.2s;margin-top:16px}
+.btn-primary:hover{background:var(--accent2)}
+.btn-primary:disabled{opacity:.4;cursor:default}
+.success-screen{text-align:center;padding:40px 20px}
+.success-screen .check{font-size:48px;margin-bottom:16px}
+.success-screen h2{margin-bottom:8px}
+.success-screen p{color:var(--sub);font-size:14px;line-height:1.5}
+.hidden{display:none!important}
+.step-section{display:none}
+.step-section.active{display:block;animation:fadeIn .3s}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>OKX NEA Partnerships</h1>
+  <p>Joshua &middot; Senior BD Manager, Northeast Asia</p>
+</div>
+
+<div class="tabs">
+  <div class="tab active" data-tab="apply">Apply</div>
+  <div class="tab" data-tab="programs">Programs</div>
+  <div class="tab" data-tab="vip">VIP</div>
+</div>
+
+<!-- ===== APPLY TAB ===== -->
+<div class="panel active" id="tab-apply">
+  <div class="progress" id="progress"></div>
+
+  <div class="step-section active" id="step-type">
+    <div class="type-grid">
+      <div class="type-card" data-type="kol">
+        <div class="icon">&#x1F4E2;</div>
+        <div class="label">KOL / Creator</div>
+        <div class="desc">Influencers & content creators</div>
+      </div>
+      <div class="type-card" data-type="community">
+        <div class="icon">&#x1F465;</div>
+        <div class="label">Community</div>
+        <div class="desc">Groups, channels, education</div>
+      </div>
+      <div class="type-card" data-type="trading">
+        <div class="icon">&#x1F4C8;</div>
+        <div class="label">Trading / Quant</div>
+        <div class="desc">Desks, prop firms, systematic</div>
+      </div>
+      <div class="type-card" data-type="wealthtech">
+        <div class="icon">&#x1F3E6;</div>
+        <div class="label">Asset Mgmt</div>
+        <div class="desc">Robo-advisory, fintech</div>
+      </div>
+    </div>
+    <div class="sim-result hidden" id="sim-box">
+      <div style="font-size:12px;color:var(--sub);margin-bottom:4px">Estimated monthly earnings</div>
+      <div class="amount" id="sim-amount">$800 ~ $3,000</div>
+      <div class="note">Based on typical partner scale. Exact rates set 1:1.</div>
+    </div>
+  </div>
+
+  <div class="step-section" id="step-form"></div>
+
+  <div class="step-section" id="step-volume">
+    <label style="font-size:12px;color:var(--sub);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;display:block">Monthly Trading Volume</label>
+    <div class="volume-grid">
+      <div class="vol-btn" data-vol="< $1M">&lt; $1M</div>
+      <div class="vol-btn" data-vol="$1M-$10M">$1M-$10M</div>
+      <div class="vol-btn" data-vol="$10M-$50M">$10M-$50M</div>
+      <div class="vol-btn" data-vol="$50M-$100M">$50M-$100M</div>
+      <div class="vol-btn" data-vol="$100M-$500M">$100M-$500M</div>
+      <div class="vol-btn" data-vol="$500M-$1B">$500M-$1B</div>
+      <div class="vol-btn" data-vol="$1B+">$1B+</div>
+    </div>
+  </div>
+
+  <div class="step-section" id="step-review"></div>
+
+  <div class="step-section" id="step-success">
+    <div class="success-screen">
+      <div class="check">&#x2705;</div>
+      <h2>Application Submitted</h2>
+      <p id="success-msg">Reference: <b id="ref-num"></b><br><br>
+      1. Review within 1-2 business days<br>
+      2. Approval notification in Telegram<br>
+      3. Referral link + marketing materials</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PROGRAMS TAB ===== -->
+<div class="panel" id="tab-programs">
+  <div class="info-card">
+    <h3>&#x1F4E2; Affiliate Program</h3>
+    <p>Industry-best commissions for KOLs & communities. Recurring payouts, sub-affiliate 3-tier network.</p>
+    <div class="tag">Top commissions</div>
+  </div>
+  <div class="info-card">
+    <h3>&#x1F517; Sub-Affiliate</h3>
+    <p>Build your network. Earn from your sub-partners and their invitees. 3-tier revenue distribution.</p>
+    <div class="tag">Passive income</div>
+  </div>
+  <div class="info-card">
+    <h3>&#x1F527; Broker Program</h3>
+    <p>White-label API, sub-broker allocation, real-time data feeds. For API and platform operators.</p>
+    <div class="tag">API integration</div>
+  </div>
+  <div class="info-card">
+    <h3>&#x1F3C6; After Approval</h3>
+    <p>Personal referral link & QR code, marketing banners, content templates, real-time dashboard, dedicated BD manager.</p>
+    <div class="tag">Full toolkit</div>
+  </div>
+</div>
+
+<!-- ===== VIP TAB ===== -->
+<div class="panel" id="tab-vip">
+  <div class="info-card">
+    <h3>&#x1F40B; VIP / Institutional</h3>
+    <p>Premium track for high-volume partners. Handled personally by Joshua.</p>
+  </div>
+  <table class="fee-table">
+    <tr><th>Tier</th><th>Monthly Vol</th><th>Maker</th></tr>
+    <tr><td>VIP 1</td><td>$10M+</td><td>0.060%</td></tr>
+    <tr><td>VIP 2</td><td>$25M+</td><td>0.040%</td></tr>
+    <tr><td>VIP 3</td><td>$50M+</td><td>0.030%</td></tr>
+    <tr><td>VIP 4</td><td>$100M+</td><td>0.020%</td></tr>
+    <tr><td>VIP 5+</td><td>$200M+</td><td>Custom</td></tr>
+  </table>
+  <div class="info-card">
+    <h3>&#x1F3E6; Market Maker</h3>
+    <p>Negative maker fees (rebates), Liquid Marketplace, dedicated API infra, 24/7 tech support.</p>
+    <div class="tag">$50M+ eligible</div>
+  </div>
+  <div class="info-card">
+    <h3>&#x1F527; Broker</h3>
+    <p>White-label API, sub-broker allocation, custom fee structure, dedicated integration team.</p>
+    <div class="tag">Platform operators</div>
+  </div>
+  <button class="btn-primary" onclick="switchTab('apply')">Apply for VIP Track</button>
+</div>
+
+<script>
+const tg = window.Telegram?.WebApp;
+if(tg){tg.ready();tg.expand();tg.setHeaderColor('#0d0d0d');tg.setBackgroundColor('#0d0d0d')}
+const user = tg?.initDataUnsafe?.user || {};
+
+const FIELDS = {
+  kol:[
+    {key:'name',label:'KOL / Creator Name',placeholder:'Your creator name',required:true},
+    {key:'uid',label:'OKX UID',placeholder:'Your numeric UID',required:true,pattern:'\\d{6,}'},
+    {key:'channel',label:'Main Channel Link',placeholder:'https://youtube.com/...',required:true},
+    {key:'followers',label:'Followers / Subscribers',placeholder:'e.g. 50K',required:true},
+  ],
+  community:[
+    {key:'name',label:'Community / Group Name',placeholder:'Your community name',required:true},
+    {key:'uid',label:'OKX UID',placeholder:'Your numeric UID',required:true,pattern:'\\d{6,}'},
+    {key:'channel',label:'Channel / Group Link',placeholder:'https://t.me/...',required:true},
+    {key:'members',label:'Members',placeholder:'e.g. 10K',required:true},
+  ],
+  trading:[
+    {key:'entity',label:'Team / Entity Name',placeholder:'Your team name',required:true},
+    {key:'uid',label:'OKX UID',placeholder:'Your numeric UID',required:true,pattern:'\\d{6,}'},
+    {key:'strategy',label:'Strategy Type',placeholder:'MM, Arb, HFT, Systematic, Prop',required:true},
+    {key:'exchange',label:'Current Exchanges',placeholder:'e.g. Binance, Bybit',required:true},
+  ],
+  wealthtech:[
+    {key:'company',label:'Company / Service',placeholder:'Your company name',required:true},
+    {key:'uid',label:'OKX UID',placeholder:'Your numeric UID',required:true,pattern:'\\d{6,}'},
+    {key:'aum',label:'AUM',placeholder:'e.g. $5M',required:true},
+    {key:'service',label:'Main Service',placeholder:'Robo-advisory, Wealth Mgmt, Fintech',required:true},
+  ]
+};
+const REGIONS=['🇰🇷 Korea','🇬🇧 Global','🇹🇼 Taiwan','🇲🇳 Mongolia','🇭🇰 Hong Kong'];
+const SIMS={kol:'$800 ~ $3,000',community:'$500 ~ $2,000',trading:'Custom',wealthtech:'Custom (VIP)'};
+
+let state={type:null,step:0,data:{},volume:null,region:null};
+const steps=['step-type','step-form','step-volume','step-review','step-success'];
+const totalSteps=4;
+
+function updateProgress(){
+  const p=document.getElementById('progress');
+  p.innerHTML='';
+  for(let i=0;i<totalSteps;i++){
+    const d=document.createElement('div');
+    d.className='step'+(i<state.step?' done':'')+(i===state.step?' current':'');
+    p.appendChild(d);
+  }
+}
+
+function showStep(n){
+  state.step=n;
+  steps.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    el.classList.toggle('active',i===n);
+  });
+  updateProgress();
+}
+
+// Tab switching
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>switchTab(t.dataset.tab));
+});
+function switchTab(name){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===name));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id==='tab-'+name));
+  if(name==='apply'){state={type:null,step:0,data:{},volume:null,region:null};showStep(0)}
+}
+
+// Type selection
+document.querySelectorAll('.type-card').forEach(c=>{
+  c.addEventListener('click',()=>{
+    document.querySelectorAll('.type-card').forEach(x=>x.classList.remove('selected'));
+    c.classList.add('selected');
+    state.type=c.dataset.type;
+    const sim=document.getElementById('sim-box');
+    document.getElementById('sim-amount').textContent=SIMS[state.type];
+    sim.classList.remove('hidden');
+    setTimeout(()=>buildForm(),400);
+  });
+});
+
+function buildForm(){
+  const fields=FIELDS[state.type];
+  const container=document.getElementById('step-form');
+  let html='';
+  fields.forEach(f=>{
+    html+=`<div class="form-group"><label>${f.label}</label>
+    <input type="text" id="f-${f.key}" placeholder="${f.placeholder}" ${f.pattern?'pattern="'+f.pattern+'"':''}/>
+    <div class="error" id="e-${f.key}">Required</div></div>`;
+  });
+  html+='<label style="font-size:12px;color:var(--sub);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;display:block">Region</label>';
+  html+='<div class="region-grid">';
+  REGIONS.forEach(r=>{html+=`<div class="region-btn" data-region="${r}">${r}</div>`});
+  html+='</div>';
+  html+=`<div class="form-group" style="margin-top:16px"><label>Telegram Contact</label>
+  <input type="text" id="f-contact" placeholder="@handle" value="${user.username?'@'+user.username:''}"/></div>`;
+  html+='<button class="btn-primary" id="btn-next-form">Continue</button>';
+  container.innerHTML=html;
+
+  container.querySelectorAll('.region-btn').forEach(b=>{
+    b.addEventListener('click',()=>{
+      container.querySelectorAll('.region-btn').forEach(x=>x.classList.remove('selected'));
+      b.classList.add('selected');
+      state.region=b.dataset.region;
+    });
+  });
+  document.getElementById('btn-next-form').addEventListener('click',validateForm);
+  showStep(1);
+}
+
+function validateForm(){
+  const fields=FIELDS[state.type];
+  let valid=true;
+  fields.forEach(f=>{
+    const input=document.getElementById('f-'+f.key);
+    const err=document.getElementById('e-'+f.key);
+    const val=input.value.trim();
+    if(f.required&&!val){err.style.display='block';valid=false;input.style.borderColor='#ff5252'}
+    else if(f.pattern&&!new RegExp(f.pattern).test(val)){err.textContent='Invalid format';err.style.display='block';valid=false;input.style.borderColor='#ff5252'}
+    else{err.style.display='none';input.style.borderColor='var(--border)';state.data[f.key]=val}
+  });
+  state.data.contact=document.getElementById('f-contact').value.trim()||`@${user.username||''}`;
+  state.data.region=state.region||'';
+  if(valid)showStep(2);
+}
+
+// Volume selection
+document.querySelectorAll('.vol-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.vol-btn').forEach(x=>x.classList.remove('selected'));
+    b.classList.add('selected');
+    state.volume=b.dataset.vol;
+    setTimeout(()=>buildReview(),300);
+  });
+});
+
+function buildReview(){
+  state.data.volume=state.volume;
+  state.data.partner_type=state.type;
+  const container=document.getElementById('step-review');
+  let html='<div class="info-card"><h3>Confirm Application</h3><div style="margin-top:12px">';
+  Object.entries(state.data).forEach(([k,v])=>{
+    if(v&&k!=='partner_type')html+=`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border)"><span style="color:var(--sub);font-size:13px">${k}</span><span style="font-size:13px;font-weight:500">${v}</span></div>`;
+  });
+  html+='</div></div>';
+  html+='<button class="btn-primary" id="btn-submit">Submit Application</button>';
+  html+='<button class="btn-primary" style="background:var(--card);color:var(--text);margin-top:8px;border:1px solid var(--border)" onclick="showStep(1)">Edit</button>';
+  container.innerHTML=html;
+  document.getElementById('btn-submit').addEventListener('click',submitForm);
+  showStep(3);
+}
+
+function submitForm(){
+  const btn=document.getElementById('btn-submit');
+  btn.disabled=true;btn.textContent='Submitting...';
+  const payload=JSON.stringify({action:'partner_apply',type:state.type,...state.data,tg_id:user.id,tg_user:user.username});
+  if(tg){
+    tg.sendData(payload);
+  }else{
+    const ref='OKX-'+new Date().toISOString().slice(0,10).replace(/-/g,'')+'-0001';
+    document.getElementById('ref-num').textContent=ref;
+    showStep(4);
+  }
+}
+
+updateProgress();
+</script>
+</body>
+</html>
