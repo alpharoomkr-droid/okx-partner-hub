@@ -3,453 +3,302 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>OKX NEA Partnerships</title>
+<title>OKX Partnership</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
-:root{--bg:#121212;--card:#1c1c1e;--card2:#252528;--border:#333;--text:#fff;--sub:#8e8e93;--accent:#00d632;--accent-dim:#0a2e10;--red:#ff453a;--input:#1c1c1e;--radius:14px;--shadow:0 2px 12px rgba(0,0,0,.4)}
+:root{--bg:#121212;--card:#1c1c1e;--border:#333;--text:#fff;--sub:#8e8e93;--accent:#00d632;--accent-dim:#0a2e10;--red:#ff453a;--radius:14px}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
-.header{padding:20px 20px 14px;text-align:center}
-.header .logo{font-size:22px;font-weight:700;letter-spacing:2px}
-.header .subtitle{font-size:12px;color:var(--sub);margin-top:4px;letter-spacing:.3px}
-.tabs{display:flex;padding:0 16px;gap:4px;position:sticky;top:0;background:var(--bg);z-index:10;padding-bottom:2px}
-.tab{flex:1;padding:10px 0;text-align:center;font-size:12px;font-weight:600;color:var(--sub);cursor:pointer;border-bottom:2px solid transparent;transition:.2s;letter-spacing:.3px;text-transform:uppercase}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+.header{padding:20px 20px 12px;text-align:center}
+.header .logo{font-size:20px;font-weight:700;letter-spacing:2px}
+.header .sub{font-size:11px;color:var(--sub);margin-top:3px}
+.tabs{display:flex;padding:0 16px;gap:4px;position:sticky;top:0;background:var(--bg);z-index:10}
+.tab{flex:1;padding:10px 0;text-align:center;font-size:12px;font-weight:600;color:var(--sub);cursor:pointer;border-bottom:2px solid transparent;transition:.2s;text-transform:uppercase;letter-spacing:.3px}
 .tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 .panel{display:none;padding:16px;padding-bottom:100px}
 .panel.active{display:block;animation:fadeIn .25s ease-out}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
-.section-title{font-size:11px;color:var(--sub);text-transform:uppercase;letter-spacing:1px;margin:20px 0 10px;font-weight:600}
-.section-title:first-child{margin-top:4px}
-
-/* Type cards */
+.stitle{font-size:11px;color:var(--sub);text-transform:uppercase;letter-spacing:1px;margin:18px 0 10px;font-weight:600}
+.stitle:first-child{margin-top:4px}
 .type-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.type-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:18px 12px;text-align:center;cursor:pointer;transition:all .2s ease}
+.type-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:16px 12px;text-align:center;cursor:pointer;transition:all .2s}
 .type-card:active{transform:scale(.97)}
-.type-card.selected{border-color:var(--accent);background:var(--accent-dim);box-shadow:0 0 20px rgba(0,214,50,.08)}
-.type-card .icon{font-size:28px;margin-bottom:8px}
-.type-card .label{font-size:13px;font-weight:600}
-.type-card .desc{font-size:11px;color:var(--sub);margin-top:3px;line-height:1.3}
-
-/* Sim box */
-.sim-box{background:linear-gradient(135deg,var(--accent-dim),var(--card));border:1px solid rgba(0,214,50,.2);border-radius:var(--radius);padding:20px;text-align:center;margin:14px 0;display:none}
-.sim-box.show{display:block;animation:fadeIn .3s}
-.sim-box .label{font-size:11px;color:var(--sub);text-transform:uppercase;letter-spacing:.5px}
-.sim-box .amount{font-size:32px;font-weight:700;color:var(--accent);margin:6px 0}
-.sim-box .note{font-size:11px;color:var(--sub)}
-.sim-box .tier{font-size:12px;color:var(--accent);margin-top:6px;font-weight:500}
-
-/* Form */
-.form-group{margin-bottom:14px}
-.form-group label{display:block;font-size:11px;color:var(--sub);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;font-weight:500}
-.form-group input,.form-group select,.form-group textarea{width:100%;padding:13px 14px;background:var(--input);border:1.5px solid var(--border);border-radius:10px;color:var(--text);font-size:15px;outline:none;transition:border .2s}
-.form-group input:focus{border-color:var(--accent)}
-.form-group input::placeholder{color:#555}
-.form-group .err{color:var(--red);font-size:11px;margin-top:3px;display:none}
-
-/* Grid buttons */
-.grid-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.grid-btn{padding:12px 8px;background:var(--card);border:1.5px solid var(--border);border-radius:10px;text-align:center;cursor:pointer;font-size:13px;font-weight:500;transition:all .15s}
-.grid-btn:active{transform:scale(.97)}
-.grid-btn.selected{border-color:var(--accent);background:var(--accent-dim);color:var(--accent)}
-
-/* Progress */
-.progress{display:flex;gap:3px;margin-bottom:16px;padding:0 2px}
-.progress .dot{flex:1;height:3px;border-radius:2px;background:var(--border);transition:.3s}
-.progress .dot.done{background:var(--accent)}
-.progress .dot.now{background:var(--accent);opacity:.6}
-
-/* Info cards */
-.info-card{background:var(--card);border-radius:var(--radius);padding:16px;margin-bottom:10px;border:1px solid var(--border)}
-.info-card h3{font-size:14px;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:6px}
-.info-card p{font-size:13px;color:var(--sub);line-height:1.6}
-.info-card .badge{display:inline-block;background:var(--accent-dim);color:var(--accent);padding:3px 10px;border-radius:6px;font-size:11px;font-weight:600;margin-top:8px;letter-spacing:.3px}
-
-/* Fee table */
-.fee-tbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
-.fee-tbl th{text-align:left;color:var(--sub);font-weight:500;padding:8px 4px;border-bottom:1px solid var(--border);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
-.fee-tbl td{padding:7px 4px;border-bottom:1px solid rgba(51,51,51,.5);font-size:12px}
-.fee-tbl td.green{color:var(--accent);font-weight:600}
-.fee-tbl tr:last-child td{border-bottom:none}
-.fee-tbl .highlight{background:rgba(0,214,50,.04)}
-
-/* Buttons */
+.type-card.selected{border-color:var(--accent);background:var(--accent-dim)}
+.type-card .ic{font-size:26px;margin-bottom:6px}
+.type-card .lb{font-size:13px;font-weight:600}
+.type-card .ds{font-size:11px;color:var(--sub);margin-top:2px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:11px;color:var(--sub);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;font-weight:500}
+.fg input{width:100%;padding:13px 14px;background:var(--card);border:1.5px solid var(--border);border-radius:10px;color:var(--text);font-size:15px;outline:none;transition:border .2s}
+.fg input:focus{border-color:var(--accent)}
+.fg input::placeholder{color:#555}
+.fg .err{color:var(--red);font-size:11px;margin-top:3px;display:none}
+.gbtn-wrap{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gbtn{padding:11px 8px;background:var(--card);border:1.5px solid var(--border);border-radius:10px;text-align:center;cursor:pointer;font-size:13px;font-weight:500;transition:all .15s}
+.gbtn:active{transform:scale(.97)}
+.gbtn.sel{border-color:var(--accent);background:var(--accent-dim);color:var(--accent)}
+.prog{display:flex;gap:3px;margin-bottom:16px}
+.prog .d{flex:1;height:3px;border-radius:2px;background:var(--border);transition:.3s}
+.prog .d.done{background:var(--accent)}
+.prog .d.now{background:var(--accent);opacity:.6}
+.card{background:var(--card);border-radius:var(--radius);padding:16px;margin-bottom:10px;border:1px solid var(--border)}
+.card h3{font-size:14px;font-weight:600;margin-bottom:6px}
+.card p{font-size:13px;color:var(--sub);line-height:1.6}
+.card .badge{display:inline-block;background:var(--accent-dim);color:var(--accent);padding:3px 10px;border-radius:6px;font-size:11px;font-weight:600;margin-top:8px}
+.ftbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+.ftbl th{text-align:left;color:var(--sub);font-weight:500;padding:8px 4px;border-bottom:1px solid var(--border);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+.ftbl td{padding:7px 4px;border-bottom:1px solid rgba(51,51,51,.5)}
+.ftbl .gr{color:var(--accent);font-weight:600}
+.ftbl .hl{background:rgba(0,214,50,.04)}
+.rrow{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px}
+.rrow .k{color:var(--sub)}.rrow .v{font-weight:500;text-align:right;max-width:60%;word-break:break-all}
 .btn{width:100%;padding:15px;border:none;border-radius:var(--radius);font-size:15px;font-weight:600;cursor:pointer;transition:all .15s;margin-top:14px}
 .btn:active{transform:scale(.98)}
-.btn-primary{background:var(--accent);color:#000}
-.btn-secondary{background:var(--card);color:var(--text);border:1.5px solid var(--border)}
+.btn-p{background:var(--accent);color:#000}
+.btn-s{background:var(--card);color:var(--text);border:1.5px solid var(--border)}
 .btn:disabled{opacity:.35;cursor:default;transform:none}
-
-/* Review */
-.review-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px}
-.review-row .k{color:var(--sub)}
-.review-row .v{font-weight:500;text-align:right;max-width:60%;word-break:break-all}
-
-/* Success */
-.success{text-align:center;padding:48px 20px}
-.success .icon{font-size:56px;margin-bottom:16px}
-.success h2{font-size:20px;margin-bottom:8px}
-.success p{color:var(--sub);font-size:13px;line-height:1.6}
-.success .ref{font-family:monospace;background:var(--card);padding:8px 16px;border-radius:8px;display:inline-block;margin:12px 0;font-size:15px;letter-spacing:1px}
-
-/* Stat row */
-.stat-row{display:flex;gap:8px;margin-bottom:12px}
-.stat-box{flex:1;background:var(--card);border-radius:10px;padding:12px;text-align:center;border:1px solid var(--border)}
-.stat-box .num{font-size:18px;font-weight:700;color:var(--accent)}
-.stat-box .lbl{font-size:10px;color:var(--sub);margin-top:2px;text-transform:uppercase;letter-spacing:.5px}
-
-.hidden{display:none!important}
-.step-sec{display:none}
-.step-sec.active{display:block;animation:fadeIn .25s ease-out}
+.suc{text-align:center;padding:48px 20px}
+.suc .ic{font-size:56px;margin-bottom:16px}
+.suc h2{font-size:20px;margin-bottom:8px}
+.suc p{color:var(--sub);font-size:13px;line-height:1.6}
+.suc .ref{font-family:monospace;background:var(--card);padding:8px 16px;border-radius:8px;display:inline-block;margin:12px 0;font-size:15px;letter-spacing:1px}
+.warn{border-color:rgba(255,69,58,.3)!important}
+.warn h3{color:var(--red)}
+.ss{display:none}.ss.active{display:block;animation:fadeIn .25s ease-out}
 </style>
 </head>
 <body>
 <div class="header">
   <div class="logo">OKX</div>
-  <div class="subtitle">Northeast Asia Partnerships &middot; Joshua, Senior BD Manager</div>
+  <div class="sub">Joshua &middot; Senior BD Manager, Northeast Asia</div>
 </div>
-
 <div class="tabs">
-  <div class="tab active" data-tab="apply">Apply</div>
-  <div class="tab" data-tab="programs">Programs</div>
-  <div class="tab" data-tab="vip">VIP & Fees</div>
+  <div class="tab active" data-t="apply" id="t-apply">Apply</div>
+  <div class="tab" data-t="faq" id="t-faq">FAQ</div>
+  <div class="tab" data-t="rates" id="t-rates">Rates</div>
 </div>
 
-<!-- ===== APPLY ===== -->
-<div class="panel active" id="tab-apply">
-  <div class="progress" id="prog"></div>
-
-  <div class="step-sec active" id="s0">
-    <div class="section-title" id="lbl-type">Partner Type</div>
+<!-- APPLY -->
+<div class="panel active" id="p-apply">
+  <div class="prog" id="prog"></div>
+  <div class="ss active" id="s0">
+    <div class="stitle" id="l-type">Partner Type</div>
     <div class="type-grid">
-      <div class="type-card" data-type="kol"><div class="icon">&#x1F4E2;</div><div class="label">KOL / Creator</div><div class="desc">Influencers, content creators, streamers</div></div>
-      <div class="type-card" data-type="community"><div class="icon">&#x1F465;</div><div class="label">Community</div><div class="desc">Groups, channels, education, signals</div></div>
-      <div class="type-card" data-type="trading"><div class="icon">&#x1F4C8;</div><div class="label">Trading / Quant</div><div class="desc">Desks, prop firms, systematic, HFT</div></div>
-      <div class="type-card" data-type="wealthtech"><div class="icon">&#x1F3E6;</div><div class="label">Asset Mgmt</div><div class="desc">Robo-advisory, fintech platforms</div></div>
-    </div>
-    <div class="sim-box" id="sim">
-      <div class="label">Estimated Monthly Earnings</div>
-      <div class="amount" id="sim-amt"></div>
-      <div class="tier" id="sim-tier"></div>
-      <div class="note">Based on typical partner scale. Up to 50% commission.</div>
+      <div class="type-card" data-type="kol"><div class="ic">&#x1F4E2;</div><div class="lb">KOL / Creator</div><div class="ds" data-i="d-kol">Influencers, streamers</div></div>
+      <div class="type-card" data-type="community"><div class="ic">&#x1F465;</div><div class="lb">Community</div><div class="ds" data-i="d-comm">Groups, education, signals</div></div>
+      <div class="type-card" data-type="trading"><div class="ic">&#x1F4C8;</div><div class="lb">Trading / Quant</div><div class="ds" data-i="d-trade">Desks, prop, systematic</div></div>
+      <div class="type-card" data-type="wealthtech"><div class="ic">&#x1F3E6;</div><div class="lb">Asset Mgmt</div><div class="ds" data-i="d-wealth">Robo, fintech platforms</div></div>
     </div>
   </div>
-
-  <div class="step-sec" id="s1"></div>
-
-  <div class="step-sec" id="s2">
-    <div class="section-title" id="lbl-vol">Monthly Trading Volume</div>
-    <div class="grid-btns" id="vol-grid">
-      <div class="grid-btn" data-v="< $1M">&lt; $1M</div>
-      <div class="grid-btn" data-v="$1M-$10M">$1M-$10M</div>
-      <div class="grid-btn" data-v="$10M-$50M">$10M-$50M</div>
-      <div class="grid-btn" data-v="$50M-$100M">$50M-$100M</div>
-      <div class="grid-btn" data-v="$100M-$500M">$100M-$500M</div>
-      <div class="grid-btn" data-v="$500M+">$500M+</div>
+  <div class="ss" id="s1"></div>
+  <div class="ss" id="s2">
+    <div class="stitle" id="l-vol">Monthly Trading Volume</div>
+    <div class="gbtn-wrap" id="vg">
+      <div class="gbtn" data-v="< $1M">&lt; $1M</div>
+      <div class="gbtn" data-v="$1M-$10M">$1M-$10M</div>
+      <div class="gbtn" data-v="$10M-$50M">$10M-$50M</div>
+      <div class="gbtn" data-v="$50M-$100M">$50M-$100M</div>
+      <div class="gbtn" data-v="$100M+">$100M+</div>
+      <div class="gbtn" data-v="N/A">N/A</div>
     </div>
   </div>
-
-  <div class="step-sec" id="s3"></div>
-  <div class="step-sec" id="s4">
-    <div class="success"><div class="icon">&#x2705;</div><h2 id="suc-title">Application Submitted</h2><div class="ref" id="ref-id"></div><p id="suc-body">1. Review within 1-2 business days<br>2. Approval notification via Telegram<br>3. Referral link + marketing kit delivered</p></div>
+  <div class="ss" id="s3"></div>
+  <div class="ss" id="s4">
+    <div class="suc"><div class="ic">&#x2705;</div><h2 id="suc-t">Submitted</h2><div class="ref" id="ref-id"></div><p id="suc-b"></p></div>
   </div>
 </div>
 
-<!-- ===== PROGRAMS ===== -->
-<div class="panel" id="tab-programs">
-  <div class="stat-row">
-    <div class="stat-box"><div class="num">50%</div><div class="lbl">Max Commission</div></div>
-    <div class="stat-box"><div class="num">1-2h</div><div class="lbl">Payout Speed</div></div>
-    <div class="stat-box"><div class="num">5mo</div><div class="lbl">Rate Protection</div></div>
-  </stat-row>
+<!-- FAQ -->
+<div class="panel" id="p-faq">
+  <div class="stitle" id="l-faq-h">Frequently Asked Questions</div>
 
-  <div class="section-title">Affiliate Program</div>
-  <div class="info-card">
-    <h3>&#x1F4B0; Commission Tiers</h3>
-    <p>Earn 30-50% of your referrals' trading fees. Tiers based on monthly volume and active traders.</p>
-    <table class="fee-tbl">
-      <tr><th>Level</th><th>Monthly Vol</th><th>Traders</th><th>Rate</th></tr>
-      <tr><td>L1</td><td>$100K+</td><td>25+</td><td class="green">30%</td></tr>
-      <tr><td>L2</td><td>$500K+</td><td>25+</td><td class="green">35%</td></tr>
-      <tr><td>L3</td><td>$1M+</td><td>50+</td><td class="green">40%</td></tr>
-      <tr><td>L4</td><td>$5M+</td><td>100+</td><td class="green">45%</td></tr>
-      <tr class="highlight"><td>L5</td><td>$10M+</td><td>200+</td><td class="green">50%</td></tr>
-    </table>
-    <div class="badge">USDT payouts &middot; 1-2h settlement</div>
-  </div>
+  <div class="card"><h3 id="fq1t">How much commission can I earn?</h3>
+  <p id="fq1b">30-50% of your referrals' trading fees, paid in USDT. Your level depends on monthly volume and active traders. New affiliates get a 5-month rate protection period.</p></div>
 
-  <div class="info-card">
-    <h3>&#x1F517; Sub-Affiliate Network</h3>
-    <p>Build your network. Set custom commission splits for your sub-affiliates. Multi-tier earnings from your network's referrals.</p>
-    <div class="badge">Multi-tier passive income</div>
-  </div>
+  <div class="card"><h3 id="fq2t">When do I get paid?</h3>
+  <p id="fq2b">Commissions are settled within 1-2 hours after each trade. Paid directly to your OKX account in USDT. No minimum payout threshold.</p></div>
 
-  <div class="info-card">
-    <h3>&#x1F6E1;&#xFE0F; 5-Month Protection</h3>
-    <p>New affiliates get a 5-month rate protection period. Your commission level won't drop during this window even if volume dips.</p>
-    <div class="badge">New affiliate benefit</div>
-  </div>
+  <div class="card"><h3 id="fq3t">What do I need to apply?</h3>
+  <p id="fq3b">Your OKX UID (KYC verified account), your main channel/community link, and your Telegram contact. The application takes about 2 minutes.</p></div>
 
-  <div class="section-title">After Approval</div>
-  <div class="info-card">
-    <h3>&#x1F3AF; Your Toolkit</h3>
-    <p>Personal referral link & QR code, customizable marketing banners, real-time performance dashboard, content templates, and a dedicated BD manager.</p>
-    <div class="badge">Everything you need to start</div>
-  </div>
+  <div class="card"><h3 id="fq4t">How long until approval?</h3>
+  <p id="fq4b">1-2 business days. Joshua reviews each application personally. You'll receive an approval notification in this Telegram chat, along with your referral link and marketing materials.</p></div>
 
-  <button class="btn btn-primary" onclick="goTab('apply')">Apply Now</button>
+  <div class="card"><h3 id="fq5t">What happens after approval?</h3>
+  <p id="fq5b">You'll receive: your personal referral link, marketing banners, copy-paste intro templates, and a direct line to your BD manager. Start sharing immediately.</p></div>
+
+  <div class="card"><h3 id="fq6t">Can I build a sub-affiliate network?</h3>
+  <p id="fq6b">Yes. You can recruit sub-affiliates under your account. Set custom commission splits. Earn from your network's referrals in a multi-tier structure.</p></div>
+
+  <div class="card warn"><h3 id="fq7t">&#x26A0;&#xFE0F; What's not allowed?</h3>
+  <p id="fq7b">Impersonating OKX official accounts, bidding on OKX brand keywords in search ads, or using look-alike URLs. Violations result in immediate partner disqualification.</p></div>
+
+  <button class="btn btn-p" onclick="goTab('apply')" id="faq-apply">Apply Now</button>
 </div>
 
-<!-- ===== VIP ===== -->
-<div class="panel" id="tab-vip">
-  <div class="info-card">
-    <h3>&#x1F40B; VIP / Institutional Track</h3>
-    <p>Premium track for high-volume partners. VIP7+ unlocks negative maker fees (rebates). Handled personally by Joshua.</p>
-  </div>
+<!-- RATES -->
+<div class="panel" id="p-rates">
+  <div class="stitle">Commission Tiers (Spot)</div>
+  <table class="ftbl">
+    <tr><th>Level</th><th>Monthly Vol</th><th>Traders</th><th>Rate</th></tr>
+    <tr><td>L1</td><td>$100K+</td><td>25+</td><td class="gr">30%</td></tr>
+    <tr><td>L2</td><td>$500K+</td><td>25+</td><td class="gr">35%</td></tr>
+    <tr><td>L3</td><td>$1M+</td><td>50+</td><td class="gr">40%</td></tr>
+    <tr><td>L4</td><td>$5M+</td><td>100+</td><td class="gr">45%</td></tr>
+    <tr class="hl"><td>L5</td><td>$10M+</td><td>200+</td><td class="gr">50%</td></tr>
+  </table>
 
-  <div class="section-title">Spot Fee Tiers</div>
-  <table class="fee-tbl">
-    <tr><th>Tier</th><th>Assets / 30d Vol</th><th>Maker</th><th>Taker</th></tr>
-    <tr><td>Regular</td><td>&lt;$100K</td><td>0.200%</td><td>0.350%</td></tr>
+  <div class="stitle">VIP Fee Tiers (Spot)</div>
+  <table class="ftbl">
+    <tr><th>Tier</th><th>Assets/Vol</th><th>Maker</th><th>Taker</th></tr>
+    <tr><td>Reg</td><td>&lt;$100K</td><td>0.200%</td><td>0.350%</td></tr>
     <tr><td>VIP1</td><td>$100K+</td><td>0.100%</td><td>0.200%</td></tr>
-    <tr><td>VIP2</td><td>$200K+</td><td>0.075%</td><td>0.150%</td></tr>
     <tr><td>VIP3</td><td>$2M+</td><td>0.060%</td><td>0.125%</td></tr>
-    <tr><td>VIP4</td><td>$5M+</td><td>0.050%</td><td>0.100%</td></tr>
     <tr><td>VIP5</td><td>$20M+</td><td>0.045%</td><td>0.080%</td></tr>
-    <tr><td>VIP6</td><td>$50M+</td><td>0.040%</td><td>0.070%</td></tr>
-    <tr class="highlight"><td>VIP7</td><td>$100M+</td><td class="green">-0.002%</td><td>0.025%</td></tr>
-    <tr class="highlight"><td>VIP8</td><td>$250M+</td><td class="green">-0.005%</td><td>0.020%</td></tr>
-    <tr class="highlight"><td>VIP9</td><td>$500M+</td><td class="green">-0.0075%</td><td>0.0175%</td></tr>
+    <tr class="hl"><td>VIP7</td><td>$100M+</td><td class="gr">-0.002%</td><td>0.025%</td></tr>
+    <tr class="hl"><td>VIP9</td><td>$500M+</td><td class="gr">-0.0075%</td><td>0.0175%</td></tr>
   </table>
+  <p style="font-size:11px;color:var(--sub);margin-top:8px">VIP7+ = negative maker fees (you earn rebates). Full tier details available upon request.</p>
 
-  <div class="section-title">Futures Fee Tiers</div>
-  <table class="fee-tbl">
-    <tr><th>Tier</th><th>30d Vol</th><th>Maker</th><th>Taker</th></tr>
-    <tr><td>Regular</td><td>&lt;$5M</td><td>0.020%</td><td>0.050%</td></tr>
-    <tr><td>VIP1</td><td>$5M+</td><td>0.016%</td><td>0.045%</td></tr>
-    <tr><td>VIP3</td><td>$50M+</td><td>0.010%</td><td>0.028%</td></tr>
-    <tr><td>VIP5</td><td>$600M+</td><td>0.005%</td><td>0.026%</td></tr>
-    <tr class="highlight"><td>VIP6</td><td>$1B+</td><td class="green">0.000%</td><td>0.025%</td></tr>
-    <tr class="highlight"><td>VIP7</td><td>$1.5B+</td><td class="green">-0.002%</td><td>0.020%</td></tr>
-    <tr class="highlight"><td>VIP9</td><td>$20B+</td><td class="green">-0.005%</td><td>0.015%</td></tr>
-  </table>
-
-  <div class="section-title">Specialized Programs</div>
-  <div class="info-card">
-    <h3>&#x1F3E6; Market Maker</h3>
-    <p>Negative maker fees (rebates up to -0.005%), priority API infrastructure on Alibaba Cloud HK, dedicated tech support, Liquid Marketplace access for block trading.</p>
-    <div class="badge">$50M+ monthly eligible</div>
-  </div>
-  <div class="info-card">
-    <h3>&#x1F527; Broker Program</h3>
-    <p>White-label API, sub-broker account management, custom fee structures, dedicated integration team. For platform operators and prop firms.</p>
-    <div class="badge">Contact: institutional@okx.com</div>
-  </div>
-
-  <button class="btn btn-primary" onclick="goTab('apply')" id="vip-apply-btn">Apply for VIP Track</button>
+  <button class="btn btn-p" onclick="goTab('apply')" id="rates-apply">Apply Now</button>
 </div>
-
-<!-- ===== COMPLIANCE (inside VIP tab bottom) ===== -->
 
 <script>
 const tg=window.Telegram?.WebApp;
 if(tg){tg.ready();tg.expand();try{tg.setHeaderColor('#121212');tg.setBackgroundColor('#121212')}catch(e){}}
-const user=tg?.initDataUnsafe?.user||{};
+const U=tg?.initDataUnsafe?.user||{};
+const LC=(U.language_code||navigator.language||'en').toLowerCase();
+const L=LC.startsWith('ko')?'ko':LC.startsWith('zh')?'tw':'en';
 
-// i18n
-const LANG_CODE=(user.language_code||navigator.language||'en').toLowerCase();
-const LANG=LANG_CODE.startsWith('ko')?'ko':LANG_CODE.startsWith('zh')?'tw':'en';
-
-const I18N={
-  apply:{ko:'신청',en:'Apply',tw:'申請'},
-  programs:{ko:'프로그램',en:'Programs',tw:'項目'},
-  vipFees:{ko:'VIP 수수료',en:'VIP & Fees',tw:'VIP 費率'},
-  partnerType:{ko:'파트너 유형',en:'Partner Type',tw:'合作類型'},
-  estEarnings:{ko:'예상 월 수익',en:'Estimated Monthly Earnings',tw:'預估月收益'},
-  upTo50:{ko:'최대 50% 커미션 기준',en:'Based on up to 50% commission',tw:'最高 50% 佣金'},
-  yourDetails:{ko:'상세 정보',en:'Your Details',tw:'詳細資訊'},
+const T={
+  apply:{ko:'등록',en:'Apply',tw:'登記'},
+  faq:{ko:'FAQ',en:'FAQ',tw:'FAQ'},
+  rates:{ko:'수수료',en:'Rates',tw:'費率'},
+  type:{ko:'파트너 유형',en:'Partner Type',tw:'合作類型'},
+  details:{ko:'상세 정보',en:'Your Details',tw:'詳細資訊'},
   region:{ko:'지역',en:'Region',tw:'地區'},
-  tgContact:{ko:'텔레그램 연락처',en:'Telegram Contact',tw:'Telegram 聯繫方式'},
-  continue:{ko:'계속',en:'Continue',tw:'繼續'},
-  monthlyVol:{ko:'월 거래량',en:'Monthly Trading Volume',tw:'月交易量'},
-  review:{ko:'신청 내용 확인',en:'Review Application',tw:'確認申請'},
-  submit:{ko:'제출',en:'Submit Application',tw:'提交申請'},
-  edit:{ko:'수정',en:'Edit Details',tw:'編輯'},
-  submitted:{ko:'신청 완료',en:'Application Submitted',tw:'申請已提交'},
-  step1:{ko:'1~2 영업일 내 검토',en:'Review within 1-2 business days',tw:'1~2 個工作日內審核'},
-  step2:{ko:'텔레그램으로 승인 알림',en:'Approval notification via Telegram',tw:'透過 Telegram 通知審核結果'},
-  step3:{ko:'레퍼럴 링크 + 마케팅 자료 전달',en:'Referral link + marketing kit delivered',tw:'推薦連結 + 行銷素材'},
-  applyNow:{ko:'지금 신청',en:'Apply Now',tw:'立即申請'},
-  applyVip:{ko:'VIP 트랙 신청',en:'Apply for VIP Track',tw:'申請 VIP 通道'},
-  required:{ko:'필수 항목',en:'Required',tw:'必填'},
-  invalidFmt:{ko:'형식이 올바르지 않습니다',en:'Invalid format',tw:'格式不正確'},
-  submitting:{ko:'제출 중...',en:'Submitting...',tw:'提交中...'},
-  compliance:{ko:'컴플라이언스',en:'Compliance',tw:'合規'},
-  compText:{ko:'OKX 공식 사이트/SNS 모방, 브랜드 키워드 광고, 유사 URL 사용 시 파트너 자격이 박탈됩니다.',en:'Impersonating OKX sites/handles, bidding on OKX brand keywords, or using look-alike URLs will result in partner disqualification.',tw:'仿冒 OKX 官方網站/帳號、競價 OKX 品牌關鍵字、或使用相似 URL，將導致合作資格被取消。'},
+  tg:{ko:'텔레그램 연락처',en:'Telegram Contact',tw:'Telegram 聯繫'},
+  cont:{ko:'다음',en:'Continue',tw:'繼續'},
+  vol:{ko:'월 거래량',en:'Monthly Trading Volume',tw:'月交易量'},
+  review:{ko:'확인',en:'Review',tw:'確認'},
+  submit:{ko:'제출',en:'Submit',tw:'提交'},
+  edit:{ko:'수정',en:'Edit',tw:'編輯'},
+  done:{ko:'등록 완료',en:'Submitted',tw:'已提交'},
+  req:{ko:'필수',en:'Required',tw:'必填'},
+  inv:{ko:'형식 오류',en:'Invalid format',tw:'格式錯誤'},
+  wait:{ko:'제출 중...',en:'Submitting...',tw:'提交中...'},
+  now:{ko:'지금 등록',en:'Apply Now',tw:'立即申請'},
+  dKol:{ko:'인플루언서, 크리에이터',en:'Influencers, streamers',tw:'創作者、直播主'},
+  dComm:{ko:'그룹, 교육, 시그널',en:'Groups, education, signals',tw:'社群、教育、信號'},
+  dTrade:{ko:'데스크, 프롭, 퀀트',en:'Desks, prop, systematic',tw:'交易團隊、量化'},
+  dWealth:{ko:'로보, 핀테크',en:'Robo, fintech platforms',tw:'機器人投顧、金融科技'},
+  s1:{ko:'1~2 영업일 내 검토',en:'Review within 1-2 business days',tw:'1~2 工作日內審核'},
+  s2:{ko:'이 채팅으로 승인 알림',en:'Approval notification in this chat',tw:'在此聊天通知結果'},
+  s3:{ko:'레퍼럴 링크 + 마케팅 자료 전달',en:'Referral link + marketing kit',tw:'推薦連結 + 行銷素材'},
+  faqH:{ko:'자주 묻는 질문',en:'Frequently Asked Questions',tw:'常見問題'},
+  fq1t:{ko:'커미션은 얼마나 받나요?',en:'How much commission can I earn?',tw:'佣金能賺多少？'},
+  fq1b:{ko:'추천 유저 거래 수수료의 30~50%를 USDT로 받습니다. 레벨은 월 거래량과 활성 트레이더 수에 따라 결정되며, 신규 어필리에이트는 5개월간 등급 보호를 받습니다.',en:'30-50% of your referrals\' trading fees, paid in USDT. Your level depends on monthly volume and active traders. New affiliates get a 5-month rate protection period.',tw:'推薦用戶交易手續費的 30-50%，以 USDT 支付。等級取決於月交易量與活躍交易者數量。新推薦人享有 5 個月費率保護期。'},
+  fq2t:{ko:'정산은 언제 되나요?',en:'When do I get paid?',tw:'何時能收到款項？'},
+  fq2b:{ko:'거래 발생 후 1~2시간 내 USDT로 자동 정산됩니다. 최소 출금 한도가 없습니다.',en:'Commissions are settled within 1-2 hours after each trade. Paid directly to your OKX account in USDT. No minimum payout threshold.',tw:'每筆交易後 1-2 小時內以 USDT 自動結算。直接支付至您的 OKX 帳戶，無最低提款門檻。'},
+  fq3t:{ko:'신청하려면 뭐가 필요한가요?',en:'What do I need to apply?',tw:'申請需要什麼？'},
+  fq3b:{ko:'OKX UID (KYC 완료 계정), 메인 채널/커뮤니티 링크, 텔레그램 연락처. 약 2분이면 됩니다.',en:'Your OKX UID (KYC verified account), your main channel/community link, and your Telegram contact. Takes about 2 minutes.',tw:'您的 OKX UID（已完成 KYC）、主要頻道/社群連結和 Telegram 聯繫方式。大約 2 分鐘即可完成。'},
+  fq4t:{ko:'승인까지 얼마나 걸리나요?',en:'How long until approval?',tw:'審核需要多久？'},
+  fq4b:{ko:'1~2 영업일. Joshua가 직접 검토합니다. 승인되면 텔레그램으로 알림과 함께 레퍼럴 링크, 마케팅 자료가 전달됩니다.',en:'1-2 business days. Joshua reviews each application personally. You\'ll receive an approval notification in this Telegram chat, along with your referral link and marketing materials.',tw:'1-2 個工作日。Joshua 親自審核每份申請。通過後會在此 Telegram 聊天中收到通知，連同推薦連結和行銷素材。'},
+  fq5t:{ko:'승인 후에는 뭘 받나요?',en:'What happens after approval?',tw:'通過後會怎樣？'},
+  fq5b:{ko:'개인 레퍼럴 링크, 마케팅 배너, 소개 문구 템플릿, 전담 BD 매니저 직통 라인을 받습니다. 바로 활동을 시작하실 수 있습니다.',en:'You\'ll receive: your personal referral link, marketing banners, copy-paste intro templates, and a direct line to your BD manager. Start sharing immediately.',tw:'您將收到：個人推薦連結、行銷橫幅、介紹文案範本，以及專屬 BD 經理直通管道。立即開始推廣。'},
+  fq6t:{ko:'서브어필리에이트를 만들 수 있나요?',en:'Can I build a sub-affiliate network?',tw:'可以建立二級推薦網絡嗎？'},
+  fq6b:{ko:'네. 하위 어필리에이트를 모집하고, 커미션 배분 비율을 직접 설정할 수 있습니다. 다단계 수익 구조입니다.',en:'Yes. You can recruit sub-affiliates under your account. Set custom commission splits. Earn from your network\'s referrals in a multi-tier structure.',tw:'可以。您可以招募下級推薦人，自行設定佣金分配比例。從網絡的推薦中獲得多層收益。'},
+  fq7t:{ko:'&#x26A0;&#xFE0F; 주의 사항',en:'&#x26A0;&#xFE0F; What\'s not allowed?',tw:'&#x26A0;&#xFE0F; 注意事項'},
+  fq7b:{ko:'OKX 공식 계정 사칭, 브랜드 키워드 검색 광고, 유사 URL 사용은 즉시 파트너 자격이 박탈됩니다.',en:'Impersonating OKX official accounts, bidding on OKX brand keywords in search ads, or using look-alike URLs. Violations result in immediate partner disqualification.',tw:'仿冒 OKX 官方帳號、競價 OKX 品牌關鍵字、或使用相似 URL，將立即取消合作資格。'},
 };
-function L(k){return I18N[k]?.[LANG]||I18N[k]?.en||k}
+function t(k){return T[k]?.[L]||T[k]?.en||k}
 
-// Apply i18n to static elements
-document.querySelectorAll('.tab').forEach(t=>{
-  const map={apply:'apply',programs:'programs',vip:'vipFees'};
-  if(map[t.dataset.tab])t.textContent=L(map[t.dataset.tab]);
-});
-document.getElementById('vip-apply-btn').textContent=L('applyVip');
-document.getElementById('lbl-type').textContent=L('partnerType');
-document.getElementById('suc-title').textContent=L('submitted');
-document.getElementById('suc-body').innerHTML='1. '+L('step1')+'<br>2. '+L('step2')+'<br>3. '+L('step3');
-// Programs tab Apply Now button
-document.querySelectorAll('.btn-primary').forEach(b=>{if(b.textContent==='Apply Now')b.textContent=L('applyNow')});
-document.getElementById('lbl-vol').textContent=L('monthlyVol');
+// Apply i18n
+document.getElementById('t-apply').textContent=t('apply');
+document.getElementById('t-faq').textContent=t('faq');
+document.getElementById('t-rates').textContent=t('rates');
+document.getElementById('l-type').textContent=t('type');
+document.getElementById('l-vol').textContent=t('vol');
+document.getElementById('l-faq-h').textContent=t('faqH');
+document.getElementById('faq-apply').textContent=t('now');
+document.getElementById('rates-apply').textContent=t('now');
+document.querySelectorAll('[data-i]').forEach(e=>{const m={dKol:'dKol',dComm:'dComm',dTrade:'dTrade',dWealth:'dWealth'}[e.dataset.i.replace('d-','d').replace('kol','Kol').replace('comm','Comm').replace('trade','Trade').replace('wealth','Wealth')];if(m)e.textContent=t(m)});
+['fq1t','fq1b','fq2t','fq2b','fq3t','fq3b','fq4t','fq4b','fq5t','fq5b','fq6t','fq6b'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=t(id)});
+const fq7tEl=document.getElementById('fq7t'),fq7bEl=document.getElementById('fq7b');
+if(fq7tEl)fq7tEl.innerHTML=t('fq7t');if(fq7bEl)fq7bEl.textContent=t('fq7b');
 
 const FIELDS={
-  kol:[
-    {key:'name',label:{ko:'KOL / 활동명',en:'KOL / Creator Name',tw:'KOL 名稱'},ph:{ko:'활동명 또는 채널명',en:'Your creator or channel name',tw:'創作者或頻道名稱'}},
-    {key:'uid',label:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},ph:{ko:'숫자 UID (KYC 완료)',en:'Numeric UID (KYC verified)',tw:'數字 UID（已完成 KYC）'},pat:/^\d{6,}$/},
-    {key:'channel',label:{ko:'메인 채널 링크',en:'Main Channel Link',tw:'主要頻道連結'},ph:{ko:'https://...',en:'https://...',tw:'https://...'}},
-    {key:'followers',label:{ko:'팔로워 수',en:'Followers / Subscribers',tw:'追蹤者數'},ph:{ko:'예: 50K, 200K',en:'e.g. 50K, 200K',tw:'例：50K, 200K'}},
-  ],
-  community:[
-    {key:'name',label:{ko:'커뮤니티 이름',en:'Community / Group Name',tw:'社群名稱'},ph:{ko:'커뮤니티 또는 그룹명',en:'Your community name',tw:'您的社群名稱'}},
-    {key:'uid',label:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},ph:{ko:'숫자 UID (KYC 완료)',en:'Numeric UID (KYC verified)',tw:'數字 UID（已完成 KYC）'},pat:/^\d{6,}$/},
-    {key:'channel',label:{ko:'채널/그룹 링크',en:'Channel / Group Link',tw:'頻道/群組連結'},ph:{ko:'https://t.me/...',en:'https://t.me/...',tw:'https://t.me/...'}},
-    {key:'members',label:{ko:'멤버 수',en:'Total Members',tw:'成員數'},ph:{ko:'예: 10K',en:'e.g. 10K',tw:'例：10K'}},
-  ],
-  trading:[
-    {key:'entity',label:{ko:'팀/법인명',en:'Team / Entity Name',tw:'團隊/公司名稱'},ph:{ko:'팀 또는 법인명',en:'Your team or company',tw:'您的團隊或公司'}},
-    {key:'uid',label:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},ph:{ko:'숫자 UID (KYC 완료)',en:'Numeric UID (KYC verified)',tw:'數字 UID（已完成 KYC）'},pat:/^\d{6,}$/},
-    {key:'strategy',label:{ko:'전략 유형',en:'Strategy Type',tw:'策略類型'},ph:{ko:'MM, Arb, HFT, Systematic, Prop',en:'MM, Arb, HFT, Systematic, Prop',tw:'MM, Arb, HFT, Systematic, Prop'}},
-    {key:'exchange',label:{ko:'현재 거래소',en:'Current Exchanges',tw:'目前交易所'},ph:{ko:'예: Binance, Bybit',en:'e.g. Binance, Bybit',tw:'例：Binance, Bybit'}},
-  ],
-  wealthtech:[
-    {key:'company',label:{ko:'회사/서비스명',en:'Company / Service',tw:'公司/服務名稱'},ph:{ko:'회사명',en:'Your company name',tw:'您的公司名稱'}},
-    {key:'uid',label:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},ph:{ko:'숫자 UID (KYC 완료)',en:'Numeric UID (KYC verified)',tw:'數字 UID（已完成 KYC）'},pat:/^\d{6,}$/},
-    {key:'aum',label:{ko:'운용 자산(AUM)',en:'AUM (Assets Under Mgmt)',tw:'管理資產規模'},ph:{ko:'예: $5M, $50M',en:'e.g. $5M, $50M',tw:'例：$5M, $50M'}},
-    {key:'service',label:{ko:'주요 서비스',en:'Main Service',tw:'主要服務'},ph:{ko:'로보어드바이저, 자산관리 등',en:'Robo-advisory, Wealth Mgmt, etc.',tw:'機器人投顧、資產管理等'}},
-  ]
+  kol:[{key:'name',l:{ko:'활동명',en:'KOL Name',tw:'KOL 名稱'},p:{ko:'채널명 또는 활동명',en:'Channel or creator name',tw:'頻道或創作者名稱'}},{key:'uid',l:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},p:{ko:'숫자 UID (KYC 완료)',en:'Numeric UID (KYC verified)',tw:'數字 UID'},pat:/^\d{6,}$/},{key:'channel',l:{ko:'채널 링크',en:'Channel Link',tw:'頻道連結'},p:{ko:'https://...',en:'https://...',tw:'https://...'}},{key:'followers',l:{ko:'팔로워 수',en:'Followers',tw:'追蹤者'},p:{ko:'예: 50K',en:'e.g. 50K',tw:'例：50K'}}],
+  community:[{key:'name',l:{ko:'커뮤니티명',en:'Community Name',tw:'社群名稱'},p:{ko:'그룹 또는 채널명',en:'Group or channel name',tw:'群組或頻道名稱'}},{key:'uid',l:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},p:{ko:'숫자 UID',en:'Numeric UID',tw:'數字 UID'},pat:/^\d{6,}$/},{key:'channel',l:{ko:'링크',en:'Link',tw:'連結'},p:{ko:'https://...',en:'https://...',tw:'https://...'}},{key:'members',l:{ko:'멤버 수',en:'Members',tw:'成員數'},p:{ko:'예: 10K',en:'e.g. 10K',tw:'例：10K'}}],
+  trading:[{key:'entity',l:{ko:'팀/법인명',en:'Team Name',tw:'團隊名稱'},p:{ko:'팀명',en:'Your team',tw:'團隊'}},{key:'uid',l:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},p:{ko:'숫자 UID',en:'Numeric UID',tw:'數字 UID'},pat:/^\d{6,}$/},{key:'strategy',l:{ko:'전략',en:'Strategy',tw:'策略'},p:{ko:'MM, Arb, HFT, Prop',en:'MM, Arb, HFT, Prop',tw:'MM, Arb, HFT, Prop'}},{key:'exchange',l:{ko:'현재 거래소',en:'Current Exchanges',tw:'目前交易所'},p:{ko:'예: Binance',en:'e.g. Binance',tw:'例：Binance'}}],
+  wealthtech:[{key:'company',l:{ko:'회사명',en:'Company',tw:'公司名稱'},p:{ko:'회사 또는 서비스명',en:'Company or service',tw:'公司或服務'}},{key:'uid',l:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},p:{ko:'숫자 UID',en:'Numeric UID',tw:'數字 UID'},pat:/^\d{6,}$/},{key:'aum',l:{ko:'AUM',en:'AUM',tw:'AUM'},p:{ko:'예: $5M',en:'e.g. $5M',tw:'例：$5M'}},{key:'service',l:{ko:'서비스',en:'Service',tw:'服務'},p:{ko:'로보, 자산관리 등',en:'Robo, wealth mgmt',tw:'機器人投顧等'}}]
 };
-const REGIONS=[{l:'🇰🇷 Korea',v:'KR'},{l:'🇹🇼 Taiwan',v:'TW'},{l:'🇲🇳 Mongolia',v:'MN'},{l:'🇭🇰 Hong Kong',v:'HK'},{l:'🌏 Other',v:'Other'}];
+const REGIONS=[{l:'🇰🇷 Korea',v:'KR'},{l:'🇹🇼 Taiwan',v:'TW'},{l:'🇲🇳 Mongolia',v:'MN'},{l:'🇭🇰 HK',v:'HK'},{l:'🌏 Other',v:'Other'}];
 
-function calcSim(type,val){
-  const n=parseFloat(val.replace(/[^0-9.]/g,''));
-  const m=val.toLowerCase().includes('m')?1e6:val.toLowerCase().includes('k')?1e3:1;
-  const f=n*m;
-  if(type==='kol'||type==='community'){
-    if(f>=1e6)return{lo:'$12,000',hi:'$50,000+',tier:'L4-L5 (45-50%)'};
-    if(f>=200e3)return{lo:'$3,000',hi:'$12,000',tier:'L3-L4 (40-45%)'};
-    if(f>=50e3)return{lo:'$800',hi:'$3,000',tier:'L2 (35%)'};
-    if(f>=10e3)return{lo:'$200',hi:'$800',tier:'L1 (30%)'};
-    return{lo:'$50',hi:'$200',tier:'L1 (30%)'};
-  }
-  return null;
-}
+let S={type:null,step:0,data:{},vol:null,rgn:null};
+const NSTEPS=4;
 
-let S={type:null,step:0,data:{},vol:null,region:null};
-const STEPS=5;
+function updP(){const p=document.getElementById('prog');p.innerHTML='';for(let i=0;i<NSTEPS;i++){const d=document.createElement('div');d.className='d'+(i<S.step?' done':'')+(i===S.step?' now':'');p.appendChild(d)}}
+function showS(n){S.step=n;document.querySelectorAll('.ss').forEach((e,i)=>e.classList.toggle('active',i===n));updP()}
 
-function updProg(){
-  const p=document.getElementById('prog');p.innerHTML='';
-  for(let i=0;i<STEPS;i++){const d=document.createElement('div');d.className='dot'+(i<S.step?' done':'')+(i===S.step?' now':'');p.appendChild(d)}
-}
+document.querySelectorAll('.tab').forEach(x=>x.onclick=()=>goTab(x.dataset.t));
+function goTab(n){document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.t===n));document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id==='p-'+n));if(n==='apply'){S={type:null,step:0,data:{},vol:null,rgn:null};showS(0)}}
 
-function showStep(n){S.step=n;document.querySelectorAll('.step-sec').forEach((e,i)=>e.classList.toggle('active',i===n));updProg()}
-
-document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>goTab(t.dataset.tab));
-function goTab(name){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===name));
-  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id==='tab-'+name));
-  if(name==='apply'){S={type:null,step:0,data:{},vol:null,region:null};showStep(0)}
-}
-
-document.querySelectorAll('.type-card').forEach(c=>{
-  c.onclick=()=>{
-    document.querySelectorAll('.type-card').forEach(x=>x.classList.remove('selected'));
-    c.classList.add('selected');S.type=c.dataset.type;
-    const sim=document.getElementById('sim');
-    if(S.type==='kol'||S.type==='community'){
-      document.getElementById('sim-amt').textContent='$800 ~ $3,000';
-      document.getElementById('sim-tier').textContent=(S.type==='kol'?'50K+ followers':'10K+ members')+' at L2 (35%)';
-    }else{
-      document.getElementById('sim-amt').textContent='Custom VIP';
-      document.getElementById('sim-tier').textContent=S.type==='trading'?'VIP fee tiers + dedicated RM':'Institutional negotiated structures';
-    }
-    sim.classList.add('show');
-    setTimeout(()=>buildForm(),350);
-  }
+document.querySelectorAll('.type-card').forEach(c=>c.onclick=()=>{
+  document.querySelectorAll('.type-card').forEach(x=>x.classList.remove('selected'));
+  c.classList.add('selected');S.type=c.dataset.type;setTimeout(buildForm,300);
 });
 
 function buildForm(){
   const f=FIELDS[S.type],el=document.getElementById('s1');
-  let h=`<div class="section-title">${L('yourDetails')}</div>`;
-  f.forEach(x=>{
-    const label=x.label[LANG]||x.label.en, ph=x.ph[LANG]||x.ph.en;
-    h+=`<div class="form-group"><label>${label}</label><input id="f-${x.key}" placeholder="${ph}"/><div class="err" id="e-${x.key}">${L('required')}</div></div>`;
-  });
-  // Live sim for KOL/community
-  if(S.type==='kol'||S.type==='community'){
-    const fKey=S.type==='kol'?'followers':'members';
-    setTimeout(()=>{
-      const inp=document.getElementById('f-'+fKey);
-      if(inp)inp.addEventListener('input',()=>{
-        const r=calcSim(S.type,inp.value);
-        if(r){document.getElementById('sim-amt').textContent=r.lo+' ~ '+r.hi;document.getElementById('sim-tier').textContent=r.tier}
-      });
-    },100);
-  }
-  h+=`<div class="section-title">${L('region')}</div><div class="grid-btns">`;
-  REGIONS.forEach(r=>{h+=`<div class="grid-btn rbtn" data-r="${r.v}">${r.l}</div>`});
-  h+='</div>';
-  h+=`<div class="form-group" style="margin-top:14px"><label>${L('tgContact')}</label><input id="f-contact" placeholder="@handle" value="${user.username?'@'+user.username:''}"/></div>`;
-  // Compliance notice
-  h+=`<div class="info-card" style="margin-top:14px;border-color:var(--red);border-width:1px"><h3 style="color:var(--red)">&#x26A0;&#xFE0F; ${L('compliance')}</h3><p style="font-size:12px">${L('compText')}</p></div>`;
-  h+=`<button class="btn btn-primary" id="btn-next">${L('continue')}</button>`;
+  let h=`<div class="stitle">${t('details')}</div>`;
+  f.forEach(x=>{h+=`<div class="fg"><label>${x.l[L]||x.l.en}</label><input id="f-${x.key}" placeholder="${x.p[L]||x.p.en}"/><div class="err" id="e-${x.key}">${t('req')}</div></div>`});
+  h+=`<div class="stitle">${t('region')}</div><div class="gbtn-wrap">`;
+  REGIONS.forEach(r=>{h+=`<div class="gbtn rb" data-r="${r.v}">${r.l}</div>`});
+  h+=`</div><div class="fg" style="margin-top:14px"><label>${t('tg')}</label><input id="f-contact" placeholder="@handle" value="${U.username?'@'+U.username:''}"/></div>`;
+  h+=`<button class="btn btn-p" id="bn">${t('cont')}</button>`;
   el.innerHTML=h;
-  el.querySelectorAll('.rbtn').forEach(b=>b.onclick=()=>{el.querySelectorAll('.rbtn').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');S.region=b.dataset.r});
-  document.getElementById('btn-next').onclick=validate;
-  showStep(1);
+  el.querySelectorAll('.rb').forEach(b=>b.onclick=()=>{el.querySelectorAll('.rb').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');S.rgn=b.dataset.r});
+  document.getElementById('bn').onclick=validate;showS(1);
 }
 
 function validate(){
   const f=FIELDS[S.type];let ok=true;
   f.forEach(x=>{
-    const inp=document.getElementById('f-'+x.key),err=document.getElementById('e-'+x.key),v=inp.value.trim();
-    if(!v){err.textContent=L('required');err.style.display='block';inp.style.borderColor='var(--red)';ok=false}
-    else if(x.pat&&!x.pat.test(v)){err.textContent=L('invalidFmt');err.style.display='block';inp.style.borderColor='var(--red)';ok=false}
-    else{err.style.display='none';inp.style.borderColor='var(--border)';S.data[x.key]=v}
+    const i=document.getElementById('f-'+x.key),e=document.getElementById('e-'+x.key),v=i.value.trim();
+    if(!v){e.textContent=t('req');e.style.display='block';i.style.borderColor='var(--red)';ok=false}
+    else if(x.pat&&!x.pat.test(v)){e.textContent=t('inv');e.style.display='block';i.style.borderColor='var(--red)';ok=false}
+    else{e.style.display='none';i.style.borderColor='var(--border)';S.data[x.key]=v}
   });
-  S.data.contact=document.getElementById('f-contact').value.trim()||'@'+(user.username||'');
-  S.data.region=S.region||'';
-  if(ok)showStep(2);
+  S.data.contact=document.getElementById('f-contact').value.trim()||'@'+(U.username||'');
+  S.data.region=S.rgn||'';
+  if(ok)showS(2);
 }
 
-document.querySelectorAll('#vol-grid .grid-btn').forEach(b=>b.onclick=()=>{
-  document.querySelectorAll('#vol-grid .grid-btn').forEach(x=>x.classList.remove('selected'));
-  b.classList.add('selected');S.vol=b.dataset.v;setTimeout(buildReview,250);
+document.querySelectorAll('#vg .gbtn').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#vg .gbtn').forEach(x=>x.classList.remove('sel'));
+  b.classList.add('sel');S.vol=b.dataset.v;setTimeout(buildRev,250);
 });
 
-function buildReview(){
+function buildRev(){
   S.data.volume=S.vol;S.data.partner_type=S.type;
   const el=document.getElementById('s3');
-  let h=`<div class="section-title">${L('review')}</div>`;
-  const labels={name:{ko:'이름',en:'Name',tw:'名稱'},entity:{ko:'팀명',en:'Entity',tw:'團隊'},company:{ko:'회사',en:'Company',tw:'公司'},uid:{ko:'UID',en:'UID',tw:'UID'},channel:{ko:'채널',en:'Channel',tw:'頻道'},followers:{ko:'팔로워',en:'Followers',tw:'追蹤者'},members:{ko:'멤버',en:'Members',tw:'成員'},strategy:{ko:'전략',en:'Strategy',tw:'策略'},exchange:{ko:'거래소',en:'Exchanges',tw:'交易所'},aum:{ko:'AUM',en:'AUM',tw:'AUM'},service:{ko:'서비스',en:'Service',tw:'服務'},contact:{ko:'연락처',en:'Contact',tw:'聯繫'},region:{ko:'지역',en:'Region',tw:'地區'},volume:{ko:'거래량',en:'Volume',tw:'交易量'}};
-  for(const[k,v]of Object.entries(S.data)){
-    if(v&&k!=='partner_type'){const lb=labels[k]?labels[k][LANG]||labels[k].en:k;h+=`<div class="review-row"><span class="k">${lb}</span><span class="v">${v}</span></div>`}
-  }
-  h+=`<button class="btn btn-primary" id="btn-sub">${L('submit')}</button>`;
-  h+=`<button class="btn btn-secondary" onclick="showStep(1)">${L('edit')}</button>`;
-  el.innerHTML=h;
-  document.getElementById('btn-sub').onclick=doSubmit;
-  showStep(3);
+  const lb={name:{ko:'이름',en:'Name',tw:'名稱'},entity:{ko:'팀',en:'Team',tw:'團隊'},company:{ko:'회사',en:'Company',tw:'公司'},uid:{ko:'UID',en:'UID',tw:'UID'},channel:{ko:'채널',en:'Channel',tw:'頻道'},followers:{ko:'팔로워',en:'Followers',tw:'追蹤者'},members:{ko:'멤버',en:'Members',tw:'成員'},strategy:{ko:'전략',en:'Strategy',tw:'策略'},exchange:{ko:'거래소',en:'Exchange',tw:'交易所'},aum:{ko:'AUM',en:'AUM',tw:'AUM'},service:{ko:'서비스',en:'Service',tw:'服務'},contact:{ko:'연락처',en:'Contact',tw:'聯繫'},region:{ko:'지역',en:'Region',tw:'地區'},volume:{ko:'거래량',en:'Volume',tw:'交易量'}};
+  let h=`<div class="stitle">${t('review')}</div>`;
+  for(const[k,v]of Object.entries(S.data)){if(v&&k!=='partner_type'){h+=`<div class="rrow"><span class="k">${lb[k]?.[L]||lb[k]?.en||k}</span><span class="v">${v}</span></div>`}}
+  h+=`<button class="btn btn-p" id="bsub">${t('submit')}</button><button class="btn btn-s" onclick="showS(1)">${t('edit')}</button>`;
+  el.innerHTML=h;document.getElementById('bsub').onclick=doSub;showS(3);
 }
 
-function doSubmit(){
-  const btn=document.getElementById('btn-sub');btn.disabled=true;btn.textContent=L('submitting');
-  const payload=JSON.stringify({action:'partner_apply',type:S.type,lang:LANG,...S.data,tg_id:user.id,tg_user:user.username});
-  if(tg){tg.sendData(payload)}
-  else{document.getElementById('ref-id').textContent='OKX-'+new Date().toISOString().slice(0,10).replace(/-/g,'')+'-0001';showStep(4)}
+function doSub(){
+  const b=document.getElementById('bsub');b.disabled=true;b.textContent=t('wait');
+  document.getElementById('suc-t').textContent=t('done');
+  document.getElementById('suc-b').innerHTML='1. '+t('s1')+'<br>2. '+t('s2')+'<br>3. '+t('s3');
+  const p=JSON.stringify({action:'partner_apply',type:S.type,lang:L,...S.data,tg_id:U.id,tg_user:U.username});
+  if(tg){tg.sendData(p)}else{document.getElementById('ref-id').textContent='OKX-DEMO-0001';showS(4)}
 }
 
-updProg();
+updP();
 </script>
 </body>
 </html>
