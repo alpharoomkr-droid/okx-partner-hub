@@ -8,12 +8,12 @@
 <style>
 :root{--bg:#0A0A0A;--card:#1C1C1E;--card2:#2C2C2E;--border:rgba(255,255,255,.08);--text:rgba(255,255,255,.92);--sub:rgba(255,255,255,.55);--dim:rgba(255,255,255,.3);--accent:#00d632;--accent-bg:rgba(0,214,50,.08);--red:#FF453A;--radius:16px;--spring:cubic-bezier(.32,.72,0,1)}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{overflow-x:hidden;width:100%}
-body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;overscroll-behavior:contain;overflow-x:hidden;max-width:100vw}
-.head{padding:24px 20px 8px;text-align:center}
+html,body{overflow-x:hidden;width:100%;max-width:100vw}
+body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;overscroll-behavior:contain}
+.head{padding:24px 16px 8px;text-align:center}
 .head h1{font-size:20px;font-weight:700;letter-spacing:2px}
 .head p{font-size:11px;color:var(--sub);margin-top:4px;letter-spacing:.4px}
-.tabs{display:flex;padding:8px 16px 0;position:sticky;top:0;background:rgba(10,10,10,.88);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);z-index:10}
+.tabs{display:flex;padding:8px 16px 0;position:sticky;top:0;background:rgba(10,10,10,.88);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);z-index:10;width:100%;max-width:100vw}
 .tab{flex:1;padding:12px 0 10px;text-align:center;font-size:11px;font-weight:600;color:var(--sub);cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border .2s;text-transform:uppercase;letter-spacing:.8px}
 .tab.on{color:var(--accent);border-bottom-color:var(--accent)}
 .pnl{display:none;padding:16px 16px 120px;max-width:100%;overflow-x:hidden}
@@ -77,7 +77,7 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
 
 .warn{border-color:rgba(255,69,58,.15)!important}
 .warn h3{color:var(--red)}
-.hero{display:flex;gap:6px;margin-bottom:16px}
+.hero{display:flex;gap:6px;margin-bottom:16px;width:100%}
 .hero-box{flex:1;background:var(--card);border-radius:12px;padding:12px 6px;text-align:center;border:1px solid var(--border);min-width:0}
 .hero-box .hv{font-size:18px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
 .hero-box .hl{font-size:8px;color:var(--sub);margin-top:2px;text-transform:uppercase;letter-spacing:.5px;font-weight:500}
@@ -99,7 +99,7 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
   <div class="hero">
     <div class="hero-box"><div class="hv">50%</div><div class="hl">Commission</div></div>
     <div class="hero-box"><div class="hv">1-2h</div><div class="hl">Payout</div></div>
-    <div class="hero-box"><div class="hv">5mo</div><div class="hl">Protection</div></div>
+    <div class="hero-box"><div class="hv">5mo</div><div class="hl">Rate Lock</div></div>
   </div>
   <div class="prog" id="prog"></div>
   <div class="ss on" id="s0">
