@@ -353,6 +353,8 @@ function doS(){
 }
 
 uP();
+const _ut=new URLSearchParams(window.location.search).get('tab');
+if(_ut&&['faq','rates'].includes(_ut))goT(_ut);
 </script>
 </body>
 </html>
