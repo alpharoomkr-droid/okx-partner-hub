@@ -67,6 +67,8 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
 .btn:active{transform:scale(.98)}
 .bp{background:var(--accent);color:#000}.bs{background:var(--card);color:var(--text);border:1.5px solid var(--border)}
 .btn:disabled{opacity:.3;cursor:default;transform:none}
+.btn .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(0,0,0,.2);border-top-color:#000;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
 
 .suc{text-align:center;padding:52px 20px}
 .suc .ck{width:64px;height:64px;border-radius:50%;background:var(--accent-bg);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:32px;animation:pop .5s var(--spring)}
@@ -142,7 +144,7 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
 </div>
 
 <div class="pnl" id="p-rates">
-  <div class="lbl">Commission Tiers (Spot)</div>
+  <div class="lbl" id="l-ct">Commission Tiers (Spot)</div>
   <table class="ft"><tr><th>Lv</th><th>Vol</th><th>Traders</th><th>Rate</th></tr>
   <tr><td>L1</td><td>$100K+</td><td>25+</td><td class="gr">30%</td></tr>
   <tr><td>L2</td><td>$500K+</td><td>25+</td><td class="gr">35%</td></tr>
@@ -150,7 +152,7 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
   <tr><td>L4</td><td>$5M+</td><td>100+</td><td class="gr">45%</td></tr>
   <tr class="hl"><td>L5</td><td>$10M+</td><td>200+</td><td class="gr">50%</td></tr></table>
 
-  <div class="lbl">VIP Fee Tiers (Spot)</div>
+  <div class="lbl" id="l-vt">VIP Fee Tiers (Spot)</div>
   <table class="ft"><tr><th>Tier</th><th>Assets/Vol</th><th>Maker</th><th>Taker</th></tr>
   <tr><td>Reg</td><td>&lt;$100K</td><td>0.200%</td><td>0.350%</td></tr>
   <tr><td>VIP1</td><td>$100K+</td><td>0.100%</td><td>0.200%</td></tr>
@@ -218,6 +220,9 @@ const T={
   rBk:{ko:'화이트라벨 API로 OKX 유동성을 내 플랫폼에 연동. 서브브로커 계정 자동 배분, 실시간 데이터 피드, 맞춤 수수료 구조. 프롭펌, 로보어드바이저, 핀테크에 적합.',en:'White-label API to integrate OKX liquidity on your platform. Sub-broker auto-allocation, real-time data feeds, custom fee structures. Ideal for prop firms, robo-advisors, fintech.',tw:'白標 API 將 OKX 流動性整合至您的平台。子經紀商自動分配、即時數據、定制費率。適用於自營公司、機器人投顧、金融科技。'},
   rVip:{ko:'거래량 기반 VIP 수수료 등급 (Regular~VIP9). VIP7+부터 네거티브 메이커 수수료. 전담 RM 배정, 맞춤 커미션 구조. Joshua가 직접 검토하고 연결합니다.',en:'Volume-based VIP fee tiers (Regular~VIP9). VIP7+ gets negative maker fees. Dedicated RM, custom commission structures. Joshua reviews and connects personally.',tw:'基於交易量的 VIP 費率等級（Regular~VIP9）。VIP7+ 享有負手續費。專屬 RM、定制佣金結構。Joshua 親自審核對接。'},
   comp:{ko:'⚠️ OKX 사칭, 키워드 광고, 유사 URL 사용 금지',en:'⚠️ No OKX impersonation, keyword ads, or look-alike URLs',tw:'⚠️ 禁止仿冒 OKX、關鍵字廣告、相似 URL'},
+  lCt:{ko:'커미션 티어 (스팟)',en:'Commission Tiers (Spot)',tw:'佣金等級（現貨）'},
+  lVt:{ko:'VIP 수수료 (스팟)',en:'VIP Fee Tiers (Spot)',tw:'VIP 費率（現貨）'},
+  lIn:{ko:'기관 프로그램',en:'Institutional Programs',tw:'機構計畫'},
 };
 const t=k=>T[k]?.[LN]||T[k]?.en||k;
 
@@ -237,6 +242,8 @@ document.getElementById('dw').textContent=t('dw');
 });
 const rm=document.getElementById('r-mm'),rb=document.getElementById('r-bk'),rv=document.getElementById('r-vip');
 if(rm)rm.textContent=t('rMm');if(rb)rb.textContent=t('rBk');if(rv)rv.textContent=t('rVip');
+const lct=document.getElementById('l-ct'),lvt=document.getElementById('l-vt'),lin=document.getElementById('l-inst');
+if(lct)lct.textContent=t('lCt');if(lvt)lvt.textContent=t('lVt');if(lin)lin.textContent=t('lIn');
 
 const F={
   kol:[{k:'name',l:{ko:'활동명',en:'KOL Name',tw:'KOL 名稱'},p:{ko:'채널명 또는 활동명',en:'Channel or creator name',tw:'頻道名稱'}},
@@ -336,7 +343,7 @@ function bR(){
 }
 
 function doS(){
-  const b=document.getElementById('bs');b.disabled=true;b.textContent=t('wait');
+  const b=document.getElementById('bs');b.disabled=true;b.innerHTML='<span class="spinner"></span>'+t('wait');
   document.getElementById('su-t').textContent=t('done');
   document.getElementById('su-b').innerHTML='1. '+t('s1')+'<br>2. '+t('s2')+'<br>3. '+t('s3');
   haptic('medium');
