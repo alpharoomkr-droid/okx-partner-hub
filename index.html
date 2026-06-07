@@ -85,10 +85,23 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
 .chip-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
 .chip{padding:8px 14px;background:var(--card);border:1.5px solid var(--border);border-radius:var(--pill);font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;white-space:nowrap;color:var(--text)}
 .chip:active{transform:scale(.96)}.chip.on{border-color:var(--accent);background:var(--accent-bg);color:var(--accent)}
+.lbtn{padding:12px 20px;background:var(--card);border:1px solid rgba(255,255,255,.1);border-radius:var(--pill);color:var(--text);font-size:14px;font-weight:500;cursor:pointer;transition:all .15s}
+.lbtn:active{transform:scale(.96);background:var(--accent-bg);border-color:var(--accent)}
 .ss{display:none}.ss.on{display:block;animation:fadeUp .3s var(--spring)}
 </style>
 </head>
 <body>
+<div id="lang-gate" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:40px 20px;text-align:center">
+  <h1 style="font-size:24px;font-weight:700;letter-spacing:2px;margin-bottom:6px">OKX</h1>
+  <p style="font-size:12px;color:var(--sub);margin-bottom:32px">Partnership Onboarding</p>
+  <p style="font-size:13px;color:var(--sub);margin-bottom:20px">🌐 Select your language</p>
+  <div style="display:flex;gap:10px">
+    <button class="lbtn" onclick="pickLang('ko')">🇰🇷 한국어</button>
+    <button class="lbtn" onclick="pickLang('en')">🇬🇧 English</button>
+    <button class="lbtn" onclick="pickLang('tw')">🇹🇼 繁中</button>
+  </div>
+</div>
+<div id="main-app" style="display:none">
 <div class="head">
   <h1>OKX</h1>
   <p id="hd-sub">Joshua &middot; Senior BD Manager, Northeast Asia</p>
@@ -175,12 +188,28 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
   <div class="cd"><h3>&#x1F40B; VIP Track</h3><p id="r-vip"></p></div>
 </div>
 
+</div><!-- /main-app -->
 <script>
 const tg=window.Telegram?.WebApp;
 if(tg){tg.ready();tg.expand();try{tg.setHeaderColor('#000000');tg.setBackgroundColor('#000000')}catch(e){}}
 const U=tg?.initDataUnsafe?.user||{};
-const _urlLang=new URLSearchParams(window.location.search).get('lang');
-const LN=_urlLang&&['ko','en','tw'].includes(_urlLang)?_urlLang:(()=>{const lc=(U.language_code||navigator.language||'en').toLowerCase();return lc.startsWith('ko')?'ko':lc.startsWith('zh')?'tw':'en'})();
+const _ps=new URLSearchParams(window.location.search);
+const _urlLang=_ps.get('lang');
+let LN=_urlLang&&['ko','en','tw'].includes(_urlLang)?_urlLang:null;
+
+function pickLang(l){
+  LN=l;
+  document.getElementById('lang-gate').style.display='none';
+  document.getElementById('main-app').style.display='block';
+  applyI18n();
+  const ut=_ps.get('tab');
+  if(ut&&['faq','rates'].includes(ut))goT(ut);
+}
+
+if(LN){
+  document.getElementById('lang-gate').style.display='none';
+  document.getElementById('main-app').style.display='block';
+}
 const haptic=s=>{try{tg?.HapticFeedback?.impactOccurred(s||'light')}catch(e){}};
 
 const T={
@@ -265,7 +294,7 @@ const T={
 };
 const t=k=>T[k]?.[LN]||T[k]?.en||k;
 
-// i18n static
+function applyI18n(){
 document.getElementById('t0').textContent=t('apply');
 document.getElementById('t1').textContent=t('faq');
 document.getElementById('t2').textContent=t('rates');
@@ -292,6 +321,8 @@ const rm=document.getElementById('r-mm'),rb=document.getElementById('r-bk'),rv=d
 if(rm)rm.innerHTML=t('rMm');if(rb)rb.innerHTML=t('rBk');if(rv)rv.innerHTML=t('rVip');
 const lct=document.getElementById('l-ct'),lvt=document.getElementById('l-vt'),lin=document.getElementById('l-inst');
 if(lct)lct.textContent=t('lCt');if(lvt)lvt.textContent=t('lVt');if(lin)lin.textContent=t('lIn');
+}
+if(LN)applyI18n();
 
 const F={
   kol:[{k:'name',l:{ko:'활동명',en:'KOL Name',tw:'KOL 名稱'},p:{ko:'채널명 또는 활동명',en:'Channel or creator name',tw:'頻道名稱'}},
@@ -401,8 +432,7 @@ function doS(){
 }
 
 uP();
-const _ut=new URLSearchParams(window.location.search).get('tab');
-if(_ut&&['faq','rates'].includes(_ut))goT(_ut);
+if(LN){const _ut=_ps.get('tab');if(_ut&&['faq','rates'].includes(_ut))goT(_ut);}
 </script>
 </body>
 </html>
