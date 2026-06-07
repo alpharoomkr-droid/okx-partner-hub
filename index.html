@@ -128,10 +128,10 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
   <div class="ss on" id="s0">
     <div class="lbl" id="l-ty"></div>
     <div class="tg">
-      <div class="tc" data-t="kol"><div class="i">&#x1F4E2;</div><div class="n" id="nk"></div><div class="d" id="dk"></div></div>
-      <div class="tc" data-t="community"><div class="i">&#x1F465;</div><div class="n" id="nc"></div><div class="d" id="dc"></div></div>
-      <div class="tc" data-t="trading"><div class="i">&#x1F4C8;</div><div class="n" id="nt"></div><div class="d" id="dt"></div></div>
-      <div class="tc" data-t="wealthtech"><div class="i">&#x1F3E6;</div><div class="n" id="nw"></div><div class="d" id="dw"></div></div>
+      <div class="tc" data-t="kol"><div class="i" style="font-size:20px;font-weight:800;color:var(--accent)">KOL</div><div class="n" id="nk"></div><div class="d" id="dk"></div></div>
+      <div class="tc" data-t="community"><div class="i" style="font-size:20px;font-weight:800;color:var(--accent)">COM</div><div class="n" id="nc"></div><div class="d" id="dc"></div></div>
+      <div class="tc" data-t="trading"><div class="i" style="font-size:20px;font-weight:800;color:var(--accent)">QNT</div><div class="n" id="nt"></div><div class="d" id="dt"></div></div>
+      <div class="tc" data-t="wealthtech"><div class="i" style="font-size:20px;font-weight:800;color:var(--accent)">AST</div><div class="n" id="nw"></div><div class="d" id="dw"></div></div>
     </div>
   </div>
   <div class="ss" id="s1"></div>
@@ -145,7 +145,7 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
   </div>
   <div class="ss" id="s3"></div>
   <div class="ss" id="s4">
-    <div class="suc"><div class="ck">&#x2713;</div><h2 id="su-t"></h2><div class="ref" id="ref-id"></div><p id="su-b"></p></div>
+    <div class="suc"><div class="ck">&#x2713;</div><h2 id="su-t"></h2><div class="ref" id="ref-id"></div><p id="su-b"></p><div style="margin-top:20px"><a href="https://t.me/OKX_Joshua" style="color:var(--accent);font-size:13px;text-decoration:none">Joshua에게 문의 →</a></div></div>
   </div>
 </div>
 
@@ -262,27 +262,27 @@ const T={
   h2l:{ko:'정산',en:'Payout',tw:'結算'},
   h3l:{ko:'거래쌍',en:'Pairs',tw:'交易對'},
   whyOkx:{
-    ko:'<div class="cd" style="border:none;padding:14px"><p style="font-size:13px;color:var(--sub);line-height:1.7">'
-      +'<b style="color:var(--text)">왜 OKX인가?</b><br>'
-      +'글로벌 거래량 Top 3, 50개국 라이선스 보유. '
-      +'스팟·선물·옵션 전 상품에 업계 최고 커미션(최대 50%). '
-      +'USDT 정산 1~2시간, 신규 파트너 5개월 등급 보호. '
-      +'Copy Trading·Signal Bot 등 차별화 상품으로 유저 전환율이 높습니다.'
-      +'</p></div>',
-    en:'<div class="cd" style="border:none;padding:14px"><p style="font-size:13px;color:var(--sub);line-height:1.7">'
-      +'<b style="color:var(--text)">Why OKX?</b><br>'
-      +'Top 3 global exchange by volume, licensed in 50+ countries. '
-      +'Industry-best commissions (up to 50%) across spot, futures & options. '
-      +'USDT payouts in 1-2 hours, 5-month rate protection for new partners. '
-      +'Copy Trading & Signal Bot drive higher user conversion.'
-      +'</p></div>',
-    tw:'<div class="cd" style="border:none;padding:14px"><p style="font-size:13px;color:var(--sub);line-height:1.7">'
-      +'<b style="color:var(--text)">為什麼選擇 OKX？</b><br>'
-      +'全球交易量 Top 3，50+ 國家持牌。'
-      +'現貨·合約·期權全產品業界最高佣金（最高 50%）。'
-      +'USDT 1-2 小時結算，新夥伴 5 個月等級保護。'
-      +'跟單交易·信號機器人帶來更高用戶轉換率。'
-      +'</p></div>',
+    ko:'<div class="cd" style="border:none;padding:16px 20px"><b style="color:var(--text);font-size:14px">왜 OKX인가?</b>'
+      +'<div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">'
+      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">Top 3</b> 글로벌 거래량, 50개국 라이선스</div>'
+      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">50%</b> 업계 최고 커미션, 전 상품 적용</div>'
+      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">1-2h</b> USDT 정산, 최소 한도 없음</div>'
+      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">5개월</b> 신규 파트너 등급 보호</div>'
+      +'</div></div>',
+    en:'<div class="cd" style="border:none;padding:16px 20px"><b style="color:var(--text);font-size:14px">Why OKX?</b>'
+      +'<div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">'
+      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">Top 3</b> global exchange, 50+ licenses</div>'
+      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">50%</b> industry-best commission, all products</div>'
+      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">1-2h</b> USDT payout, no minimum</div>'
+      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">5mo</b> rate protection for new partners</div>'
+      +'</div></div>',
+    tw:'<div class="cd" style="border:none;padding:16px 20px"><b style="color:var(--text);font-size:14px">為什麼選擇 OKX？</b>'
+      +'<div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">'
+      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">Top 3</b> 全球交易量，50+ 國家持牌</div>'
+      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">50%</b> 業界最高佣金，全產品適用</div>'
+      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">1-2h</b> USDT 結算，無最低門檻</div>'
+      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">5個月</b> 新夥伴等級保護</div>'
+      +'</div></div>',
   },
   nk:{ko:'KOL / 크리에이터',en:'KOL / Creator',tw:'KOL / 創作者'},
   nc:{ko:'커뮤니티',en:'Community',tw:'社群'},
@@ -363,14 +363,18 @@ document.querySelectorAll('.tc').forEach(c=>c.onclick=()=>{haptic('medium');
 
 function bF(){
   const f=F[S.ty],el=document.getElementById('s1');
-  let h=`<div class="lbl">${t('det')}</div>`;
+  const typeNames={kol:t('nk'),community:t('nc'),trading:t('nt'),wealthtech:t('nw')};
+  h=`<div style="text-align:center;margin-bottom:12px"><span style="background:var(--accent-bg);color:var(--accent);padding:4px 14px;border-radius:var(--pill);font-size:12px;font-weight:600">${typeNames[S.ty]||S.ty}</span></div>`;
+  h+=`<div class="lbl">${t('det')}</div>`;
   f.forEach(x=>{
     if(x.chips){
       h+=`<div class="fg"><label>${x.l[LN]||x.l.en}</label><div class="chip-row" id="cr-${x.k}">`;
       x.chips.forEach(c=>{h+=`<div class="chip" data-ck="${x.k}" data-cv="${c}">${c}</div>`});
       h+=`</div><div class="e" id="e-${x.k}">${t('req')}</div></div>`;
     } else {
-      h+=`<div class="fg"><label>${x.l[LN]||x.l.en}</label><input id="f-${x.k}" placeholder="${(x.p||{})[LN]||(x.p||{}).en||''}" inputmode="${x.k==='uid'?'numeric':'text'}"/><div class="e" id="e-${x.k}">${t('req')}</div></div>`;
+      h+=`<div class="fg"><label>${x.l[LN]||x.l.en}</label><input id="f-${x.k}" placeholder="${(x.p||{})[LN]||(x.p||{}).en||''}" inputmode="${x.k==='uid'?'numeric':'text'}"/><div class="e" id="e-${x.k}">${t('req')}</div>`;
+      if(x.k==='uid'){const uidHint={ko:'아직 없으신가요? <a href="https://www.okx.com/account/register" style="color:var(--accent)">OKX 가입 →</a>',en:'Don\'t have one? <a href="https://www.okx.com/account/register" style="color:var(--accent)">Sign up for OKX →</a>',tw:'還沒有嗎？<a href="https://www.okx.com/account/register" style="color:var(--accent)">註冊 OKX →</a>'};h+=`<div style="font-size:11px;color:var(--dim);margin-top:4px">${uidHint[LN]||uidHint.en}</div>`}
+      h+=`</div>`;
     }
   });
   h+=`<div class="lbl">${t('reg')}</div><div class="gb">`;
