@@ -289,7 +289,7 @@ function bF(){
   });
   h+=`<div class="lbl">${t('reg')}</div><div class="gb">`;
   RG.forEach(r=>{h+=`<div class="g rb" data-r="${r.v}">${r.l}</div>`});
-  h+=`</div><div class="fg" style="margin-top:16px"><label>${t('tg')}</label><input id="f-ct" placeholder="@handle" value="${U.username?'@'+U.username:''}"/></div>`;
+  h+=`</div><div class="fg" style="margin-top:16px"><label>${t('tg')}</label><input id="f-ct" placeholder="@handle"/></div>`;
   h+=`<p style="font-size:11px;color:var(--dim);margin-top:12px;line-height:1.5">${t('comp')}</p>`;
   h+=`<button class="btn bp" id="bn">${t('cont')}</button>`;
   el.innerHTML=h;
