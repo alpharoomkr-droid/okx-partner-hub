@@ -90,7 +90,7 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
 </style>
 </head>
 <body>
-<div class="head"><h1>OKX</h1><p>Joshua &middot; Senior BD Manager, Northeast Asia</p></div>
+<div class="head"><h1>OKX</h1><p id="hd-sub">Joshua &middot; Senior BD Manager, Northeast Asia</p></div>
 <div class="tabs">
   <div class="tab on" data-t="apply" id="t0">Apply</div>
   <div class="tab" data-t="faq" id="t1">FAQ</div>
@@ -98,19 +98,19 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
 </div>
 
 <div class="pnl on" id="p-apply">
+  <p id="hd-desc" style="font-size:13px;color:var(--sub);line-height:1.6;margin-bottom:14px;text-align:center"></p>
   <div class="hero">
-    <div class="hero-box"><div class="hv">50%</div><div class="hl">Commission</div></div>
-    <div class="hero-box"><div class="hv">1-2h</div><div class="hl">Payout</div></div>
-    <div class="hero-box"><div class="hv">5mo</div><div class="hl">Rate Lock</div></div>
+    <div class="hero-box"><div class="hv" id="h1v">50%</div><div class="hl" id="h1l"></div></div>
+    <div class="hero-box"><div class="hv" id="h2v">1-2h</div><div class="hl" id="h2l"></div></div>
   </div>
   <div class="prog" id="prog"></div>
   <div class="ss on" id="s0">
     <div class="lbl" id="l-ty"></div>
     <div class="tg">
-      <div class="tc" data-t="kol"><div class="i">&#x1F4E2;</div><div class="n">KOL / Creator</div><div class="d" id="dk"></div></div>
-      <div class="tc" data-t="community"><div class="i">&#x1F465;</div><div class="n">Community</div><div class="d" id="dc"></div></div>
-      <div class="tc" data-t="trading"><div class="i">&#x1F4C8;</div><div class="n">Trading / Quant</div><div class="d" id="dt"></div></div>
-      <div class="tc" data-t="wealthtech"><div class="i">&#x1F3E6;</div><div class="n">Asset Mgmt</div><div class="d" id="dw"></div></div>
+      <div class="tc" data-t="kol"><div class="i">&#x1F4E2;</div><div class="n" id="nk"></div><div class="d" id="dk"></div></div>
+      <div class="tc" data-t="community"><div class="i">&#x1F465;</div><div class="n" id="nc"></div><div class="d" id="dc"></div></div>
+      <div class="tc" data-t="trading"><div class="i">&#x1F4C8;</div><div class="n" id="nt"></div><div class="d" id="dt"></div></div>
+      <div class="tc" data-t="wealthtech"><div class="i">&#x1F3E6;</div><div class="n" id="nw"></div><div class="d" id="dw"></div></div>
     </div>
   </div>
   <div class="ss" id="s1"></div>
@@ -220,6 +220,14 @@ const T={
   rBk:{ko:'화이트라벨 API로 OKX 유동성을 내 플랫폼에 연동. 서브브로커 계정 자동 배분, 실시간 데이터 피드, 맞춤 수수료 구조. 프롭펌, 로보어드바이저, 핀테크에 적합.',en:'White-label API to integrate OKX liquidity on your platform. Sub-broker auto-allocation, real-time data feeds, custom fee structures. Ideal for prop firms, robo-advisors, fintech.',tw:'白標 API 將 OKX 流動性整合至您的平台。子經紀商自動分配、即時數據、定制費率。適用於自營公司、機器人投顧、金融科技。'},
   rVip:{ko:'거래량 기반 VIP 수수료 등급 (Regular~VIP9). VIP7+부터 네거티브 메이커 수수료. 전담 RM 배정, 맞춤 커미션 구조. Joshua가 직접 검토하고 연결합니다.',en:'Volume-based VIP fee tiers (Regular~VIP9). VIP7+ gets negative maker fees. Dedicated RM, custom commission structures. Joshua reviews and connects personally.',tw:'基於交易量的 VIP 費率等級（Regular~VIP9）。VIP7+ 享有負手續費。專屬 RM、定制佣金結構。Joshua 親自審核對接。'},
   comp:{ko:'⚠️ OKX 사칭, 키워드 광고, 유사 URL 사용 금지',en:'⚠️ No OKX impersonation, keyword ads, or look-alike URLs',tw:'⚠️ 禁止仿冒 OKX、關鍵字廣告、相似 URL'},
+  hdSub:{ko:'Joshua · OKX 북동아시아 시니어 BD',en:'Joshua · Senior BD Manager, Northeast Asia',tw:'Joshua · OKX 東北亞資深 BD'},
+  hdDesc:{ko:'글로벌 Top-tier 거래소 OKX의\n북동아시아 파트너십 프로그램입니다.',en:'Northeast Asia partnership program\nby OKX, a global top-tier exchange.',tw:'全球頂級交易所 OKX 的\n東北亞合作夥伴計畫。'},
+  h1l:{ko:'최대 커미션',en:'Max Commission',tw:'最高佣金'},
+  h2l:{ko:'정산 속도',en:'Payout Speed',tw:'結算速度'},
+  nk:{ko:'KOL / 크리에이터',en:'KOL / Creator',tw:'KOL / 創作者'},
+  nc:{ko:'커뮤니티',en:'Community',tw:'社群'},
+  nt:{ko:'트레이딩 / 퀀트',en:'Trading / Quant',tw:'交易 / 量化'},
+  nw:{ko:'자산운용',en:'Asset Mgmt',tw:'資產管理'},
   lCt:{ko:'커미션 티어 (스팟)',en:'Commission Tiers (Spot)',tw:'佣金等級（現貨）'},
   lVt:{ko:'VIP 수수료 (스팟)',en:'VIP Fee Tiers (Spot)',tw:'VIP 費率（現貨）'},
   lIn:{ko:'기관 프로그램',en:'Institutional Programs',tw:'機構計畫'},
@@ -233,6 +241,14 @@ document.getElementById('t2').textContent=t('rates');
 document.getElementById('l-ty').textContent=t('ty');
 document.getElementById('l-vo').textContent=t('vo');
 document.getElementById('l-fq').textContent=t('fqh');
+document.getElementById('hd-sub').textContent=t('hdSub');
+document.getElementById('hd-desc').textContent=t('hdDesc');
+document.getElementById('h1l').textContent=t('h1l');
+document.getElementById('h2l').textContent=t('h2l');
+document.getElementById('nk').textContent=t('nk');
+document.getElementById('nc').textContent=t('nc');
+document.getElementById('nt').textContent=t('nt');
+document.getElementById('nw').textContent=t('nw');
 document.getElementById('dk').textContent=t('dk');
 document.getElementById('dc').textContent=t('dc');
 document.getElementById('dt').textContent=t('dt');
