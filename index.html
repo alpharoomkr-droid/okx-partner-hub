@@ -28,8 +28,8 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
 .tc:active{transform:scale(.97)}
 .tc.on{border-color:var(--accent);background:var(--accent-bg)}.tc.on::after{opacity:.03}
 .tc .i{font-size:28px;margin-bottom:8px;position:relative;z-index:1}
-.tc .n{font-size:13px;font-weight:600;position:relative;z-index:1}
-.tc .d{font-size:11px;color:var(--sub);margin-top:3px;line-height:1.3;position:relative;z-index:1}
+.tc .n{font-size:12px;font-weight:600;position:relative;z-index:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tc .d{font-size:10px;color:var(--sub);margin-top:3px;line-height:1.3;position:relative;z-index:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
 .fg{margin-bottom:16px;position:relative}
 .fg label{display:block;font-size:10px;color:var(--sub);margin-bottom:6px;text-transform:uppercase;letter-spacing:.8px;font-weight:600}
@@ -76,10 +76,10 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
 
 .warn{border-color:rgba(255,69,58,.15)!important}
 .warn h3{color:var(--red)}
-.hero{display:flex;gap:8px;margin-bottom:16px}
-.hero-box{flex:1;background:var(--card);border-radius:14px;padding:14px 10px;text-align:center;border:1px solid var(--border)}
-.hero-box .hv{font-size:20px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
-.hero-box .hl{font-size:9px;color:var(--sub);margin-top:3px;text-transform:uppercase;letter-spacing:.8px;font-weight:500}
+.hero{display:flex;gap:6px;margin-bottom:16px}
+.hero-box{flex:1;background:var(--card);border-radius:12px;padding:12px 6px;text-align:center;border:1px solid var(--border);min-width:0}
+.hero-box .hv{font-size:18px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.hero-box .hl{font-size:8px;color:var(--sub);margin-top:2px;text-transform:uppercase;letter-spacing:.5px;font-weight:500}
 .chip-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
 .chip{padding:8px 14px;background:var(--card);border:1.5px solid var(--border);border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;white-space:nowrap;color:var(--text)}
 .chip:active{transform:scale(.96)}.chip.on{border-color:var(--accent);background:var(--accent-bg);color:var(--accent)}
@@ -96,9 +96,9 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
 
 <div class="pnl on" id="p-apply">
   <div class="hero">
-    <div class="hero-box"><div class="hv">50%</div><div class="hl">Max Commission</div></div>
+    <div class="hero-box"><div class="hv">50%</div><div class="hl">Commission</div></div>
     <div class="hero-box"><div class="hv">1-2h</div><div class="hl">Payout</div></div>
-    <div class="hero-box"><div class="hv">5mo</div><div class="hl">Rate Protection</div></div>
+    <div class="hero-box"><div class="hv">5mo</div><div class="hl">Protection</div></div>
   </div>
   <div class="prog" id="prog"></div>
   <div class="ss on" id="s0">
