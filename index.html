@@ -179,8 +179,8 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
 const tg=window.Telegram?.WebApp;
 if(tg){tg.ready();tg.expand();try{tg.setHeaderColor('#000000');tg.setBackgroundColor('#000000')}catch(e){}}
 const U=tg?.initDataUnsafe?.user||{};
-const LC=(U.language_code||navigator.language||'en').toLowerCase();
-const LN=LC.startsWith('ko')?'ko':LC.startsWith('zh')?'tw':'en';
+const _urlLang=new URLSearchParams(window.location.search).get('lang');
+const LN=_urlLang&&['ko','en','tw'].includes(_urlLang)?_urlLang:(()=>{const lc=(U.language_code||navigator.language||'en').toLowerCase();return lc.startsWith('ko')?'ko':lc.startsWith('zh')?'tw':'en'})();
 const haptic=s=>{try{tg?.HapticFeedback?.impactOccurred(s||'light')}catch(e){}};
 
 const T={
