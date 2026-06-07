@@ -133,6 +133,10 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
   <div class="cd"><h3 id="f4t"></h3><p id="f4b"></p></div>
   <div class="cd"><h3 id="f5t"></h3><p id="f5b"></p></div>
   <div class="cd"><h3 id="f6t"></h3><p id="f6b"></p></div>
+  <div class="cd"><h3 id="f8t"></h3><p id="f8b"></p></div>
+  <div class="cd"><h3 id="f9t"></h3><p id="f9b"></p></div>
+  <div class="cd"><h3 id="f10t"></h3><p id="f10b"></p></div>
+  <div class="cd"><h3 id="f11t"></h3><p id="f11b"></p></div>
   <div class="cd warn"><h3 id="f7t"></h3><p id="f7b"></p></div>
 </div>
 
@@ -154,6 +158,11 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
   <tr class="hl"><td>VIP7</td><td>$100M+</td><td class="gr">-0.002%</td><td>0.025%</td></tr>
   <tr class="hl"><td>VIP9</td><td>$500M+</td><td class="gr">-0.0075%</td><td>0.0175%</td></tr></table>
   <p style="font-size:11px;color:var(--dim);margin-top:8px">VIP7+ = negative maker fees (rebates). Full details upon request.</p>
+
+  <div class="lbl" id="l-inst">Institutional Programs</div>
+  <div class="cd"><h3>&#x1F3E6; Market Maker</h3><p id="r-mm"></p></div>
+  <div class="cd"><h3>&#x1F527; Broker / API</h3><p id="r-bk"></p></div>
+  <div class="cd"><h3>&#x1F40B; VIP Track</h3><p id="r-vip"></p></div>
 </div>
 
 <script>
@@ -194,8 +203,19 @@ const T={
   f5b:{ko:'개인 레퍼럴 링크, 마케팅 배너, 소개 문구 템플릿, 전담 BD 매니저.',en:'Personal referral link, marketing banners, intro templates, dedicated BD manager.',tw:'個人推薦連結、行銷橫幅、介紹範本、專屬 BD 經理。'},
   f6t:{ko:'서브어필리에이트?',en:'Sub-affiliate network?',tw:'二級推薦？'},
   f6b:{ko:'가능. 하위 어필리에이트를 모집하고 커미션 배분을 직접 설정.',en:'Yes. Recruit sub-affiliates and set custom commission splits.',tw:'可以。招募下級推薦人，自行設定佣金分配。'},
+  f8t:{ko:'기관/VIP 트랙은 뭐가 다른가요?',en:'What\'s different about VIP/Institutional?',tw:'VIP/機構通道有何不同？'},
+  f8b:{ko:'거래량 중심 파트너(데스크, 퀀트, 자산운용)는 어필리에이트가 아닌 VIP 트랙으로 진행됩니다. VIP 수수료 등급, 전담 RM, 맞춤 구조가 적용되며 Joshua가 직접 핸들링합니다.',en:'Volume-driven partners (desks, quant, asset mgmt) go through the VIP track, not affiliate. VIP fee tiers, dedicated RM, and custom structures apply. Joshua handles personally.',tw:'交易量為主的夥伴（交易台、量化、資管）走 VIP 通道而非推薦計畫。享有 VIP 費率、專屬 RM、定制結構。Joshua 親自對接。'},
+  f9t:{ko:'API 연동이 가능한가요?',en:'Is API integration available?',tw:'可以 API 對接嗎？'},
+  f9b:{ko:'브로커 프로그램을 통해 화이트라벨 API, 서브브로커 계정 관리, 실시간 데이터 피드가 가능합니다. 프롭펌, 핀테크, 로보어드바이저에 적합합니다. 세부 사항은 승인 후 기술팀과 협의합니다.',en:'Through the Broker Program: white-label API, sub-broker account management, real-time data feeds. Ideal for prop firms, fintech, robo-advisors. Technical details discussed after approval.',tw:'透過經紀商計畫：白標 API、子經紀商帳戶管理、即時數據。適用於自營公司、金融科技、機器人投顧。技術細節在通過後協商。'},
+  f10t:{ko:'어떤 상품을 거래할 수 있나요?',en:'What products can be traded?',tw:'可以交易什麼產品？'},
+  f10b:{ko:'스팟(현물), 선물(무기한/만기), 옵션, 마진 거래를 지원합니다. 700+ 거래쌍, 최대 125x 레버리지. Copy Trading, Signal Bot, 토큰화 주식도 제공됩니다.',en:'Spot, futures (perpetual/expiry), options, and margin trading. 700+ pairs, up to 125x leverage. Copy Trading, Signal Bot, and tokenized stocks also available.',tw:'現貨、合約（永續/交割）、期權、保證金交易。700+ 交易對，最高 125 倍槓桿。另有跟單交易、信號機器人、代幣化股票。'},
+  f11t:{ko:'한국에서 OKX를 사용할 수 있나요?',en:'Is OKX available in Korea?',tw:'韓國可以使用 OKX 嗎？'},
+  f11b:{ko:'OKX는 글로벌 서비스이며, 한국 유저도 KYC를 완료하면 사용 가능합니다. 한국 원화(KRW) 직접 입금은 지원되지 않으며, USDT 등 크립토 입금으로 이용합니다. 규제 환경은 변동될 수 있으므로 최신 정보는 Joshua에게 문의하세요.',en:'OKX is a global platform. Korean users can use it after KYC verification. Direct KRW deposit is not supported — use crypto (USDT) deposits. Regulatory landscape may change; contact Joshua for the latest.',tw:'OKX 是全球平台。韓國用戶完成 KYC 後可使用。不支援韓元直接入金，需使用加密貨幣（USDT）入金。法規環境可能變動，最新資訊請聯繫 Joshua。'},
   f7t:{ko:'⚠️ 주의 사항',en:'⚠️ Compliance',tw:'⚠️ 注意事項'},
   f7b:{ko:'OKX 사칭, 브랜드 키워드 광고, 유사 URL 사용 시 즉시 자격 박탈.',en:'Impersonating OKX, bidding on brand keywords, or look-alike URLs = immediate disqualification.',tw:'仿冒 OKX、競價品牌關鍵字、相似 URL = 立即取消資格。'},
+  rMm:{ko:'네거티브 메이커 수수료(리베이트), Alibaba Cloud HK 전용 API 인프라, 24/7 기술 서포트, Liquid Marketplace(블록 트레이딩). 월 $50M+ 거래량부터 신청 가능.',en:'Negative maker fees (rebates), dedicated API infra on Alibaba Cloud HK, 24/7 tech support, Liquid Marketplace (block trading). Eligible from $50M+ monthly.',tw:'負手續費（返佣）、阿里雲香港專屬 API 基礎設施、24/7 技術支援、Liquid Marketplace（大宗交易）。月交易量 $50M+ 可申請。'},
+  rBk:{ko:'화이트라벨 API로 OKX 유동성을 내 플랫폼에 연동. 서브브로커 계정 자동 배분, 실시간 데이터 피드, 맞춤 수수료 구조. 프롭펌, 로보어드바이저, 핀테크에 적합.',en:'White-label API to integrate OKX liquidity on your platform. Sub-broker auto-allocation, real-time data feeds, custom fee structures. Ideal for prop firms, robo-advisors, fintech.',tw:'白標 API 將 OKX 流動性整合至您的平台。子經紀商自動分配、即時數據、定制費率。適用於自營公司、機器人投顧、金融科技。'},
+  rVip:{ko:'거래량 기반 VIP 수수료 등급 (Regular~VIP9). VIP7+부터 네거티브 메이커 수수료. 전담 RM 배정, 맞춤 커미션 구조. Joshua가 직접 검토하고 연결합니다.',en:'Volume-based VIP fee tiers (Regular~VIP9). VIP7+ gets negative maker fees. Dedicated RM, custom commission structures. Joshua reviews and connects personally.',tw:'基於交易量的 VIP 費率等級（Regular~VIP9）。VIP7+ 享有負手續費。專屬 RM、定制佣金結構。Joshua 親自審核對接。'},
   comp:{ko:'⚠️ OKX 사칭, 키워드 광고, 유사 URL 사용 금지',en:'⚠️ No OKX impersonation, keyword ads, or look-alike URLs',tw:'⚠️ 禁止仿冒 OKX、關鍵字廣告、相似 URL'},
 };
 const t=k=>T[k]?.[LN]||T[k]?.en||k;
@@ -211,9 +231,11 @@ document.getElementById('dk').textContent=t('dk');
 document.getElementById('dc').textContent=t('dc');
 document.getElementById('dt').textContent=t('dt');
 document.getElementById('dw').textContent=t('dw');
-['f1t','f1b','f2t','f2b','f3t','f3b','f4t','f4b','f5t','f5b','f6t','f6b','f7t','f7b'].forEach(id=>{
-  const el=document.getElementById(id);if(el)el[id.endsWith('t')&&id==='f7t'?'innerHTML':'textContent']=t(id);
+['f1t','f1b','f2t','f2b','f3t','f3b','f4t','f4b','f5t','f5b','f6t','f6b','f8t','f8b','f9t','f9b','f10t','f10b','f11t','f11b','f7t','f7b'].forEach(id=>{
+  const el=document.getElementById(id);if(el)el[id==='f7t'?'innerHTML':'textContent']=t(id);
 });
+const rm=document.getElementById('r-mm'),rb=document.getElementById('r-bk'),rv=document.getElementById('r-vip');
+if(rm)rm.textContent=t('rMm');if(rb)rb.textContent=t('rBk');if(rv)rv.textContent=t('rVip');
 
 const F={
   kol:[{k:'name',l:{ko:'활동명',en:'KOL Name',tw:'KOL 名稱'},p:{ko:'채널명 또는 활동명',en:'Channel or creator name',tw:'頻道名稱'}},
