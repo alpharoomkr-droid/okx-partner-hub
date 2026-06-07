@@ -6,20 +6,21 @@
 <title>OKX Partnership</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
-:root{--bg:#000;--card:#141414;--card2:#1E1E1E;--border:rgba(255,255,255,.06);--text:rgba(255,255,255,.92);--sub:rgba(255,255,255,.5);--dim:rgba(255,255,255,.25);--accent:#BCFF2F;--accent-bg:rgba(188,255,47,.06);--red:#FF453A;--radius:12px;--pill:100px;--spring:cubic-bezier(.32,.72,0,1)}
+:root{--bg:#000;--card:#1A1A1A;--card2:#2A2A2A;--border:rgba(255,255,255,.06);--text:#fff;--sub:#8C8C8C;--dim:#555;--accent:#C8FF00;--accent-bg:rgba(200,255,0,.06);--red:#F65450;--radius:12px;--pill:100px;--spring:cubic-bezier(.32,.72,0,1)}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{overflow-x:hidden;width:100%;max-width:100vw}
 body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;overscroll-behavior:contain}
 .head{padding:24px 16px 8px;text-align:center}
-.head h1{font-size:20px;font-weight:700;letter-spacing:2px}
+.head h1{font-size:24px;font-weight:800;letter-spacing:3px}
 .head p{font-size:11px;color:var(--sub);margin-top:4px;letter-spacing:.4px}
 .tabs{display:flex;padding:8px 16px 0;position:sticky;top:0;background:rgba(0,0,0,.92);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);z-index:10;width:100%;max-width:100vw}
 .tab{flex:1;padding:12px 0 10px;text-align:center;font-size:11px;font-weight:600;color:var(--sub);cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border .2s;text-transform:uppercase;letter-spacing:.8px}
-.tab.on{color:var(--accent);border-bottom-color:var(--accent)}
+.tab.on{color:#fff;border-bottom-color:#fff}
 .pnl{display:none;padding:16px 16px 120px;max-width:100%;overflow-x:hidden}
 .pnl.on{display:block;animation:fadeUp .35s var(--spring)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @keyframes shimmer{to{background-position:-200% 0}}
+.skel{height:16px;border-radius:8px;background:linear-gradient(90deg,#1E1E1E 25%,#2A2A2A 50%,#1E1E1E 75%);background-size:200% 100%;animation:shimmer 1.5s infinite}
 .lbl{font-size:10px;color:var(--sub);text-transform:uppercase;letter-spacing:1.2px;font-weight:600;margin:20px 0 10px}
 .lbl:first-child{margin-top:4px}
 
@@ -34,7 +35,7 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
 .fg{margin-bottom:16px;position:relative}
 .fg label{display:block;font-size:10px;color:var(--sub);margin-bottom:6px;text-transform:uppercase;letter-spacing:.8px;font-weight:600}
 .fg input{width:100%;padding:14px 16px;background:var(--card);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--text);font-size:16px;outline:none;transition:border .2s,box-shadow .2s}
-.fg input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(188,255,47,.1)}
+.fg input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(200,255,0,.08)}
 .fg input::placeholder{color:var(--dim)}
 .fg .e{color:var(--red);font-size:11px;margin-top:4px;display:none;font-weight:500}
 
@@ -45,9 +46,9 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
 .prog{display:flex;gap:3px;margin-bottom:16px;height:3px}
 .prog span{flex:1;border-radius:2px;background:rgba(255,255,255,.08);transition:background .4s var(--spring)}
 .prog span.done{background:var(--accent)}
-.prog span.now{background:rgba(188,255,47,.5)}
+.prog span.now{background:rgba(200,255,0,.5)}
 
-.cd{background:var(--card);border-radius:var(--radius);padding:16px;margin-bottom:10px;border:none;transition:transform .15s}
+.cd{background:var(--card);border-radius:16px;padding:16px 20px;margin-bottom:12px;border:none;transition:transform .15s}
 .cd:active{transform:scale(.99)}
 .cd h3{font-size:14px;font-weight:600;margin-bottom:6px;letter-spacing:-.01em}
 .cd p{font-size:13px;color:var(--sub);line-height:1.65}
@@ -80,8 +81,8 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
 .warn h3{color:var(--red)}
 .hero{display:flex;gap:6px;margin-bottom:16px;width:100%}
 .hero-box{flex:1;background:var(--card);border-radius:var(--radius);padding:14px 8px;text-align:center;border:none;min-width:0}
-.hero-box .hv{font-size:22px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
-.hero-box .hl{font-size:9px;color:var(--sub);margin-top:3px;text-transform:uppercase;letter-spacing:.8px;font-weight:500}
+.hero-box .hv{font-size:28px;font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.hero-box .hl{font-size:10px;color:var(--sub);margin-top:4px;text-transform:uppercase;letter-spacing:.5px;font-weight:500}
 .chip-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
 .chip{padding:8px 14px;background:var(--card);border:1.5px solid var(--border);border-radius:var(--pill);font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;white-space:nowrap;color:var(--text)}
 .chip:active{transform:scale(.96)}.chip.on{border-color:var(--accent);background:var(--accent-bg);color:var(--accent)}
@@ -92,9 +93,9 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
 </head>
 <body>
 <div id="lang-gate" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:40px 20px;text-align:center">
-  <h1 style="font-size:24px;font-weight:700;letter-spacing:2px;margin-bottom:6px">OKX</h1>
-  <p style="font-size:12px;color:var(--sub);margin-bottom:32px">Partnership Onboarding</p>
-  <p style="font-size:13px;color:var(--sub);margin-bottom:20px">🌐 Select your language</p>
+  <h1 style="font-size:32px;font-weight:800;letter-spacing:4px;margin-bottom:8px">OKX</h1>
+  <p style="font-size:13px;color:var(--sub);margin-bottom:40px">Partnership Onboarding</p>
+  <p style="font-size:12px;color:var(--dim);margin-bottom:20px">Select your language</p>
   <div style="display:flex;gap:10px">
     <button class="lbtn" onclick="pickLang('ko')">🇰🇷 한국어</button>
     <button class="lbtn" onclick="pickLang('en')">🇬🇧 English</button>
