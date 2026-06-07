@@ -104,11 +104,12 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
 </div>
 
 <div class="pnl on" id="p-apply">
-  <p id="hd-desc" style="font-size:13px;color:var(--sub);line-height:1.6;margin-bottom:14px;text-align:center"></p>
   <div class="hero">
     <div class="hero-box"><div class="hv" id="h1v">50%</div><div class="hl" id="h1l"></div></div>
     <div class="hero-box"><div class="hv" id="h2v">1-2h</div><div class="hl" id="h2l"></div></div>
+    <div class="hero-box"><div class="hv" id="h3v">700+</div><div class="hl" id="h3l"></div></div>
   </div>
+  <div id="why-okx" style="margin:12px 0 8px"></div>
   <div class="prog" id="prog"></div>
   <div class="ss on" id="s0">
     <div class="lbl" id="l-ty"></div>
@@ -229,7 +230,31 @@ const T={
   hdSub:{ko:'Joshua · OKX 북동아시아 시니어 BD',en:'Joshua · Senior BD Manager, Northeast Asia',tw:'Joshua · OKX 東北亞資深 BD'},
   hdDesc:{ko:'글로벌 Top-tier 거래소 OKX의\n북동아시아 파트너십 프로그램입니다.',en:'Northeast Asia partnership program\nby OKX, a global top-tier exchange.',tw:'全球頂級交易所 OKX 的\n東北亞合作夥伴計畫。'},
   h1l:{ko:'최대 커미션',en:'Max Commission',tw:'最高佣金'},
-  h2l:{ko:'정산 속도',en:'Payout Speed',tw:'結算速度'},
+  h2l:{ko:'정산',en:'Payout',tw:'結算'},
+  h3l:{ko:'거래쌍',en:'Pairs',tw:'交易對'},
+  whyOkx:{
+    ko:'<div class="cd" style="border:none;padding:14px"><p style="font-size:13px;color:var(--sub);line-height:1.7">'
+      +'<b style="color:var(--text)">왜 OKX인가?</b><br>'
+      +'글로벌 거래량 Top 3, 50개국 라이선스 보유. '
+      +'스팟·선물·옵션 전 상품에 업계 최고 커미션(최대 50%). '
+      +'USDT 정산 1~2시간, 신규 파트너 5개월 등급 보호. '
+      +'Copy Trading·Signal Bot 등 차별화 상품으로 유저 전환율이 높습니다.'
+      +'</p></div>',
+    en:'<div class="cd" style="border:none;padding:14px"><p style="font-size:13px;color:var(--sub);line-height:1.7">'
+      +'<b style="color:var(--text)">Why OKX?</b><br>'
+      +'Top 3 global exchange by volume, licensed in 50+ countries. '
+      +'Industry-best commissions (up to 50%) across spot, futures & options. '
+      +'USDT payouts in 1-2 hours, 5-month rate protection for new partners. '
+      +'Copy Trading & Signal Bot drive higher user conversion.'
+      +'</p></div>',
+    tw:'<div class="cd" style="border:none;padding:14px"><p style="font-size:13px;color:var(--sub);line-height:1.7">'
+      +'<b style="color:var(--text)">為什麼選擇 OKX？</b><br>'
+      +'全球交易量 Top 3，50+ 國家持牌。'
+      +'現貨·合約·期權全產品業界最高佣金（最高 50%）。'
+      +'USDT 1-2 小時結算，新夥伴 5 個月等級保護。'
+      +'跟單交易·信號機器人帶來更高用戶轉換率。'
+      +'</p></div>',
+  },
   nk:{ko:'KOL / 크리에이터',en:'KOL / Creator',tw:'KOL / 創作者'},
   nc:{ko:'커뮤니티',en:'Community',tw:'社群'},
   nt:{ko:'트레이딩 / 퀀트',en:'Trading / Quant',tw:'交易 / 量化'},
@@ -248,9 +273,10 @@ document.getElementById('l-ty').textContent=t('ty');
 document.getElementById('l-vo').textContent=t('vo');
 document.getElementById('l-fq').textContent=t('fqh');
 document.getElementById('hd-sub').textContent=t('hdSub');
-document.getElementById('hd-desc').textContent=t('hdDesc');
 document.getElementById('h1l').textContent=t('h1l');
 document.getElementById('h2l').textContent=t('h2l');
+document.getElementById('h3l').textContent=t('h3l');
+document.getElementById('why-okx').innerHTML=t('whyOkx');
 document.getElementById('nk').textContent=t('nk');
 document.getElementById('nc').textContent=t('nc');
 document.getElementById('nt').textContent=t('nt');
