@@ -134,6 +134,8 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
       <div class="tc" data-t="community"><div class="i" style="font-size:20px;font-weight:800;color:var(--accent)">COM</div><div class="n" id="nc"></div><div class="d" id="dc"></div></div>
       <div class="tc" data-t="trading"><div class="i" style="font-size:20px;font-weight:800;color:var(--accent)">QNT</div><div class="n" id="nt"></div><div class="d" id="dt"></div></div>
       <div class="tc" data-t="wealthtech"><div class="i" style="font-size:20px;font-weight:800;color:var(--accent)">AST</div><div class="n" id="nw"></div><div class="d" id="dw"></div></div>
+      <div class="tc" data-t="api"><div class="i" style="font-size:20px;font-weight:800;color:var(--accent)">API</div><div class="n" id="na"></div><div class="d" id="da"></div></div>
+      <div class="tc" data-t="other"><div class="i" style="font-size:20px;font-weight:800;color:var(--accent)">ETC</div><div class="n" id="no"></div><div class="d" id="do2"></div></div>
     </div>
   </div>
   <div class="ss" id="s1"></div>
@@ -284,6 +286,10 @@ const T={
   nc:{ko:'커뮤니티',en:'Community',tw:'社群'},
   nt:{ko:'트레이딩 / 퀀트',en:'Trading / Quant',tw:'交易 / 量化'},
   nw:{ko:'자산운용',en:'Asset Mgmt',tw:'資產管理'},
+  na:{ko:'API / 브로커',en:'API / Broker',tw:'API / 經紀商'},
+  no:{ko:'기타',en:'Other',tw:'其他'},
+  da:{ko:'프롭펌, 플랫폼',en:'Prop firm, platform',tw:'自營公司、平台'},
+  do2:{ko:'위에 해당 없음',en:'None of the above',tw:'以上皆非'},
   lCt:{ko:'커미션 티어 (스팟)',en:'Commission Tiers (Spot)',tw:'佣金等級（現貨）'},
   lVt:{ko:'VIP 수수료 (스팟)',en:'VIP Fee Tiers (Spot)',tw:'VIP 費率（現貨）'},
   lIn:{ko:'기관 프로그램',en:'Institutional Programs',tw:'機構計畫'},
@@ -306,6 +312,10 @@ document.getElementById('nk').textContent=t('nk');
 document.getElementById('nc').textContent=t('nc');
 document.getElementById('nt').textContent=t('nt');
 document.getElementById('nw').textContent=t('nw');
+document.getElementById('na').textContent=t('na');
+document.getElementById('no').textContent=t('no');
+document.getElementById('da').textContent=t('da');
+document.getElementById('do2').textContent=t('do2');
 document.getElementById('dk').textContent=t('dk');
 document.getElementById('dc').textContent=t('dc');
 document.getElementById('dt').textContent=t('dt');
@@ -336,7 +346,14 @@ const F={
   wealthtech:[{k:'company',l:{ko:'회사명',en:'Company',tw:'公司名稱'},p:{ko:'회사/서비스명',en:'Company name',tw:'公司名稱'}},
     {k:'uid',l:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},p:{ko:'숫자 UID',en:'Numeric UID',tw:'數字 UID'},pat:/^\d{6,}$/},
     {k:'aum',l:{ko:'AUM',en:'AUM',tw:'AUM'},p:{ko:'예: $5M',en:'e.g. $5M',tw:'例：$5M'}},
-    {k:'service',l:{ko:'서비스',en:'Service',tw:'服務'},chips:['Robo-advisory','Wealth Mgmt','Fintech','Other']}]
+    {k:'service',l:{ko:'서비스',en:'Service',tw:'服務'},chips:['Robo-advisory','Wealth Mgmt','Fintech','Other']}],
+  api:[{k:'entity',l:{ko:'회사/팀명',en:'Company / Team',tw:'公司/團隊'},p:{ko:'회사 또는 팀명',en:'Company or team name',tw:'公司或團隊名稱'}},
+    {k:'uid',l:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},p:{ko:'숫자 UID (KYC 완료)',en:'Numeric UID (KYC verified)',tw:'數字 UID'},pat:/^\d{6,}$/},
+    {k:'usecase',l:{ko:'연동 목적',en:'Use Case',tw:'用途'},chips:['Broker','Prop Trading','Data Feed','Algo/Bot','Other']},
+    {k:'exchange',l:{ko:'현재 거래소',en:'Current Exchanges',tw:'目前交易所'},p:{ko:'예: Binance',en:'e.g. Binance',tw:'例：Binance'}}],
+  other:[{k:'name',l:{ko:'이름/회사',en:'Name / Company',tw:'名稱/公司'},p:{ko:'이름 또는 회사명',en:'Name or company',tw:'名稱或公司'}},
+    {k:'uid',l:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},p:{ko:'숫자 UID (KYC 완료)',en:'Numeric UID (KYC verified)',tw:'數字 UID'},pat:/^\d{6,}$/},
+    {k:'description',l:{ko:'파트너십 설명',en:'Partnership Description',tw:'合作說明'},p:{ko:'어떤 파트너십을 원하시나요?',en:'What kind of partnership?',tw:'您希望什麼樣的合作？'}}]
 };
 const RG=[{l:'🇰🇷 Korea',v:'KR'},{l:'🇹🇼 Taiwan',v:'TW'},{l:'🇲🇳 Mongolia',v:'MN'},{l:'🇭🇰 HK',v:'HK'},{l:'🌏 Other',v:'Other'}];
 
