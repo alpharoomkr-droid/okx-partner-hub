@@ -5,11 +5,14 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>OKX Partnership</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@lottiefiles/lottie-player@2/dist/lottie-player.js"></script>
 <style>
 :root{--bg:#000;--card:#1A1A1A;--card2:#2A2A2A;--border:rgba(255,255,255,.06);--text:#fff;--sub:#8C8C8C;--dim:#555;--accent:#C8FF00;--accent-bg:rgba(200,255,0,.06);--red:#F65450;--radius:12px;--pill:100px;--spring:cubic-bezier(.32,.72,0,1)}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{overflow-x:hidden;width:100%;max-width:100vw}
-body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;overscroll-behavior:contain}
+body{font-family:'Inter',-apple-system,system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;overscroll-behavior:contain}
 .head{padding:24px 16px 8px;text-align:center}
 .head h1{font-size:24px;font-weight:800;letter-spacing:3px}
 .head p{font-size:11px;color:var(--sub);margin-top:4px;letter-spacing:.4px}
@@ -17,7 +20,10 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
 .tab{flex:1;padding:12px 0 10px;text-align:center;font-size:11px;font-weight:600;color:var(--sub);cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border .2s;text-transform:uppercase;letter-spacing:.8px}
 .tab.on{color:#fff;border-bottom-color:#fff}
 .pnl{display:none;padding:16px 16px 120px;max-width:100%;overflow-x:hidden}
-.pnl.on{display:block;animation:fadeUp .35s var(--spring)}
+.pnl.on{display:block;animation:slideIn .3s var(--spring)}
+.pnl.slide-r{animation:slideInR .3s var(--spring)}
+@keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:none}}
+@keyframes slideInR{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @keyframes shimmer{to{background-position:-200% 0}}
 .skel{height:16px;border-radius:8px;background:linear-gradient(90deg,#1E1E1E 25%,#2A2A2A 50%,#1E1E1E 75%);background-size:200% 100%;animation:shimmer 1.5s infinite}
@@ -71,8 +77,6 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
 @keyframes spin{to{transform:rotate(360deg)}}
 
 .suc{text-align:center;padding:52px 20px}
-.suc .ck{width:64px;height:64px;border-radius:50%;background:var(--accent-bg);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:32px;animation:pop .5s var(--spring)}
-@keyframes pop{from{transform:scale(0)}60%{transform:scale(1.1)}to{transform:scale(1)}}
 .suc h2{font-size:20px;letter-spacing:-.02em;margin-bottom:8px}
 .suc .ref{font-family:'SF Mono',monospace;background:var(--card);padding:10px 20px;border-radius:var(--pill);display:inline-block;margin:12px 0;font-size:14px;letter-spacing:1px;border:none}
 .suc p{color:var(--sub);font-size:13px;line-height:1.65}
@@ -149,7 +153,7 @@ body{font-family:-apple-system,'SF Pro Display',system-ui,sans-serif;background:
   </div>
   <div class="ss" id="s3"></div>
   <div class="ss" id="s4">
-    <div class="suc"><div class="ck">&#x2713;</div><h2 id="su-t"></h2><div class="ref" id="ref-id"></div><p id="su-b"></p><div style="margin-top:20px"><a href="https://t.me/OKX_Joshua" style="color:var(--accent);font-size:13px;text-decoration:none">Joshua에게 문의 →</a></div></div>
+    <div class="suc"><lottie-player src="https://assets2.lottiefiles.com/packages/lf20_jbrw3hcz.json" background="transparent" speed="1" style="width:80px;height:80px;margin:0 auto 16px" autoplay></lottie-player><h2 id="su-t"></h2><div class="ref" id="ref-id"></div><p id="su-b"></p><div style="margin-top:20px"><a href="https://t.me/OKX_Joshua" style="color:var(--accent);font-size:13px;text-decoration:none" id="su-cta">Joshua에게 문의 →</a></div></div>
   </div>
 </div>
 
@@ -365,10 +369,21 @@ function go(n){S.st=n;document.querySelectorAll('.ss').forEach((e,i)=>e.classLis
   if(tg&&n>0&&n<NS)try{tg.enableClosingConfirmation()}catch(e){}
   if(tg&&(n===0||n===NS))try{tg.disableClosingConfirmation()}catch(e){}}
 
+const _tabOrder=['apply','faq','rates'];
+let _curTab='apply';
 document.querySelectorAll('.tab').forEach(x=>x.onclick=()=>goT(x.dataset.t));
-function goT(n){haptic();document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x.dataset.t===n));
-  document.querySelectorAll('.pnl').forEach(x=>x.classList.toggle('on',x.id==='p-'+n));
-  if(n==='apply'){S={ty:null,st:0,d:{},vol:null,rg:null};go(0)}}
+function goT(n){
+  haptic();
+  const dir=_tabOrder.indexOf(n)>_tabOrder.indexOf(_curTab)?'slide-r':'';
+  _curTab=n;
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x.dataset.t===n));
+  document.querySelectorAll('.pnl').forEach(x=>{
+    const isTarget=x.id==='p-'+n;
+    x.classList.remove('on','slide-r');
+    if(isTarget){x.classList.add('on');if(dir)x.classList.add(dir)}
+  });
+  if(n==='apply'){S={ty:null,st:0,d:{},vol:null,rg:null};go(0)}
+}
 
 document.querySelectorAll('.tc').forEach(c=>c.onclick=()=>{haptic('medium');
   document.querySelectorAll('.tc').forEach(x=>x.classList.remove('on'));
