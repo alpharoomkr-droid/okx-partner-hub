@@ -196,8 +196,7 @@ const tg=window.Telegram?.WebApp;
 if(tg){tg.ready();tg.expand();try{tg.setHeaderColor('#000000');tg.setBackgroundColor('#000000')}catch(e){}}
 const U=tg?.initDataUnsafe?.user||{};
 const _ps=new URLSearchParams(window.location.search);
-const _urlLang=_ps.get('lang');
-let LN=_urlLang&&['ko','en','tw'].includes(_urlLang)?_urlLang:null;
+let LN=null;
 
 function pickLang(l){
   LN=l;
@@ -206,11 +205,6 @@ function pickLang(l){
   applyI18n();
   const ut=_ps.get('tab');
   if(ut&&['faq','rates'].includes(ut))goT(ut);
-}
-
-if(LN){
-  document.getElementById('lang-gate').style.display='none';
-  document.getElementById('main-app').style.display='block';
 }
 const haptic=s=>{try{tg?.HapticFeedback?.impactOccurred(s||'light')}catch(e){}};
 
