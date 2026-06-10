@@ -1,470 +1,1365 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>OKX Partnership</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#050505">
+<title>OKX Partner Hub</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/@lottiefiles/lottie-player@2/dist/lottie-player.js"></script>
 <style>
-:root{--bg:#000;--card:#1A1A1A;--card2:#2A2A2A;--border:rgba(255,255,255,.06);--text:#fff;--sub:#8C8C8C;--dim:#555;--accent:#C8FF00;--accent-bg:rgba(200,255,0,.06);--red:#F65450;--radius:12px;--pill:100px;--spring:cubic-bezier(.32,.72,0,1)}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{overflow-x:hidden;width:100%;max-width:100vw}
-body{font-family:'Inter',-apple-system,system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;overscroll-behavior:contain}
-.head{padding:24px 16px 8px;text-align:center}
-.head h1{font-size:24px;font-weight:800;letter-spacing:3px}
-.head p{font-size:11px;color:var(--sub);margin-top:4px;letter-spacing:.4px}
-.tabs{display:flex;padding:8px 16px 0;position:sticky;top:0;background:rgba(0,0,0,.92);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);z-index:10;width:100%;max-width:100vw}
-.tab{flex:1;padding:12px 0 10px;text-align:center;font-size:11px;font-weight:600;color:var(--sub);cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border .2s;text-transform:uppercase;letter-spacing:.8px}
-.tab.on{color:#fff;border-bottom-color:#fff}
-.pnl{display:none;padding:16px 16px 120px;max-width:100%;overflow-x:hidden}
-.pnl.on{display:block;animation:slideIn .3s var(--spring)}
-.pnl.slide-r{animation:slideInR .3s var(--spring)}
-@keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:none}}
-@keyframes slideInR{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-@keyframes shimmer{to{background-position:-200% 0}}
-.skel{height:16px;border-radius:8px;background:linear-gradient(90deg,#1E1E1E 25%,#2A2A2A 50%,#1E1E1E 75%);background-size:200% 100%;animation:shimmer 1.5s infinite}
-.lbl{font-size:10px;color:var(--sub);text-transform:uppercase;letter-spacing:1.2px;font-weight:600;margin:20px 0 10px}
-.lbl:first-child{margin-top:4px}
+:root {
+  color-scheme: dark;
+  --bg: #050505;
+  --surface: #0d0d0d;
+  --surface-2: #151515;
+  --surface-3: #1f1f1f;
+  --line: rgba(255,255,255,.11);
+  --line-strong: rgba(255,255,255,.22);
+  --text: #f7f7f2;
+  --muted: #a3a39d;
+  --dim: #6e6e68;
+  --okx: #d8ff35;
+  --okx-soft: rgba(216,255,53,.12);
+  --blue: #8ad8ff;
+  --blue-soft: rgba(138,216,255,.12);
+  --amber: #ffc66e;
+  --amber-soft: rgba(255,198,110,.13);
+  --red: #ff6860;
+  --red-soft: rgba(255,104,96,.12);
+  --radius: 8px;
+  --shadow: 0 18px 48px rgba(0,0,0,.34);
+  --ease: cubic-bezier(.22,.8,.24,1);
+}
 
-.tg{display:grid;grid-template-columns:1fr 1fr;gap:10px;overflow:hidden;max-width:100%}
-.tc{background:var(--card);border:none;border-radius:var(--radius);padding:20px 10px;text-align:center;cursor:pointer;transition:all .25s var(--spring);position:relative;overflow:hidden;min-width:0}
-.tc:active{transform:scale(.97)}
-.tc.on{background:var(--accent-bg);box-shadow:inset 0 0 0 1.5px var(--accent)}
-.tc .i{font-size:28px;margin-bottom:8px;position:relative;z-index:1}
-.tc .n{font-size:12px;font-weight:600;position:relative;z-index:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.tc .d{font-size:10px;color:var(--sub);margin-top:3px;line-height:1.3;position:relative;z-index:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; min-height: 100%; background: var(--bg); }
+body {
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: contain;
+}
+button, input, textarea { font: inherit; }
+button { border: 0; color: inherit; cursor: pointer; }
+a { color: inherit; }
+.app {
+  width: 100%;
+  max-width: 560px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 12px 12px calc(112px + env(safe-area-inset-bottom));
+  position: relative;
+}
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0 10px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.logo {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius);
+  display: grid;
+  place-items: center;
+  background: #fff;
+  color: #000;
+  font-weight: 900;
+  letter-spacing: -.05em;
+  font-size: 12px;
+}
+.brand-copy { min-width: 0; }
+.brand-copy b {
+  display: block;
+  font-size: 15px;
+  letter-spacing: -.01em;
+  white-space: nowrap;
+}
+.brand-copy span {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.lang-switch button {
+  min-width: 38px;
+  height: 30px;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+.lang-switch button.active {
+  background: var(--text);
+  color: #000;
+}
+.hero {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.hero-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 92px;
+  gap: 14px;
+  padding: 18px;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--okx);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--okx);
+  box-shadow: 0 0 0 5px var(--okx-soft);
+}
+.hero h1 {
+  margin: 10px 0 8px;
+  font-size: 30px;
+  line-height: 1.02;
+  letter-spacing: -.04em;
+}
+.hero p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.48;
+}
+.portrait {
+  width: 92px;
+  height: 92px;
+  border-radius: var(--radius);
+  object-fit: cover;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+}
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+}
+.stat {
+  min-height: 78px;
+  padding: 12px 10px;
+  border-right: 1px solid var(--line);
+}
+.stat:last-child { border-right: 0; }
+.stat strong {
+  display: block;
+  font-size: 21px;
+  letter-spacing: -.03em;
+  color: var(--text);
+}
+.stat span {
+  display: block;
+  margin-top: 5px;
+  color: var(--dim);
+  font-size: 11px;
+  line-height: 1.3;
+}
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin: 12px 0;
+  padding: 5px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(5,5,5,.86);
+  backdrop-filter: blur(18px);
+}
+.nav button {
+  height: 36px;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: -.01em;
+}
+.nav button.active {
+  background: var(--text);
+  color: #000;
+}
+.screen { display: none; }
+.screen.active { display: block; animation: enter .28s var(--ease); }
+@keyframes enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+.section-title {
+  margin: 18px 2px 9px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.value-strip {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+.privacy-note {
+  margin: 12px 0 0;
+  padding: 13px 14px;
+  border: 1px solid rgba(138,216,255,.24);
+  border-radius: var(--radius);
+  background: var(--blue-soft);
+}
+.privacy-note b {
+  display: block;
+  color: var(--text);
+  font-size: 13px;
+  letter-spacing: -.01em;
+}
+.privacy-note p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.48;
+}
+.value {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 52px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.value b { font-size: 13px; }
+.value span { color: var(--muted); font-size: 12px; text-align: right; }
+.stepper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin: 14px 0 12px;
+}
+.stepper i {
+  height: 4px;
+  border-radius: 99px;
+  background: var(--surface-3);
+}
+.stepper i.done { background: var(--okx); }
+.stepper i.now { background: var(--blue); }
+.type-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+.type-card {
+  min-height: 118px;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  text-align: left;
+  transition: transform .16s var(--ease), border-color .16s var(--ease), background .16s var(--ease);
+}
+.type-card:active { transform: scale(.985); }
+.type-card.selected {
+  border-color: rgba(216,255,53,.78);
+  background: var(--okx-soft);
+}
+.type-code {
+  width: fit-content;
+  min-width: 42px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 13px;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: #fff;
+  color: #000;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: -.02em;
+}
+.type-card h3 {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+}
+.type-card p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+.panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+.panel-row {
+  padding: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.panel-row:last-child { border-bottom: 0; }
+.form-grid { display: grid; gap: 12px; }
+.field label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 7px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.field input, .field textarea {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 13px 13px;
+  background: #080808;
+  color: var(--text);
+  font-size: 16px;
+  outline: 0;
+  resize: vertical;
+  transition: border-color .16s var(--ease), box-shadow .16s var(--ease);
+}
+.field textarea { min-height: 86px; line-height: 1.42; }
+.field input:focus, .field textarea:focus {
+  border-color: var(--okx);
+  box-shadow: 0 0 0 3px var(--okx-soft);
+}
+.field input::placeholder, .field textarea::placeholder { color: #5e5e59; }
+.hint { display: block; margin-top: 6px; color: var(--dim); font-size: 11px; line-height: 1.4; }
+.err { display: none; margin-top: 6px; color: var(--red); font-size: 12px; font-weight: 700; }
+.field.invalid input, .field.invalid textarea { border-color: var(--red); box-shadow: 0 0 0 3px var(--red-soft); }
+.field.invalid .err { display: block; }
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.choice-grid.wide { grid-template-columns: 1fr; }
+.choice {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 11px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 800;
+  text-align: center;
+}
+.choice.selected {
+  border-color: rgba(216,255,53,.78);
+  color: var(--okx);
+  background: var(--okx-soft);
+}
+.review-list {
+  display: grid;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+}
+.review-item {
+  display: grid;
+  grid-template-columns: 38% 1fr;
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  min-height: 48px;
+}
+.review-item:last-child { border-bottom: 0; }
+.review-item span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+.review-item b {
+  min-width: 0;
+  color: var(--text);
+  font-size: 13px;
+  word-break: break-word;
+  text-align: right;
+}
+.notice {
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid var(--amber-soft);
+  border-radius: var(--radius);
+  background: var(--amber-soft);
+  color: #f7d9aa;
+  font-size: 12px;
+  line-height: 1.46;
+}
+.program-grid {
+  display: grid;
+  gap: 9px;
+}
+.program-card {
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.program-card h3 {
+  margin: 0 0 7px;
+  font-size: 16px;
+  letter-spacing: -.02em;
+}
+.program-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.program-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 25px;
+  padding: 0 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+}
+.tag.hot { border-color: rgba(216,255,53,.42); color: var(--okx); background: var(--okx-soft); }
+.rate-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.rate-card header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--line);
+}
+.rate-card header b { font-size: 14px; }
+.rate-card header span { color: var(--muted); font-size: 11px; text-align: right; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 12px;
+}
+th, td {
+  padding: 11px 9px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: middle;
+}
+tr:last-child td { border-bottom: 0; }
+th {
+  color: var(--dim);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+td { color: var(--muted); }
+td strong { color: var(--text); }
+.green { color: var(--okx); font-weight: 900; }
+.faq {
+  display: grid;
+  gap: 8px;
+}
+.faq-item {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+.faq-item button {
+  width: 100%;
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 14px;
+  background: transparent;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 850;
+}
+.faq-item button::after {
+  content: "+";
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  background: var(--surface-2);
+  color: var(--muted);
+  flex: 0 0 auto;
+}
+.faq-item.open button::after { content: "-"; color: var(--okx); }
+.faq-item p {
+  display: none;
+  margin: 0;
+  padding: 0 14px 14px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.faq-item.open p { display: block; }
+.success {
+  text-align: center;
+  padding: 32px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.success-mark {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 16px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius);
+  background: var(--okx);
+  color: #000;
+  font-size: 30px;
+  font-weight: 900;
+}
+.success h2 {
+  margin: 0 0 8px;
+  font-size: 22px;
+  letter-spacing: -.03em;
+}
+.success p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.footer {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  z-index: 30;
+  width: 100%;
+  max-width: 560px;
+  transform: translateX(-50%);
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  background: rgba(5,5,5,.86);
+  backdrop-filter: blur(18px);
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+.footer-inner.two { grid-template-columns: .72fr 1fr; }
+.btn {
+  min-height: 50px;
+  border-radius: var(--radius);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 16px;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: -.01em;
+}
+.btn.primary { background: var(--text); color: #000; }
+.btn.accent { background: var(--okx); color: #000; }
+.btn.secondary {
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--text);
+}
+.btn:disabled {
+  opacity: .45;
+  cursor: default;
+}
+.spinner {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,0,0,.25);
+  border-top-color: #000;
+  animation: spin .72s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.hidden { display: none !important; }
 
-.fg{margin-bottom:16px;position:relative}
-.fg label{display:block;font-size:10px;color:var(--sub);margin-bottom:6px;text-transform:uppercase;letter-spacing:.8px;font-weight:600}
-.fg input{width:100%;padding:14px 16px;background:var(--card);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--text);font-size:16px;outline:none;transition:border .2s,box-shadow .2s}
-.fg input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(200,255,0,.08)}
-.fg input::placeholder{color:var(--dim)}
-.fg .e{color:var(--red);font-size:11px;margin-top:4px;display:none;font-weight:500}
-
-.gb{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.g{padding:12px;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--pill);text-align:center;cursor:pointer;font-size:13px;font-weight:500;transition:all .15s;color:var(--text)}
-.g:active{transform:scale(.97)}.g.on{border-color:var(--accent);background:var(--accent-bg);color:var(--accent)}
-
-.prog{display:flex;gap:3px;margin-bottom:16px;height:3px}
-.prog span{flex:1;border-radius:2px;background:rgba(255,255,255,.08);transition:background .4s var(--spring)}
-.prog span.done{background:var(--accent)}
-.prog span.now{background:rgba(200,255,0,.5)}
-
-.cd{background:var(--card);border-radius:16px;padding:16px 20px;margin-bottom:12px;border:none;transition:transform .15s}
-.cd:active{transform:scale(.99)}
-.cd h3{font-size:14px;font-weight:600;margin-bottom:6px;letter-spacing:-.01em}
-.cd p{font-size:13px;color:var(--sub);line-height:1.65}
-.cd .tag{display:inline-block;background:var(--accent-bg);color:var(--accent);padding:3px 10px;border-radius:var(--pill);font-size:10px;font-weight:600;margin-top:8px;letter-spacing:.3px;text-transform:uppercase}
-
-.ft{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
-.ft th{text-align:left;color:var(--sub);font-weight:500;padding:10px 4px;border-bottom:1px solid var(--border);font-size:10px;text-transform:uppercase;letter-spacing:.8px}
-.ft td{padding:9px 4px;border-bottom:1px solid var(--border)}
-.ft .gr{color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums}
-.ft .hl{background:rgba(188,255,47,.03)}
-
-.rr{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);font-size:13px}
-.rr .k{color:var(--sub);font-weight:500}.rr .v{font-weight:600;text-align:right;max-width:55%;word-break:break-all}
-
-.btn{width:100%;padding:16px;border:none;border-radius:var(--pill);font-size:15px;font-weight:600;cursor:pointer;transition:all .15s;margin-top:16px;letter-spacing:.02em}
-.btn:active{transform:scale(.98)}
-.bp{background:var(--accent);color:#000}.bs{background:transparent;color:var(--text);border:1.5px solid rgba(255,255,255,.15)}
-.btn:disabled{opacity:.3;cursor:default;transform:none}
-.btn .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(0,0,0,.2);border-top-color:#000;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-.suc{text-align:center;padding:52px 20px}
-.suc h2{font-size:20px;letter-spacing:-.02em;margin-bottom:8px}
-.suc .ref{font-family:'SF Mono',monospace;background:var(--card);padding:10px 20px;border-radius:var(--pill);display:inline-block;margin:12px 0;font-size:14px;letter-spacing:1px;border:none}
-.suc p{color:var(--sub);font-size:13px;line-height:1.65}
-
-.warn{border-color:rgba(255,69,58,.15)!important}
-.warn h3{color:var(--red)}
-.hero{display:flex;gap:6px;margin-bottom:16px;width:100%}
-.hero-box{flex:1;background:var(--card);border-radius:var(--radius);padding:14px 8px;text-align:center;border:none;min-width:0}
-.hero-box .hv{font-size:28px;font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
-.hero-box .hl{font-size:10px;color:var(--sub);margin-top:4px;text-transform:uppercase;letter-spacing:.5px;font-weight:500}
-.chip-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
-.chip{padding:8px 14px;background:var(--card);border:1.5px solid var(--border);border-radius:var(--pill);font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;white-space:nowrap;color:var(--text)}
-.chip:active{transform:scale(.96)}.chip.on{border-color:var(--accent);background:var(--accent-bg);color:var(--accent)}
-.lbtn{padding:12px 20px;background:var(--card);border:1px solid rgba(255,255,255,.1);border-radius:var(--pill);color:var(--text);font-size:14px;font-weight:500;cursor:pointer;transition:all .15s}
-.lbtn:active{transform:scale(.96);background:var(--accent-bg);border-color:var(--accent)}
-.ss{display:none}.ss.on{display:block;animation:fadeUp .3s var(--spring)}
+@media (max-width: 380px) {
+  .hero-main { grid-template-columns: 1fr 78px; padding: 15px; }
+  .portrait { width: 78px; height: 78px; }
+  .hero h1 { font-size: 26px; }
+  .type-card { min-height: 112px; padding: 12px; }
+  .type-card h3 { font-size: 14px; }
+  .stat strong { font-size: 18px; }
+}
 </style>
 </head>
 <body>
-<div id="lang-gate" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:40px 20px;text-align:center">
-  <img src="https://raw.githubusercontent.com/alpharoomkr-droid/okx-nea-partner-app/main/joshua.png" style="width:80px;height:80px;border-radius:50%;margin-bottom:16px;border:2px solid var(--card2)" onerror="this.style.display='none'">
-  <h1 style="font-size:32px;font-weight:800;letter-spacing:4px;margin-bottom:4px">OKX</h1>
-  <p style="font-size:14px;color:var(--text);font-weight:600;margin-bottom:4px">Joshua</p>
-  <p style="font-size:11px;color:var(--sub);margin-bottom:32px">Senior BD Manager, Northeast Asia</p>
-  <p style="font-size:12px;color:var(--dim);margin-bottom:20px">Select your language</p>
-  <div style="display:flex;gap:10px">
-    <button class="lbtn" onclick="pickLang('ko')">🇰🇷 한국어</button>
-    <button class="lbtn" onclick="pickLang('en')">🇬🇧 English</button>
-    <button class="lbtn" onclick="pickLang('tw')">🇹🇼 繁中</button>
-  </div>
-</div>
-<div id="main-app" style="display:none">
-<div class="head">
-  <h1>OKX</h1>
-  <p id="hd-sub">Joshua &middot; Senior BD Manager, Northeast Asia</p>
-  <div style="display:flex;justify-content:center;gap:16px;margin-top:8px">
-    <a href="https://www.linkedin.com/in/joshua-l-13a998251" style="font-size:11px;color:var(--sub);text-decoration:none">LinkedIn ↗</a>
-    <a href="mailto:heejun.lee@okx.com" style="font-size:11px;color:var(--sub);text-decoration:none">heejun.lee@okx.com</a>
-  </div>
-</div>
-<div class="tabs">
-  <div class="tab on" data-t="apply" id="t0">Apply</div>
-  <div class="tab" data-t="faq" id="t1">FAQ</div>
-  <div class="tab" data-t="rates" id="t2">Rates</div>
-</div>
-
-<div class="pnl on" id="p-apply">
-  <div class="hero">
-    <div class="hero-box"><div class="hv" id="h1v">50%</div><div class="hl" id="h1l"></div></div>
-    <div class="hero-box"><div class="hv" id="h2v">1-2h</div><div class="hl" id="h2l"></div></div>
-    <div class="hero-box"><div class="hv" id="h3v">700+</div><div class="hl" id="h3l"></div></div>
-  </div>
-  <div id="why-okx" style="margin:12px 0 8px"></div>
-  <div class="prog" id="prog"></div>
-  <div class="ss on" id="s0">
-    <div class="lbl" id="l-ty"></div>
-    <div class="tg">
-      <div class="tc" data-t="kol"><div class="i" style="font-size:20px;font-weight:800;color:var(--accent)">KOL</div><div class="n" id="nk"></div><div class="d" id="dk"></div></div>
-      <div class="tc" data-t="community"><div class="i" style="font-size:20px;font-weight:800;color:var(--accent)">COM</div><div class="n" id="nc"></div><div class="d" id="dc"></div></div>
-      <div class="tc" data-t="trading"><div class="i" style="font-size:20px;font-weight:800;color:var(--accent)">QNT</div><div class="n" id="nt"></div><div class="d" id="dt"></div></div>
-      <div class="tc" data-t="wealthtech"><div class="i" style="font-size:20px;font-weight:800;color:var(--accent)">AST</div><div class="n" id="nw"></div><div class="d" id="dw"></div></div>
-      <div class="tc" data-t="api"><div class="i" style="font-size:20px;font-weight:800;color:var(--accent)">API</div><div class="n" id="na"></div><div class="d" id="da"></div></div>
-      <div class="tc" data-t="other"><div class="i" style="font-size:20px;font-weight:800;color:var(--accent)">ETC</div><div class="n" id="no"></div><div class="d" id="do2"></div></div>
+<main class="app">
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">OKX</div>
+      <div class="brand-copy">
+        <b>Partner Hub</b>
+        <span id="top-sub">Joshua · NEA Business Development</span>
+      </div>
+    </div>
+    <div class="lang-switch" aria-label="Language">
+      <button data-lang="ko">KO</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="tw">繁</button>
     </div>
   </div>
-  <div class="ss" id="s1"></div>
-  <div class="ss" id="s2">
-    <div class="lbl" id="l-vo"></div>
-    <div class="gb" id="vg">
-      <div class="g" data-v="< $1M">&lt; $1M</div><div class="g" data-v="$1M-$10M">$1M-$10M</div>
-      <div class="g" data-v="$10M-$50M">$10M-$50M</div><div class="g" data-v="$50M-$100M">$50M-$100M</div>
-      <div class="g" data-v="$100M+">$100M+</div><div class="g" data-v="N/A">N/A</div>
+
+  <section class="hero">
+    <div class="hero-main">
+      <div>
+        <div class="eyebrow"><span class="pulse"></span><span id="hero-kicker">OKX NEA Partner Program</span></div>
+        <h1 id="hero-title">파트너 신청을 2분 안에 완료하세요.</h1>
+        <p id="hero-copy">크리에이터, 커뮤니티, API/퀀트, VIP 파트너를 Joshua가 직접 검토합니다.</p>
+      </div>
+      <img class="portrait" src="./joshua.png" alt="Joshua">
     </div>
+    <div class="hero-stats">
+      <div class="stat"><strong id="stat-1">50%</strong><span id="stat-1-label">최대 커미션</span></div>
+      <div class="stat"><strong id="stat-2">1-2h</strong><span id="stat-2-label">USDT 정산</span></div>
+      <div class="stat"><strong id="stat-3">VIP</strong><span id="stat-3-label">기관 트랙</span></div>
+    </div>
+  </section>
+
+  <section class="privacy-note" aria-label="Privacy notice">
+    <b id="privacy-title">OKX BD Joshua의 개인 파트너 미니앱입니다.</b>
+    <p id="privacy-body">입력하신 정보는 Joshua 개인에게만 전달되며, OKX 파트너 등록 및 후속 안내 목적으로만 사용됩니다.</p>
+  </section>
+
+  <nav class="nav" aria-label="Sections">
+    <button data-tab="apply" class="active" id="tab-apply">신청</button>
+    <button data-tab="programs" id="tab-programs">프로그램</button>
+    <button data-tab="rates" id="tab-rates">수수료</button>
+    <button data-tab="faq" id="tab-faq">FAQ</button>
+  </nav>
+
+  <section class="screen active" id="screen-apply">
+    <div class="value-strip">
+      <div class="value"><b id="value-1-title">전담 BD 검토</b><span id="value-1-body">신청 후 Joshua가 직접 확인</span></div>
+      <div class="value"><b id="value-2-title">채널별 맞춤 구조</b><span id="value-2-body">Affiliate, API, VIP 분리 운영</span></div>
+    </div>
+
+    <div class="stepper" id="stepper" aria-hidden="true"></div>
+
+    <div id="step-type">
+      <div class="section-title" id="type-title">파트너 유형</div>
+      <div class="type-grid" id="type-grid"></div>
+    </div>
+
+    <div id="step-details" class="hidden">
+      <div class="section-title" id="details-title">신청 정보</div>
+      <div class="panel"><div class="panel-row"><div class="form-grid" id="dynamic-fields"></div></div></div>
+    </div>
+
+    <div id="step-volume" class="hidden">
+      <div class="section-title" id="volume-title">월 거래량 또는 규모</div>
+      <div class="choice-grid" id="volume-grid"></div>
+      <div class="notice" id="volume-note">대략적인 규모만 선택해도 됩니다. 최종 조건은 1:1로 확인합니다.</div>
+    </div>
+
+    <div id="step-review" class="hidden">
+      <div class="section-title" id="review-title">제출 전 확인</div>
+      <div class="review-list" id="review-list"></div>
+      <div class="notice" id="compliance-note">OKX 사칭, 브랜드 키워드 광고, 유사 URL 사용은 허용되지 않습니다.</div>
+    </div>
+
+    <div id="step-success" class="hidden">
+      <div class="success">
+        <div class="success-mark">✓</div>
+        <h2 id="success-title">제출 완료</h2>
+        <p id="success-body">Telegram 채팅으로 접수 메시지가 도착합니다. Joshua가 검토 후 연락드립니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-programs">
+    <div class="section-title" id="programs-title">파트너 트랙</div>
+    <div class="program-grid" id="program-grid"></div>
+  </section>
+
+  <section class="screen" id="screen-rates">
+    <div class="section-title" id="rates-title">수수료 구조</div>
+    <div class="rate-card">
+      <header><b id="commission-title">Affiliate Commission</b><span id="commission-sub">조건은 채널/성과에 따라 확정</span></header>
+      <table>
+        <thead><tr><th>Tier</th><th>Volume</th><th>Traders</th><th>Rate</th></tr></thead>
+        <tbody>
+          <tr><td><strong>L1</strong></td><td>$100K+</td><td>25+</td><td class="green">30%</td></tr>
+          <tr><td><strong>L2</strong></td><td>$500K+</td><td>25+</td><td class="green">35%</td></tr>
+          <tr><td><strong>L3</strong></td><td>$1M+</td><td>50+</td><td class="green">40%</td></tr>
+          <tr><td><strong>L4</strong></td><td>$5M+</td><td>100+</td><td class="green">45%</td></tr>
+          <tr><td><strong>L5</strong></td><td>$10M+</td><td>200+</td><td class="green">50%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="rate-card">
+      <header><b id="vip-title">VIP / Institutional</b><span id="vip-sub">거래량 파트너는 별도 협의</span></header>
+      <table>
+        <thead><tr><th>Track</th><th>Best fit</th><th>Support</th></tr></thead>
+        <tbody>
+          <tr><td><strong>API</strong></td><td>Bot, quant, prop</td><td>Tech + BD</td></tr>
+          <tr><td><strong>VIP</strong></td><td>High volume</td><td>Fee review</td></tr>
+          <tr><td><strong>Broker</strong></td><td>Platform</td><td>Integration</td></tr>
+          <tr><td><strong>MM</strong></td><td>Liquidity</td><td>Custom</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="notice" id="rates-note">표는 신청 전 이해를 돕기 위한 요약입니다. 최종 조건은 OKX 정책과 지역/자격 요건에 따라 달라질 수 있습니다.</div>
+  </section>
+
+  <section class="screen" id="screen-faq">
+    <div class="section-title" id="faq-title">자주 묻는 질문</div>
+    <div class="faq" id="faq-list"></div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner" id="footer-inner">
+    <button class="btn accent" id="primary-action">시작하기</button>
+    <button class="btn secondary hidden" id="secondary-action">이전</button>
   </div>
-  <div class="ss" id="s3"></div>
-  <div class="ss" id="s4">
-    <div class="suc"><lottie-player src="https://assets2.lottiefiles.com/packages/lf20_jbrw3hcz.json" background="transparent" speed="1" style="width:80px;height:80px;margin:0 auto 16px" autoplay></lottie-player><h2 id="su-t"></h2><div class="ref" id="ref-id"></div><p id="su-b"></p><div style="margin-top:20px"><a href="https://t.me/OKX_Joshua" style="color:var(--accent);font-size:13px;text-decoration:none" id="su-cta">Joshua에게 문의 →</a></div></div>
-  </div>
-</div>
+</footer>
 
-<div class="pnl" id="p-faq">
-  <div class="lbl" id="l-fq"></div>
-  <div class="cd"><h3 id="f1t"></h3><p id="f1b"></p></div>
-  <div class="cd"><h3 id="f2t"></h3><p id="f2b"></p></div>
-  <div class="cd"><h3 id="f3t"></h3><p id="f3b"></p></div>
-  <div class="cd"><h3 id="f4t"></h3><p id="f4b"></p></div>
-  <div class="cd"><h3 id="f5t"></h3><p id="f5b"></p></div>
-  <div class="cd"><h3 id="f6t"></h3><p id="f6b"></p></div>
-  <div class="cd"><h3 id="f8t"></h3><p id="f8b"></p></div>
-  <div class="cd"><h3 id="f9t"></h3><p id="f9b"></p></div>
-  <div class="cd"><h3 id="f10t"></h3><p id="f10b"></p></div>
-  <div class="cd"><h3 id="f11t"></h3><p id="f11b"></p></div>
-</div>
-
-<div class="pnl" id="p-rates">
-  <div class="lbl" id="l-ct">Commission Tiers (Spot)</div>
-  <table class="ft"><tr><th>Lv</th><th>Vol</th><th>Traders</th><th>Rate</th></tr>
-  <tr><td>L1</td><td>$100K+</td><td>25+</td><td class="gr">30%</td></tr>
-  <tr><td>L2</td><td>$500K+</td><td>25+</td><td class="gr">35%</td></tr>
-  <tr><td>L3</td><td>$1M+</td><td>50+</td><td class="gr">40%</td></tr>
-  <tr><td>L4</td><td>$5M+</td><td>100+</td><td class="gr">45%</td></tr>
-  <tr class="hl"><td>L5</td><td>$10M+</td><td>200+</td><td class="gr">50%</td></tr></table>
-
-  <div class="lbl" id="l-vt">VIP Fee Tiers (Spot)</div>
-  <table class="ft"><tr><th>Tier</th><th>Assets/Vol</th><th>Maker</th><th>Taker</th></tr>
-  <tr><td>Reg</td><td>&lt;$100K</td><td>0.200%</td><td>0.350%</td></tr>
-  <tr><td>VIP1</td><td>$100K+</td><td>0.100%</td><td>0.200%</td></tr>
-  <tr><td>VIP3</td><td>$2M+</td><td>0.060%</td><td>0.125%</td></tr>
-  <tr><td>VIP5</td><td>$20M+</td><td>0.045%</td><td>0.080%</td></tr>
-  <tr class="hl"><td>VIP7</td><td>$100M+</td><td class="gr">-0.002%</td><td>0.025%</td></tr>
-  <tr class="hl"><td>VIP9</td><td>$500M+</td><td class="gr">-0.0075%</td><td>0.0175%</td></tr></table>
-  <p style="font-size:11px;color:var(--dim);margin-top:8px">VIP7+ = negative maker fees (rebates). Full details upon request.</p>
-
-  <div class="lbl" id="l-inst">Institutional Programs</div>
-  <div class="cd"><h3>&#x1F3E6; Market Maker</h3><p id="r-mm"></p></div>
-  <div class="cd"><h3>&#x1F527; Broker / API</h3><p id="r-bk"></p></div>
-  <div class="cd"><h3>&#x1F40B; VIP Track</h3><p id="r-vip"></p></div>
-</div>
-
-</div><!-- /main-app -->
 <script>
-const tg=window.Telegram?.WebApp;
-if(tg){tg.ready();tg.expand();try{tg.setHeaderColor('#000000');tg.setBackgroundColor('#000000')}catch(e){}}
-const U=tg?.initDataUnsafe?.user||{};
-const _ps=new URLSearchParams(window.location.search);
-let LN=null;
-
-function pickLang(l){
-  LN=l;
-  document.getElementById('lang-gate').style.display='none';
-  document.getElementById('main-app').style.display='block';
-  applyI18n();
-  const ut=_ps.get('tab');
-  if(ut&&['faq','rates'].includes(ut))goT(ut);
+const tg = window.Telegram?.WebApp;
+function tgSupports(version) {
+  try { return Boolean(tg?.isVersionAtLeast?.(version)); } catch (_) { return false; }
 }
-const haptic=s=>{try{tg?.HapticFeedback?.impactOccurred(s||'light')}catch(e){}};
+if (tg) {
+  tg.ready();
+  tg.expand();
+  if (tgSupports("6.1")) try {
+    tg.setHeaderColor("#050505");
+    tg.setBackgroundColor("#050505");
+  } catch (_) {}
+}
 
-const T={
-  apply:{ko:'등록',en:'Apply',tw:'登記'},faq:{ko:'FAQ',en:'FAQ',tw:'FAQ'},rates:{ko:'수수료',en:'Rates',tw:'費率'},
-  ty:{ko:'파트너 유형을 선택하세요',en:'Select your partner type to apply',tw:'請選擇您的合作類型以申請'},det:{ko:'상세 정보',en:'Your Details',tw:'詳細資訊'},
-  reg:{ko:'지역',en:'Region',tw:'地區'},tg:{ko:'텔레그램 연락처',en:'Telegram Contact',tw:'Telegram 聯繫'},
-  cont:{ko:'다음',en:'Continue',tw:'繼續'},vo:{ko:'월 거래량',en:'Monthly Volume',tw:'月交易量'},
-  rev:{ko:'확인',en:'Review',tw:'確認'},sub:{ko:'제출',en:'Submit',tw:'提交'},
-  edit:{ko:'수정',en:'Edit',tw:'編輯'},done:{ko:'등록 완료',en:'Submitted',tw:'已提交'},
-  req:{ko:'필수 항목입니다',en:'This field is required',tw:'此為必填項目'},
-  inv:{ko:'형식을 확인해주세요',en:'Please check the format',tw:'請確認格式'},
-  wait:{ko:'제출 중...',en:'Submitting...',tw:'提交中...'},
-  dk:{ko:'인플루언서, 크리에이터',en:'Influencers, streamers',tw:'創作者、直播主'},
-  dc:{ko:'그룹, 교육, 시그널',en:'Groups, education, signals',tw:'社群、教育、信號'},
-  dt:{ko:'데스크, 프롭, 퀀트',en:'Desks, prop, systematic',tw:'交易團隊、量化'},
-  dw:{ko:'로보, 핀테크',en:'Robo, fintech',tw:'機器人投顧、金融科技'},
-  s1:{ko:'1~2 영업일 내 검토',en:'Review within 1-2 business days',tw:'1~2 工作日內審核'},
-  s2:{ko:'이 채팅으로 승인 알림',en:'Approval notification in this chat',tw:'在此聊天通知結果'},
-  s3:{ko:'레퍼럴 링크 + 마케팅 자료',en:'Referral link + marketing kit',tw:'推薦連結 + 行銷素材'},
-  fqh:{ko:'자주 묻는 질문',en:'Frequently Asked Questions',tw:'常見問題'},
-  f1t:{ko:'커미션은 얼마나 받나요?',en:'How much commission can I earn?',tw:'佣金能賺多少？'},
-  f1b:{ko:'추천 유저 거래 수수료의 30~50%를 USDT로 받습니다. 신규 어필리에이트는 5개월간 등급 보호를 받습니다. <a href="https://www.okx.com/affiliates" style="color:var(--accent)">자세히 →</a>',en:'30-50% of referrals\' trading fees in USDT. New affiliates get 5-month rate protection. <a href="https://www.okx.com/affiliates" style="color:var(--accent)">Learn more →</a>',tw:'推薦用戶交易手續費的 30-50%，以 USDT 支付。新推薦人享有 5 個月費率保護。<a href="https://www.okx.com/affiliates" style="color:var(--accent)">了解更多 →</a>'},
-  f2t:{ko:'정산은 언제 되나요?',en:'When do I get paid?',tw:'何時收到款項？'},
-  f2b:{ko:'거래 후 1~2시간 내 USDT로 자동 정산. 최소 출금 한도 없음. <a href="https://www.okx.com/fees" style="color:var(--accent)">수수료 구조 →</a>',en:'Within 1-2 hours after each trade. USDT. No minimum threshold. <a href="https://www.okx.com/fees" style="color:var(--accent)">Fee structure →</a>',tw:'每筆交易後 1-2 小時內自動結算。USDT。無最低門檻。<a href="https://www.okx.com/fees" style="color:var(--accent)">費率結構 →</a>'},
-  f3t:{ko:'신청에 뭐가 필요한가요?',en:'What do I need to apply?',tw:'申請需要什麼？'},
-  f3b:{ko:'OKX UID (KYC 완료), 채널/커뮤니티 링크, 텔레그램 연락처. 약 2분. <a href="https://www.okx.com/account/register" style="color:var(--accent)">OKX 가입 →</a>',en:'OKX UID (KYC verified), channel link, Telegram contact. About 2 minutes. <a href="https://www.okx.com/account/register" style="color:var(--accent)">Sign up for OKX →</a>',tw:'OKX UID（已完成 KYC）、頻道連結、Telegram 聯繫方式。約 2 分鐘。<a href="https://www.okx.com/account/register" style="color:var(--accent)">註冊 OKX →</a>'},
-  f4t:{ko:'승인까지 얼마나 걸리나요?',en:'How long until approval?',tw:'審核多久？'},
-  f4b:{ko:'1~2 영업일. Joshua가 직접 검토하고, 텔레그램으로 결과를 알려드립니다.',en:'1-2 business days. Joshua reviews personally. Result sent via Telegram.',tw:'1-2 工作日。Joshua 親自審核。結果透過 Telegram 通知。'},
-  f5t:{ko:'승인 후에는?',en:'What happens after approval?',tw:'通過後呢？'},
-  f5b:{ko:'개인 레퍼럴 링크, 마케팅 배너, 소개 문구 템플릿, 전담 BD 매니저.',en:'Personal referral link, marketing banners, intro templates, dedicated BD manager.',tw:'個人推薦連結、行銷橫幅、介紹範本、專屬 BD 經理。'},
-  f6t:{ko:'서브어필리에이트?',en:'Sub-affiliate network?',tw:'二級推薦？'},
-  f6b:{ko:'가능. 하위 어필리에이트를 모집하고 커미션 배분을 직접 설정.',en:'Yes. Recruit sub-affiliates and set custom commission splits.',tw:'可以。招募下級推薦人，自行設定佣金分配。'},
-  f8t:{ko:'기관/VIP 트랙은 뭐가 다른가요?',en:'What\'s different about VIP/Institutional?',tw:'VIP/機構通道有何不同？'},
-  f8b:{ko:'거래량 중심 파트너(데스크, 퀀트, 자산운용)는 어필리에이트가 아닌 VIP 트랙으로 진행됩니다. VIP 수수료 등급, 전담 RM, 맞춤 구조가 적용되며 Joshua가 직접 핸들링합니다. <a href="https://www.okx.com/fees" style="color:var(--accent)">VIP 등급표 →</a>',en:'Volume-driven partners (desks, quant, asset mgmt) go through the VIP track, not affiliate. VIP fee tiers, dedicated RM, and custom structures apply. Joshua handles personally. <a href="https://www.okx.com/fees" style="color:var(--accent)">VIP tiers →</a>',tw:'交易量為主的夥伴（交易台、量化、資管）走 VIP 通道而非推薦計畫。享有 VIP 費率、專屬 RM、定制結構。Joshua 親自對接。<a href="https://www.okx.com/fees" style="color:var(--accent)">VIP 等級 →</a>'},
-  f9t:{ko:'API 연동이 가능한가요?',en:'Is API integration available?',tw:'可以 API 對接嗎？'},
-  f9b:{ko:'브로커 프로그램을 통해 화이트라벨 API, 서브브로커 계정 관리, 실시간 데이터 피드가 가능합니다. 프롭펌, 핀테크, 로보어드바이저에 적합합니다. <a href="https://www.okx.com/docs-v5/en/" style="color:var(--accent)">API 문서 →</a>',en:'Through the Broker Program: white-label API, sub-broker account management, real-time data feeds. Ideal for prop firms, fintech, robo-advisors. <a href="https://www.okx.com/docs-v5/en/" style="color:var(--accent)">API docs →</a>',tw:'透過經紀商計畫：白標 API、子經紀商帳戶管理、即時數據。適用於自營公司、金融科技、機器人投顧。<a href="https://www.okx.com/docs-v5/en/" style="color:var(--accent)">API 文件 →</a>'},
-  f10t:{ko:'어떤 상품을 거래할 수 있나요?',en:'What products can be traded?',tw:'可以交易什麼產品？'},
-  f10b:{ko:'스팟(현물), 선물(무기한/만기), 옵션, 마진 거래를 지원합니다. 700+ 거래쌍, 최대 125x 레버리지. Copy Trading, Signal Bot, 토큰화 주식도 제공됩니다. <a href="https://www.okx.com/trade-spot" style="color:var(--accent)">거래 시작 →</a>',en:'Spot, futures (perpetual/expiry), options, and margin trading. 700+ pairs, up to 125x leverage. Copy Trading, Signal Bot, and tokenized stocks also available. <a href="https://www.okx.com/trade-spot" style="color:var(--accent)">Start trading →</a>',tw:'現貨、合約（永續/交割）、期權、保證金交易。700+ 交易對，最高 125 倍槓桿。另有跟單交易、信號機器人、代幣化股票。<a href="https://www.okx.com/trade-spot" style="color:var(--accent)">開始交易 →</a>'},
-  f11t:{ko:'한국에서 OKX를 사용할 수 있나요?',en:'Is OKX available in Korea?',tw:'韓國可以使用 OKX 嗎？'},
-  f11b:{ko:'OKX는 글로벌 서비스이며, 한국 유저도 KYC를 완료하면 사용 가능합니다. 한국 원화(KRW) 직접 입금은 지원되지 않으며, USDT 등 크립토 입금으로 이용합니다. <a href="https://www.okx.com/help/what-is-kyc-verification" style="color:var(--accent)">KYC 안내 →</a>',en:'OKX is a global platform. Korean users can use it after KYC verification. Direct KRW deposit is not supported — use crypto (USDT) deposits. <a href="https://www.okx.com/help/what-is-kyc-verification" style="color:var(--accent)">KYC guide →</a>',tw:'OKX 是全球平台。韓國用戶完成 KYC 後可使用。不支援韓元直接入金，需使用加密貨幣（USDT）入金。<a href="https://www.okx.com/help/what-is-kyc-verification" style="color:var(--accent)">KYC 指南 →</a>'},
-  f7t:{ko:'⚠️ 주의 사항',en:'⚠️ Compliance',tw:'⚠️ 注意事項'},
-  f7b:{ko:'OKX 사칭, 브랜드 키워드 광고, 유사 URL 사용 시 즉시 자격 박탈.',en:'Impersonating OKX, bidding on brand keywords, or look-alike URLs = immediate disqualification.',tw:'仿冒 OKX、競價品牌關鍵字、相似 URL = 立即取消資格。'},
-  rMm:{ko:'네거티브 메이커 수수료(리베이트), Alibaba Cloud HK 전용 API 인프라, 24/7 기술 서포트, Liquid Marketplace(블록 트레이딩). 월 $50M+ 거래량부터 신청 가능. <a href="https://www.okx.com/fees" style="color:var(--accent)">수수료 상세 →</a>',en:'Negative maker fees (rebates), dedicated API infra on Alibaba Cloud HK, 24/7 tech support, Liquid Marketplace (block trading). Eligible from $50M+ monthly. <a href="https://www.okx.com/fees" style="color:var(--accent)">Fee details →</a>',tw:'負手續費（返佣）、阿里雲香港專屬 API 基礎設施、24/7 技術支援、Liquid Marketplace（大宗交易）。月交易量 $50M+ 可申請。<a href="https://www.okx.com/fees" style="color:var(--accent)">費率詳情 →</a>'},
-  rBk:{ko:'화이트라벨 API로 OKX 유동성을 내 플랫폼에 연동. 서브브로커 계정 자동 배분, 실시간 데이터 피드, 맞춤 수수료 구조. <a href="https://www.okx.com/docs-v5/en/" style="color:var(--accent)">API 문서 →</a>',en:'White-label API to integrate OKX liquidity on your platform. Sub-broker auto-allocation, real-time data feeds, custom fee structures. <a href="https://www.okx.com/docs-v5/en/" style="color:var(--accent)">API docs →</a>',tw:'白標 API 將 OKX 流動性整合至您的平台。子經紀商自動分配、即時數據、定制費率。<a href="https://www.okx.com/docs-v5/en/" style="color:var(--accent)">API 文件 →</a>'},
-  rVip:{ko:'거래량 기반 VIP 수수료 등급 (Regular~VIP9). VIP7+부터 네거티브 메이커 수수료. 전담 RM 배정, 맞춤 커미션 구조. Joshua가 직접 검토하고 연결합니다.',en:'Volume-based VIP fee tiers (Regular~VIP9). VIP7+ gets negative maker fees. Dedicated RM, custom commission structures. Joshua reviews and connects personally.',tw:'基於交易量的 VIP 費率等級（Regular~VIP9）。VIP7+ 享有負手續費。專屬 RM、定制佣金結構。Joshua 親自審核對接。'},
-  comp:{ko:'⚠️ OKX 사칭, 키워드 광고, 유사 URL 사용 금지',en:'⚠️ No OKX impersonation, keyword ads, or look-alike URLs',tw:'⚠️ 禁止仿冒 OKX、關鍵字廣告、相似 URL'},
-  hdSub:{ko:'Joshua · Senior BD Manager, Northeast Asia',en:'Joshua · Senior BD Manager, Northeast Asia',tw:'Joshua · Senior BD Manager, Northeast Asia'},
-  hdDesc:{ko:'글로벌 Top-tier 거래소 OKX의\n북동아시아 파트너십 프로그램입니다.',en:'Northeast Asia partnership program\nby OKX, a global top-tier exchange.',tw:'全球頂級交易所 OKX 的\n東北亞合作夥伴計畫。'},
-  h1l:{ko:'최대 커미션',en:'Max Commission',tw:'最高佣金'},
-  h2l:{ko:'정산',en:'Payout',tw:'結算'},
-  h3l:{ko:'거래쌍',en:'Pairs',tw:'交易對'},
-  whyOkx:{
-    ko:'<div class="cd" style="border:none;padding:16px 20px"><b style="color:var(--text);font-size:14px">왜 OKX인가?</b>'
-      +'<div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">'
-      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">Top 3</b> 글로벌 거래량, 50개국 라이선스</div>'
-      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">50%</b> 업계 최고 커미션, 전 상품 적용</div>'
-      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">1-2h</b> USDT 정산, 최소 한도 없음</div>'
-      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">5개월</b> 신규 파트너 등급 보호</div>'
-      +'</div></div>',
-    en:'<div class="cd" style="border:none;padding:16px 20px"><b style="color:var(--text);font-size:14px">Why OKX?</b>'
-      +'<div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">'
-      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">Top 3</b> global exchange, 50+ licenses</div>'
-      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">50%</b> industry-best commission, all products</div>'
-      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">1-2h</b> USDT payout, no minimum</div>'
-      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">5mo</b> rate protection for new partners</div>'
-      +'</div></div>',
-    tw:'<div class="cd" style="border:none;padding:16px 20px"><b style="color:var(--text);font-size:14px">為什麼選擇 OKX？</b>'
-      +'<div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">'
-      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">Top 3</b> 全球交易量，50+ 國家持牌</div>'
-      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">50%</b> 業界最高佣金，全產品適用</div>'
-      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">1-2h</b> USDT 結算，無最低門檻</div>'
-      +'<div style="font-size:13px;color:var(--sub)"><b style="color:var(--accent)">5個月</b> 新夥伴等級保護</div>'
-      +'</div></div>',
+const params = new URLSearchParams(location.search);
+const tgUser = tg?.initDataUnsafe?.user || {};
+const isTelegramRuntime = Boolean(tg?.initData);
+const supported = ["ko", "en", "tw"];
+let lang = normalizeLang(params.get("lang") || tgUser.language_code || "ko");
+let tab = "apply";
+let step = 0;
+let submitting = false;
+const state = { type: "", data: {}, volume: "" };
+
+function normalizeLang(value) {
+  const raw = String(value || "").toLowerCase();
+  if (raw.startsWith("ko") || raw === "kr") return "ko";
+  if (raw.startsWith("zh") || raw === "tw") return "tw";
+  return "en";
+}
+
+const copy = {
+  ko: {
+    topSub: "Joshua · NEA Business Development",
+    kicker: "OKX NEA Partner Program",
+    heroTitle: "파트너 신청을 2분 안에 완료하세요.",
+    heroCopy: "크리에이터, 커뮤니티, API/퀀트, VIP 파트너를 Joshua가 직접 검토합니다.",
+    tabs: { apply: "신청", programs: "프로그램", rates: "수수료", faq: "FAQ" },
+    stats: [["50%", "최대 커미션"], ["1-2h", "USDT 정산"], ["VIP", "기관 트랙"]],
+    privacyTitle: "OKX BD Joshua의 개인 파트너 미니앱입니다.",
+    privacyBody: "입력하신 정보는 Joshua 개인에게만 전달되며, OKX 파트너 등록 및 후속 안내 목적으로만 사용됩니다.",
+    values: [["전담 BD 검토", "신청 후 Joshua가 직접 확인"], ["채널별 맞춤 구조", "Affiliate, API, VIP 분리 운영"]],
+    section: { type: "파트너 유형", details: "신청 정보", volume: "월 거래량 또는 규모", review: "제출 전 확인", programs: "파트너 트랙", rates: "수수료 구조", faq: "자주 묻는 질문" },
+    footer: { start: "시작하기", next: "다음", review: "확인하기", submit: "제출하기", back: "이전", edit: "수정", submitting: "제출 중" },
+    validation: { required: "필수 항목입니다.", uid: "UID는 6자리 이상 숫자입니다.", contact: "연락 가능한 Telegram 핸들을 입력해주세요." },
+    volumeNote: "대략적인 규모만 선택해도 됩니다. 최종 조건은 1:1로 확인합니다.",
+    compliance: "OKX 사칭, 브랜드 키워드 광고, 유사 URL 사용은 허용되지 않습니다.",
+    successTitle: "제출 완료",
+    successBody: "Telegram 채팅으로 접수 메시지가 도착합니다. Joshua가 검토 후 연락드립니다.",
+    commissionTitle: "Affiliate Commission",
+    commissionSub: "조건은 채널/성과에 따라 확정",
+    vipTitle: "VIP / Institutional",
+    vipSub: "거래량 파트너는 별도 협의",
+    ratesNote: "표는 신청 전 이해를 돕기 위한 요약입니다. 최종 조건은 OKX 정책과 지역/자격 요건에 따라 달라질 수 있습니다.",
+    labels: {
+      name: "활동명", community_name: "커뮤니티명", entity: "팀/법인명", company: "회사명", uid: "OKX UID",
+      channel: "채널 링크", followers: "팔로워 수", members: "멤버 수", strategy: "전략", exchange: "현재 거래소",
+      aum: "AUM", service: "서비스", usecase: "연동 목적", description: "파트너십 설명", region: "지역", contact: "Telegram", volume: "규모"
+    },
+    hints: { uid: "KYC 완료 계정 기준", contact: "@handle 또는 연락 가능한 계정" },
+    placeholder: {
+      name: "채널명 또는 활동명", community_name: "커뮤니티/그룹명", entity: "팀 또는 법인명", company: "회사/서비스명",
+      uid: "숫자 UID", channel: "https://", followers: "예: 50K", members: "예: 10K", exchange: "예: Binance, Bybit",
+      aum: "예: $5M", description: "원하는 협업 방향을 짧게 적어주세요", contact: "@handle"
+    },
+    types: {
+      kol: ["KOL / Creator", "콘텐츠, 숏폼, 방송, 뉴스레터", "KOL"],
+      community: ["Community", "텔레그램, 카페, 교육, 시그널", "COM"],
+      trading: ["Trading / Quant", "프롭, 자동매매, 시그널, 데스크", "QNT"],
+      wealthtech: ["Asset / Fintech", "자산운용, 로보, 핀테크", "AST"],
+      api: ["API / Broker", "브로커, 플랫폼, API 연동", "API"],
+      other: ["Other", "기타 파트너십 제안", "ETC"]
+    },
+    programs: [
+      ["Affiliate", "크리에이터와 커뮤니티를 위한 레퍼럴/캠페인 트랙입니다.", ["Referral", "Campaign", "Reporting"]],
+      ["API / Quant", "봇, 시그널, 프롭, 퀀트팀을 위한 거래량 중심 트랙입니다.", ["Liquidity", "API", "VIP"]],
+      ["Community", "교육, AMA, 이벤트, 전용 혜택 코드 중심으로 설계합니다.", ["Pilot", "AMA", "Benefits"]],
+      ["VIP / Institutional", "대형 거래량, 브로커, 마켓메이커는 별도 조건으로 검토합니다.", ["Custom", "RM", "Tech"]]
+    ],
+    faq: [
+      ["신청 후 얼마나 걸리나요?", "보통 1~2 영업일 내 Joshua가 직접 검토합니다. 추가 확인이 필요한 경우 Telegram으로 연락합니다."],
+      ["OKX UID가 꼭 필요한가요?", "네. 파트너 조건 검토와 추후 온보딩을 위해 KYC 완료된 OKX UID가 필요합니다."],
+      ["API/퀀트는 어필리에이트로 신청하나요?", "API, 봇, 시그널, 프롭, 퀀트는 거래량 트랙으로 분리해서 검토합니다."],
+      ["한국 대상 캠페인은 가능한가요?", "가능 여부와 문구는 지역별 정책과 상품 제공 범위에 맞춰 조정합니다."],
+      ["승인 후 무엇을 받나요?", "레퍼럴 링크, 캠페인 소재, 성과 리포팅, 필요 시 전담 BD/기술 지원을 연결합니다."]
+    ]
   },
-  nk:{ko:'KOL / 크리에이터',en:'KOL / Creator',tw:'KOL / 創作者'},
-  nc:{ko:'커뮤니티',en:'Community',tw:'社群'},
-  nt:{ko:'트레이딩 / 퀀트',en:'Trading / Quant',tw:'交易 / 量化'},
-  nw:{ko:'자산운용',en:'Asset Mgmt',tw:'資產管理'},
-  na:{ko:'API / 브로커',en:'API / Broker',tw:'API / 經紀商'},
-  no:{ko:'기타',en:'Other',tw:'其他'},
-  da:{ko:'프롭펌, 플랫폼',en:'Prop firm, platform',tw:'自營公司、平台'},
-  do2:{ko:'위에 해당 없음',en:'None of the above',tw:'以上皆非'},
-  lCt:{ko:'커미션 티어 (스팟)',en:'Commission Tiers (Spot)',tw:'佣金等級（現貨）'},
-  lVt:{ko:'VIP 수수료 (스팟)',en:'VIP Fee Tiers (Spot)',tw:'VIP 費率（現貨）'},
-  lIn:{ko:'기관 프로그램',en:'Institutional Programs',tw:'機構計畫'},
+  en: {
+    topSub: "Joshua · NEA Business Development",
+    kicker: "OKX NEA Partner Program",
+    heroTitle: "Apply as a partner in under 2 minutes.",
+    heroCopy: "Creators, communities, API/quant teams, and VIP partners are reviewed directly by Joshua.",
+    tabs: { apply: "Apply", programs: "Programs", rates: "Rates", faq: "FAQ" },
+    stats: [["50%", "Max commission"], ["1-2h", "USDT payout"], ["VIP", "Institutional"]],
+    privacyTitle: "This is Joshua's personal OKX BD partner mini app.",
+    privacyBody: "Information you submit is delivered only to Joshua and used only for OKX partner registration and follow-up.",
+    values: [["Direct BD review", "Joshua reviews applications personally"], ["Right track first", "Affiliate, API, and VIP are separated"]],
+    section: { type: "Partner Type", details: "Application Details", volume: "Monthly Volume or Scale", review: "Review", programs: "Partner Tracks", rates: "Rates", faq: "FAQ" },
+    footer: { start: "Start", next: "Next", review: "Review", submit: "Submit", back: "Back", edit: "Edit", submitting: "Submitting" },
+    validation: { required: "This field is required.", uid: "UID must be 6+ digits.", contact: "Enter a reachable Telegram handle." },
+    volumeNote: "Approximate scale is fine. Final terms are confirmed 1:1.",
+    compliance: "OKX impersonation, brand keyword ads, and look-alike URLs are not allowed.",
+    successTitle: "Submitted",
+    successBody: "You will receive a confirmation in Telegram. Joshua will review and follow up.",
+    commissionTitle: "Affiliate Commission",
+    commissionSub: "Final terms depend on channel and performance",
+    vipTitle: "VIP / Institutional",
+    vipSub: "Volume partners are reviewed separately",
+    ratesNote: "This is a simplified pre-application summary. Final terms may vary by OKX policy, region, and eligibility.",
+    labels: {
+      name: "Name", community_name: "Community", entity: "Team / Entity", company: "Company", uid: "OKX UID",
+      channel: "Channel Link", followers: "Followers", members: "Members", strategy: "Strategy", exchange: "Current Exchange",
+      aum: "AUM", service: "Service", usecase: "Use Case", description: "Partnership Description", region: "Region", contact: "Telegram", volume: "Scale"
+    },
+    hints: { uid: "KYC-verified account", contact: "@handle or reachable account" },
+    placeholder: {
+      name: "Channel or creator name", community_name: "Community/group name", entity: "Team or entity", company: "Company/service",
+      uid: "Numeric UID", channel: "https://", followers: "e.g. 50K", members: "e.g. 10K", exchange: "e.g. Binance, Bybit",
+      aum: "e.g. $5M", description: "Briefly describe the partnership", contact: "@handle"
+    },
+    types: {
+      kol: ["KOL / Creator", "Content, shorts, streams, newsletters", "KOL"],
+      community: ["Community", "Telegram, groups, education, signals", "COM"],
+      trading: ["Trading / Quant", "Prop, bots, signals, desk", "QNT"],
+      wealthtech: ["Asset / Fintech", "Asset management, robo, fintech", "AST"],
+      api: ["API / Broker", "Broker, platform, API integration", "API"],
+      other: ["Other", "Other partnership proposal", "ETC"]
+    },
+    programs: [
+      ["Affiliate", "Referral and campaign track for creators and communities.", ["Referral", "Campaign", "Reporting"]],
+      ["API / Quant", "Volume-driven track for bots, signals, prop, and quant teams.", ["Liquidity", "API", "VIP"]],
+      ["Community", "Education, AMA, events, and dedicated benefit campaigns.", ["Pilot", "AMA", "Benefits"]],
+      ["VIP / Institutional", "Large volume, broker, and market maker partners are reviewed separately.", ["Custom", "RM", "Tech"]]
+    ],
+    faq: [
+      ["How long does review take?", "Usually 1-2 business days. Joshua reviews directly and follows up via Telegram if needed."],
+      ["Do I need an OKX UID?", "Yes. A KYC-verified OKX UID is needed for partner review and onboarding."],
+      ["Do API/quant teams apply as affiliates?", "API, bots, signals, prop, and quant teams are reviewed through a separate volume track."],
+      ["Can we run Korea-focused campaigns?", "Campaign availability and copy are adjusted to regional policy and product availability."],
+      ["What happens after approval?", "You receive referral links, campaign assets, reporting, and BD/technical support where needed."]
+    ]
+  },
+  tw: {
+    topSub: "Joshua · NEA Business Development",
+    kicker: "OKX NEA Partner Program",
+    heroTitle: "2 分鐘內完成合作申請。",
+    heroCopy: "創作者、社群、API/量化團隊與 VIP 夥伴由 Joshua 親自審核。",
+    tabs: { apply: "申請", programs: "計畫", rates: "費率", faq: "FAQ" },
+    stats: [["50%", "最高佣金"], ["1-2h", "USDT 結算"], ["VIP", "機構通道"]],
+    privacyTitle: "這是 OKX BD Joshua 的個人合作夥伴 Mini App。",
+    privacyBody: "您提交的資訊只會傳送給 Joshua，且僅用於 OKX 合作夥伴登記與後續聯繫。",
+    values: [["專屬 BD 審核", "Joshua 親自確認申請"], ["依類型分流", "Affiliate、API、VIP 分開處理"]],
+    section: { type: "合作類型", details: "申請資訊", volume: "月交易量或規模", review: "確認", programs: "合作通道", rates: "費率", faq: "常見問題" },
+    footer: { start: "開始", next: "下一步", review: "確認", submit: "提交", back: "返回", edit: "修改", submitting: "提交中" },
+    validation: { required: "此為必填項目。", uid: "UID 需為 6 位以上數字。", contact: "請輸入可聯繫的 Telegram。" },
+    volumeNote: "可先選擇大約規模，最終條件將 1:1 確認。",
+    compliance: "不得仿冒 OKX、投放品牌關鍵字廣告或使用相似 URL。",
+    successTitle: "已提交",
+    successBody: "Telegram 聊天中會收到確認訊息。Joshua 審核後會聯繫您。",
+    commissionTitle: "Affiliate Commission",
+    commissionSub: "最終條件依頻道與成效確認",
+    vipTitle: "VIP / Institutional",
+    vipSub: "交易量夥伴另行審核",
+    ratesNote: "此為申請前摘要。最終條件可能依 OKX 政策、地區與資格而不同。",
+    labels: {
+      name: "名稱", community_name: "社群名稱", entity: "團隊/公司", company: "公司", uid: "OKX UID",
+      channel: "頻道連結", followers: "追蹤者", members: "成員數", strategy: "策略", exchange: "目前交易所",
+      aum: "AUM", service: "服務", usecase: "用途", description: "合作說明", region: "地區", contact: "Telegram", volume: "規模"
+    },
+    hints: { uid: "已完成 KYC 的帳戶", contact: "@handle 或可聯繫帳號" },
+    placeholder: {
+      name: "頻道或創作者名稱", community_name: "社群/群組名稱", entity: "團隊或公司", company: "公司/服務",
+      uid: "數字 UID", channel: "https://", followers: "例：50K", members: "例：10K", exchange: "例：Binance, Bybit",
+      aum: "例：$5M", description: "簡短描述合作方向", contact: "@handle"
+    },
+    types: {
+      kol: ["KOL / Creator", "內容、短片、直播、電子報", "KOL"],
+      community: ["Community", "Telegram、社群、教育、信號", "COM"],
+      trading: ["Trading / Quant", "自營、機器人、信號、交易台", "QNT"],
+      wealthtech: ["Asset / Fintech", "資產管理、機器人投顧、金融科技", "AST"],
+      api: ["API / Broker", "經紀商、平台、API 對接", "API"],
+      other: ["Other", "其他合作提案", "ETC"]
+    },
+    programs: [
+      ["Affiliate", "面向創作者與社群的推薦與活動通道。", ["Referral", "Campaign", "Reporting"]],
+      ["API / Quant", "面向機器人、信號、自營與量化團隊的交易量通道。", ["Liquidity", "API", "VIP"]],
+      ["Community", "教育、AMA、活動與專屬權益活動。", ["Pilot", "AMA", "Benefits"]],
+      ["VIP / Institutional", "大交易量、經紀商與做市商夥伴另行審核。", ["Custom", "RM", "Tech"]]
+    ],
+    faq: [
+      ["審核需要多久？", "通常 1-2 個工作日。Joshua 親自審核，需要補充資訊時會透過 Telegram 聯繫。"],
+      ["一定需要 OKX UID 嗎？", "是。合作夥伴審核與後續入駐需要已完成 KYC 的 OKX UID。"],
+      ["API/量化團隊也是 Affiliate 嗎？", "API、機器人、信號、自營與量化團隊會走獨立交易量通道。"],
+      ["可以做韓國市場活動嗎？", "活動可行性與文案會依地區政策與產品提供範圍調整。"],
+      ["通過後會收到什麼？", "推薦連結、活動素材、成效報告，以及必要的 BD/技術支援。"]
+    ]
+  }
 };
-const t=k=>T[k]?.[LN]||T[k]?.en||k;
 
-function applyI18n(){
-document.getElementById('t0').textContent=t('apply');
-document.getElementById('t1').textContent=t('faq');
-document.getElementById('t2').textContent=t('rates');
-document.getElementById('l-ty').textContent=t('ty');
-document.getElementById('l-vo').textContent=t('vo');
-document.getElementById('l-fq').textContent=t('fqh');
-document.getElementById('hd-sub').textContent=t('hdSub');
-document.getElementById('h1l').textContent=t('h1l');
-document.getElementById('h2l').textContent=t('h2l');
-document.getElementById('h3l').textContent=t('h3l');
-document.getElementById('why-okx').innerHTML=t('whyOkx');
-document.getElementById('nk').textContent=t('nk');
-document.getElementById('nc').textContent=t('nc');
-document.getElementById('nt').textContent=t('nt');
-document.getElementById('nw').textContent=t('nw');
-document.getElementById('na').textContent=t('na');
-document.getElementById('no').textContent=t('no');
-document.getElementById('da').textContent=t('da');
-document.getElementById('do2').textContent=t('do2');
-document.getElementById('dk').textContent=t('dk');
-document.getElementById('dc').textContent=t('dc');
-document.getElementById('dt').textContent=t('dt');
-document.getElementById('dw').textContent=t('dw');
-['f1t','f1b','f2t','f2b','f3t','f3b','f4t','f4b','f5t','f5b','f6t','f6b','f8t','f8b','f9t','f9b','f10t','f10b','f11t','f11b','f7t','f7b'].forEach(id=>{
-  const el=document.getElementById(id);if(el)el[id.endsWith('b')||id==='f7t'?'innerHTML':'textContent']=t(id);
-});
-const rm=document.getElementById('r-mm'),rb=document.getElementById('r-bk'),rv=document.getElementById('r-vip');
-if(rm)rm.innerHTML=t('rMm');if(rb)rb.innerHTML=t('rBk');if(rv)rv.innerHTML=t('rVip');
-const lct=document.getElementById('l-ct'),lvt=document.getElementById('l-vt'),lin=document.getElementById('l-inst');
-if(lct)lct.textContent=t('lCt');if(lvt)lvt.textContent=t('lVt');if(lin)lin.textContent=t('lIn');
+const partnerTypes = ["kol", "community", "trading", "wealthtech", "api", "other"];
+const fieldSchema = {
+  kol: [
+    { key: "name", required: true },
+    { key: "uid", required: true, uid: true },
+    { key: "channel", required: true },
+    { key: "followers", required: true },
+    { key: "region", required: true, choices: ["KR", "TW", "MN", "HK", "Global"] },
+    { key: "contact", required: true }
+  ],
+  community: [
+    { key: "community_name", required: true },
+    { key: "uid", required: true, uid: true },
+    { key: "channel", required: true },
+    { key: "members", required: true },
+    { key: "region", required: true, choices: ["KR", "TW", "MN", "HK", "Global"] },
+    { key: "contact", required: true }
+  ],
+  trading: [
+    { key: "entity", required: true },
+    { key: "uid", required: true, uid: true },
+    { key: "strategy", required: true, choices: ["Market Making", "Arbitrage", "HFT", "Systematic", "Prop"] },
+    { key: "exchange", required: true },
+    { key: "region", required: true, choices: ["KR", "TW", "MN", "HK", "Global"] },
+    { key: "contact", required: true }
+  ],
+  wealthtech: [
+    { key: "company", required: true },
+    { key: "uid", required: true, uid: true },
+    { key: "aum", required: true },
+    { key: "service", required: true, choices: ["Wealth Mgmt", "Robo-advisory", "Fintech", "Broker", "Other"] },
+    { key: "region", required: true, choices: ["KR", "TW", "MN", "HK", "Global"] },
+    { key: "contact", required: true }
+  ],
+  api: [
+    { key: "entity", required: true },
+    { key: "uid", required: true, uid: true },
+    { key: "usecase", required: true, choices: ["Broker", "Trading Bot", "Signal", "Data Feed", "Other"] },
+    { key: "exchange", required: true },
+    { key: "region", required: true, choices: ["KR", "TW", "MN", "HK", "Global"] },
+    { key: "contact", required: true }
+  ],
+  other: [
+    { key: "name", required: true },
+    { key: "uid", required: true, uid: true },
+    { key: "description", required: true, textarea: true },
+    { key: "region", required: true, choices: ["KR", "TW", "MN", "HK", "Global"] },
+    { key: "contact", required: true }
+  ]
+};
+const volumeChoices = ["< $1M", "$1M-$10M", "$10M-$50M", "$50M-$100M", "$100M+", "N/A"];
+const routeOf = { kol: "affiliate", community: "affiliate", trading: "institutional", wealthtech: "institutional", api: "institutional", other: "affiliate" };
+
+function c() { return copy[lang]; }
+function haptic(kind = "light") {
+  if (!tgSupports("6.1")) return;
+  try { tg?.HapticFeedback?.impactOccurred(kind); } catch (_) {}
 }
-if(LN)applyI18n();
+function notify(kind) {
+  if (!tgSupports("6.1")) return;
+  try { tg?.HapticFeedback?.notificationOccurred(kind); } catch (_) {}
+}
+function qs(id) { return document.getElementById(id); }
 
-const F={
-  kol:[{k:'name',l:{ko:'활동명',en:'KOL Name',tw:'KOL 名稱'},p:{ko:'채널명 또는 활동명',en:'Channel or creator name',tw:'頻道名稱'}},
-    {k:'uid',l:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},p:{ko:'숫자 UID (KYC 완료)',en:'Numeric UID (KYC verified)',tw:'數字 UID'},pat:/^\d{6,}$/},
-    {k:'channel',l:{ko:'채널 링크',en:'Channel Link',tw:'頻道連結'},p:{ko:'https://...',en:'https://...',tw:'https://...'}},
-    {k:'followers',l:{ko:'팔로워 수',en:'Followers',tw:'追蹤者'},p:{ko:'예: 50K',en:'e.g. 50K',tw:'例：50K'}}],
-  community:[{k:'name',l:{ko:'커뮤니티명',en:'Community Name',tw:'社群名稱'},p:{ko:'그룹/채널명',en:'Group name',tw:'群組名稱'}},
-    {k:'uid',l:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},p:{ko:'숫자 UID',en:'Numeric UID',tw:'數字 UID'},pat:/^\d{6,}$/},
-    {k:'channel',l:{ko:'링크',en:'Link',tw:'連結'},p:{ko:'https://...',en:'https://...',tw:'https://...'}},
-    {k:'members',l:{ko:'멤버 수',en:'Members',tw:'成員'},p:{ko:'예: 10K',en:'e.g. 10K',tw:'例：10K'}}],
-  trading:[{k:'entity',l:{ko:'팀명',en:'Team Name',tw:'團隊名稱'},p:{ko:'팀 또는 법인',en:'Team or entity',tw:'團隊或公司'}},
-    {k:'uid',l:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},p:{ko:'숫자 UID',en:'Numeric UID',tw:'數字 UID'},pat:/^\d{6,}$/},
-    {k:'strategy',l:{ko:'전략',en:'Strategy',tw:'策略'},chips:['MM','Arb','HFT','Systematic','Prop']},
-    {k:'exchange',l:{ko:'현재 거래소',en:'Exchanges',tw:'交易所'},p:{ko:'예: Binance',en:'e.g. Binance',tw:'例：Binance'}}],
-  wealthtech:[{k:'company',l:{ko:'회사명',en:'Company',tw:'公司名稱'},p:{ko:'회사/서비스명',en:'Company name',tw:'公司名稱'}},
-    {k:'uid',l:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},p:{ko:'숫자 UID',en:'Numeric UID',tw:'數字 UID'},pat:/^\d{6,}$/},
-    {k:'aum',l:{ko:'AUM',en:'AUM',tw:'AUM'},p:{ko:'예: $5M',en:'e.g. $5M',tw:'例：$5M'}},
-    {k:'service',l:{ko:'서비스',en:'Service',tw:'服務'},chips:['Robo-advisory','Wealth Mgmt','Fintech','Other']}],
-  api:[{k:'entity',l:{ko:'회사/팀명',en:'Company / Team',tw:'公司/團隊'},p:{ko:'회사 또는 팀명',en:'Company or team name',tw:'公司或團隊名稱'}},
-    {k:'uid',l:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},p:{ko:'숫자 UID (KYC 완료)',en:'Numeric UID (KYC verified)',tw:'數字 UID'},pat:/^\d{6,}$/},
-    {k:'usecase',l:{ko:'연동 목적',en:'Use Case',tw:'用途'},chips:['Broker','Prop Trading','Data Feed','Algo/Bot','Other']},
-    {k:'exchange',l:{ko:'현재 거래소',en:'Current Exchanges',tw:'目前交易所'},p:{ko:'예: Binance',en:'e.g. Binance',tw:'例：Binance'}}],
-  other:[{k:'name',l:{ko:'이름/회사',en:'Name / Company',tw:'名稱/公司'},p:{ko:'이름 또는 회사명',en:'Name or company',tw:'名稱或公司'}},
-    {k:'uid',l:{ko:'OKX UID',en:'OKX UID',tw:'OKX UID'},p:{ko:'숫자 UID (KYC 완료)',en:'Numeric UID (KYC verified)',tw:'數字 UID'},pat:/^\d{6,}$/},
-    {k:'description',l:{ko:'파트너십 설명',en:'Partnership Description',tw:'合作說明'},p:{ko:'어떤 파트너십을 원하시나요?',en:'What kind of partnership?',tw:'您希望什麼樣的合作？'}}]
-};
-const RG=[{l:'🇰🇷 Korea',v:'KR'},{l:'🇹🇼 Taiwan',v:'TW'},{l:'🇲🇳 Mongolia',v:'MN'},{l:'🇭🇰 HK',v:'HK'},{l:'🌏 Other',v:'Other'}];
+function applyCopy() {
+  document.documentElement.lang = lang === "tw" ? "zh-Hant" : lang;
+  document.querySelectorAll(".lang-switch button").forEach(btn => btn.classList.toggle("active", btn.dataset.lang === lang));
+  qs("top-sub").textContent = c().topSub;
+  qs("hero-kicker").textContent = c().kicker;
+  qs("hero-title").textContent = c().heroTitle;
+  qs("hero-copy").textContent = c().heroCopy;
+  qs("tab-apply").textContent = c().tabs.apply;
+  qs("tab-programs").textContent = c().tabs.programs;
+  qs("tab-rates").textContent = c().tabs.rates;
+  qs("tab-faq").textContent = c().tabs.faq;
+  c().stats.forEach((item, index) => {
+    qs(`stat-${index + 1}`).textContent = item[0];
+    qs(`stat-${index + 1}-label`).textContent = item[1];
+  });
+  qs("privacy-title").textContent = c().privacyTitle;
+  qs("privacy-body").textContent = c().privacyBody;
+  qs("value-1-title").textContent = c().values[0][0];
+  qs("value-1-body").textContent = c().values[0][1];
+  qs("value-2-title").textContent = c().values[1][0];
+  qs("value-2-body").textContent = c().values[1][1];
+  qs("type-title").textContent = c().section.type;
+  qs("details-title").textContent = c().section.details;
+  qs("volume-title").textContent = c().section.volume;
+  qs("review-title").textContent = c().section.review;
+  qs("programs-title").textContent = c().section.programs;
+  qs("rates-title").textContent = c().section.rates;
+  qs("faq-title").textContent = c().section.faq;
+  qs("volume-note").textContent = c().volumeNote;
+  qs("compliance-note").textContent = c().compliance;
+  qs("success-title").textContent = c().successTitle;
+  qs("success-body").textContent = c().successBody;
+  qs("commission-title").textContent = c().commissionTitle;
+  qs("commission-sub").textContent = c().commissionSub;
+  qs("vip-title").textContent = c().vipTitle;
+  qs("vip-sub").textContent = c().vipSub;
+  qs("rates-note").textContent = c().ratesNote;
+  renderTypes();
+  renderPrograms();
+  renderFaq();
+  if (state.type && step === 1) renderFields();
+  if (step === 2) renderVolumes();
+  if (step === 3) renderReview();
+  syncFooter();
+}
 
-let S={ty:null,st:0,d:{},vol:null,rg:null};
-const NS=4;
+function renderStepper() {
+  qs("stepper").innerHTML = Array.from({ length: 4 }, (_, i) => `<i class="${i < step ? "done" : i === step ? "now" : ""}"></i>`).join("");
+}
 
-function uP(){const p=document.getElementById('prog');p.innerHTML='';for(let i=0;i<NS;i++){const s=document.createElement('span');s.className=i<S.st?'done':i===S.st?'now':'';p.appendChild(s)}}
-function go(n){S.st=n;document.querySelectorAll('.ss').forEach((e,i)=>e.classList.toggle('on',i===n));uP();
-  if(tg&&n>0&&n<NS)try{tg.enableClosingConfirmation()}catch(e){}
-  if(tg&&(n===0||n===NS))try{tg.disableClosingConfirmation()}catch(e){}}
+function renderTypes() {
+  qs("type-grid").innerHTML = partnerTypes.map(type => {
+    const [title, body, code] = c().types[type];
+    return `<button class="type-card ${state.type === type ? "selected" : ""}" data-type="${type}">
+      <span class="type-code">${code}</span>
+      <h3>${title}</h3>
+      <p>${body}</p>
+    </button>`;
+  }).join("");
+  document.querySelectorAll(".type-card").forEach(card => {
+    card.addEventListener("click", () => {
+      state.type = card.dataset.type;
+      state.data = {};
+      state.volume = "";
+      haptic("medium");
+      renderTypes();
+      setStep(1);
+    });
+  });
+}
 
-const _tabOrder=['apply','faq','rates'];
-let _curTab='apply';
-document.querySelectorAll('.tab').forEach(x=>x.onclick=()=>goT(x.dataset.t));
-function goT(n){
+function renderField(field) {
+  const label = c().labels[field.key] || field.key;
+  const hint = c().hints[field.key] || "";
+  const placeholder = c().placeholder[field.key] || "";
+  const value = state.data[field.key] || "";
+  if (field.choices) {
+    return `<div class="field" data-field="${field.key}">
+      <label>${label}</label>
+      <div class="choice-grid">
+        ${field.choices.map(choice => `<button class="choice ${value === choice ? "selected" : ""}" data-choice-key="${field.key}" data-choice-value="${choice}">${choice}</button>`).join("")}
+      </div>
+      <span class="err">${c().validation.required}</span>
+    </div>`;
+  }
+  const tag = field.textarea ? "textarea" : "input";
+  const attrs = field.textarea ? "" : `inputmode="${field.uid ? "numeric" : "text"}"`;
+  if (field.textarea) {
+    return `<div class="field" data-field="${field.key}">
+      <label>${label}</label>
+      <textarea ${attrs} data-input-key="${field.key}" placeholder="${escapeAttr(placeholder)}">${escapeHtml(value)}</textarea>
+      ${hint ? `<span class="hint">${hint}</span>` : ""}
+      <span class="err">${field.uid ? c().validation.uid : c().validation.required}</span>
+    </div>`;
+  }
+  return `<div class="field" data-field="${field.key}">
+    <label>${label}</label>
+    <input ${attrs} data-input-key="${field.key}" placeholder="${escapeAttr(placeholder)}" value="${escapeAttr(value)}">
+    ${hint ? `<span class="hint">${hint}</span>` : ""}
+    <span class="err">${field.uid ? c().validation.uid : c().validation.required}</span>
+  </div>`;
+}
+
+function renderFields() {
+  qs("dynamic-fields").innerHTML = fieldSchema[state.type].map(renderField).join("");
+  document.querySelectorAll("[data-input-key]").forEach(input => {
+    input.addEventListener("input", () => {
+      state.data[input.dataset.inputKey] = input.value.trim();
+      input.closest(".field")?.classList.remove("invalid");
+    });
+  });
+  document.querySelectorAll("[data-choice-key]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const key = btn.dataset.choiceKey;
+      state.data[key] = btn.dataset.choiceValue;
+      haptic();
+      renderFields();
+    });
+  });
+}
+
+function renderVolumes() {
+  qs("volume-grid").innerHTML = volumeChoices.map(value => `<button class="choice ${state.volume === value ? "selected" : ""}" data-volume="${value}">${value}</button>`).join("");
+  document.querySelectorAll("[data-volume]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.volume = btn.dataset.volume;
+      haptic();
+      renderVolumes();
+      setTimeout(() => setStep(3), 120);
+    });
+  });
+}
+
+function renderReview() {
+  const fields = fieldSchema[state.type] || [];
+  const items = [];
+  fields.forEach(field => {
+    const value = state.data[field.key];
+    if (value) items.push([c().labels[field.key] || field.key, value]);
+  });
+  if (state.volume) items.push([c().labels.volume, state.volume]);
+  items.push(["Route", routeOf[state.type] || "affiliate"]);
+  qs("review-list").innerHTML = items.map(([key, value]) => `<div class="review-item"><span>${key}</span><b>${escapeHtml(value)}</b></div>`).join("");
+}
+
+function renderPrograms() {
+  qs("program-grid").innerHTML = c().programs.map(([title, body, tags], index) => `<article class="program-card">
+    <h3>${title}</h3>
+    <p>${body}</p>
+    <div class="program-meta">${tags.map((tag, tagIndex) => `<span class="tag ${index === 1 || tagIndex === 0 ? "hot" : ""}">${tag}</span>`).join("")}</div>
+  </article>`).join("");
+}
+
+function renderFaq() {
+  qs("faq-list").innerHTML = c().faq.map(([q, a], index) => `<article class="faq-item ${index === 0 ? "open" : ""}">
+    <button type="button">${q}</button>
+    <p>${a}</p>
+  </article>`).join("");
+  document.querySelectorAll(".faq-item button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      haptic();
+      btn.closest(".faq-item").classList.toggle("open");
+    });
+  });
+}
+
+function setStep(next) {
+  step = Math.max(0, Math.min(4, next));
+  ["type", "details", "volume", "review", "success"].forEach((name, index) => {
+    qs(`step-${name}`).classList.toggle("hidden", index !== step);
+  });
+  if (step === 1) renderFields();
+  if (step === 2) renderVolumes();
+  if (step === 3) renderReview();
+  renderStepper();
+  syncFooter();
+  if (step > 0 && step < 4) {
+    if (tgSupports("6.2")) try { tg?.enableClosingConfirmation(); } catch (_) {}
+  } else {
+    if (tgSupports("6.2")) try { tg?.disableClosingConfirmation(); } catch (_) {}
+  }
+}
+
+function validateDetails() {
+  let ok = true;
+  for (const field of fieldSchema[state.type] || []) {
+    const wrapper = document.querySelector(`[data-field="${field.key}"]`);
+    const value = String(state.data[field.key] || "").trim();
+    let invalid = field.required && !value;
+    if (!invalid && field.uid) invalid = !/^\d{6,}$/.test(value);
+    if (!invalid && field.key === "contact") invalid = !/^@?[A-Za-z0-9_]{3,}$/.test(value);
+    wrapper?.classList.toggle("invalid", invalid);
+    if (invalid) ok = false;
+  }
+  if (!ok) notify("error");
+  return ok;
+}
+
+function syncFooter() {
+  const primary = qs("primary-action");
+  const secondary = qs("secondary-action");
+  const inner = qs("footer-inner");
+  secondary.classList.toggle("hidden", tab !== "apply" || step === 0 || step === 4);
+  inner.classList.toggle("two", tab === "apply" && step > 0 && step < 4);
+  if (tab !== "apply") {
+    primary.textContent = c().tabs.apply;
+    primary.disabled = false;
+    return;
+  }
+  primary.disabled = submitting;
+  secondary.textContent = c().footer.back;
+  if (submitting) {
+    primary.innerHTML = `<span class="spinner"></span>${c().footer.submitting}`;
+  } else if (step === 0) {
+    primary.textContent = state.type ? c().footer.next : c().footer.start;
+  } else if (step === 1) {
+    primary.textContent = c().footer.next;
+  } else if (step === 2) {
+    primary.textContent = c().footer.review;
+  } else if (step === 3) {
+    primary.textContent = c().footer.submit;
+  } else {
+    primary.textContent = c().footer.start;
+  }
+}
+
+function primaryAction() {
+  if (tab !== "apply") {
+    setTab("apply");
+    return;
+  }
+  if (step === 0) {
+    if (state.type) setStep(1);
+    else window.scrollTo({ top: qs("type-title").offsetTop - 72, behavior: "smooth" });
+  } else if (step === 1) {
+    if (validateDetails()) setStep(2);
+  } else if (step === 2) {
+    if (!state.volume) {
+      notify("error");
+      return;
+    }
+    setStep(3);
+  } else if (step === 3) {
+    submitApplication();
+  } else {
+    state.type = "";
+    state.data = {};
+    state.volume = "";
+    renderTypes();
+    setStep(0);
+  }
+}
+
+function secondaryAction() {
+  if (tab === "apply" && step > 0) setStep(step - 1);
+}
+
+function submitApplication() {
+  if (submitting) return;
+  submitting = true;
+  syncFooter();
+  const payload = {
+    action: "partner_apply",
+    type: state.type,
+    lang,
+    ...state.data,
+    volume: state.volume,
+    route: routeOf[state.type] || "affiliate",
+    tg_id: tgUser.id || "",
+    tg_user: tgUser.username || ""
+  };
+  haptic("medium");
+  setTimeout(() => {
+    if (isTelegramRuntime) {
+      tg.sendData(JSON.stringify(payload));
+      notify("success");
+    } else {
+      notify("success");
+      submitting = false;
+      setStep(4);
+    }
+    syncFooter();
+  }, 220);
+}
+
+function setTab(next) {
+  tab = next;
+  document.querySelectorAll(".nav button").forEach(btn => btn.classList.toggle("active", btn.dataset.tab === tab));
+  document.querySelectorAll(".screen").forEach(screen => screen.classList.toggle("active", screen.id === `screen-${tab}`));
   haptic();
-  const dir=_tabOrder.indexOf(n)>_tabOrder.indexOf(_curTab)?'slide-r':'';
-  _curTab=n;
-  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x.dataset.t===n));
-  document.querySelectorAll('.pnl').forEach(x=>{
-    const isTarget=x.id==='p-'+n;
-    x.classList.remove('on','slide-r');
-    if(isTarget){x.classList.add('on');if(dir)x.classList.add(dir)}
+  syncFooter();
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, match => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#039;" }[match]));
+}
+
+function escapeAttr(value) {
+  return String(value).replace(/[&<>"']/g, match => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#039;" }[match]));
+}
+
+document.querySelectorAll(".lang-switch button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    lang = btn.dataset.lang;
+    applyCopy();
   });
-  if(n==='apply'){S={ty:null,st:0,d:{},vol:null,rg:null};go(0)}
-}
+});
+document.querySelectorAll(".nav button").forEach(btn => btn.addEventListener("click", () => setTab(btn.dataset.tab)));
+qs("primary-action").addEventListener("click", primaryAction);
+qs("secondary-action").addEventListener("click", secondaryAction);
 
-document.querySelectorAll('.tc').forEach(c=>c.onclick=()=>{haptic('medium');
-  document.querySelectorAll('.tc').forEach(x=>x.classList.remove('on'));
-  c.classList.add('on');S.ty=c.dataset.t;setTimeout(bF,280)});
-
-function bF(){
-  const f=F[S.ty],el=document.getElementById('s1');
-  const typeNames={kol:t('nk'),community:t('nc'),trading:t('nt'),wealthtech:t('nw')};
-  h=`<div style="text-align:center;margin-bottom:12px"><span style="background:var(--accent-bg);color:var(--accent);padding:4px 14px;border-radius:var(--pill);font-size:12px;font-weight:600">${typeNames[S.ty]||S.ty}</span></div>`;
-  h+=`<div class="lbl">${t('det')}</div>`;
-  f.forEach(x=>{
-    if(x.chips){
-      h+=`<div class="fg"><label>${x.l[LN]||x.l.en}</label><div class="chip-row" id="cr-${x.k}">`;
-      x.chips.forEach(c=>{h+=`<div class="chip" data-ck="${x.k}" data-cv="${c}">${c}</div>`});
-      h+=`</div><div class="e" id="e-${x.k}">${t('req')}</div></div>`;
-    } else {
-      h+=`<div class="fg"><label>${x.l[LN]||x.l.en}</label><input id="f-${x.k}" placeholder="${(x.p||{})[LN]||(x.p||{}).en||''}" inputmode="${x.k==='uid'?'numeric':'text'}"/><div class="e" id="e-${x.k}">${t('req')}</div>`;
-      if(x.k==='uid'){const uidHint={ko:'아직 없으신가요? <a href="https://www.okx.com/account/register" style="color:var(--accent)">OKX 가입 →</a>',en:'Don\'t have one? <a href="https://www.okx.com/account/register" style="color:var(--accent)">Sign up for OKX →</a>',tw:'還沒有嗎？<a href="https://www.okx.com/account/register" style="color:var(--accent)">註冊 OKX →</a>'};h+=`<div style="font-size:11px;color:var(--dim);margin-top:4px">${uidHint[LN]||uidHint.en}</div>`}
-      h+=`</div>`;
-    }
-  });
-  h+=`<div class="lbl">${t('reg')}</div><div class="gb">`;
-  RG.forEach(r=>{h+=`<div class="g rb" data-r="${r.v}">${r.l}</div>`});
-  h+=`</div><div class="fg" style="margin-top:16px"><label>${t('tg')}</label><input id="f-ct" placeholder="@handle"/></div>`;
-  h+=`<p style="font-size:11px;color:var(--dim);margin-top:12px;line-height:1.5">${t('comp')}</p>`;
-  h+=`<button class="btn bp" id="bn">${t('cont')}</button>`;
-  el.innerHTML=h;
-  el.querySelectorAll('.rb').forEach(b=>b.onclick=()=>{haptic();el.querySelectorAll('.rb').forEach(x=>x.classList.remove('on'));b.classList.add('on');S.rg=b.dataset.r});
-  el.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{haptic();
-    const grp=el.querySelectorAll(`.chip[data-ck="${c.dataset.ck}"]`);
-    grp.forEach(x=>x.classList.remove('on'));c.classList.add('on');
-    S.d[c.dataset.ck]=c.dataset.cv;
-  });
-  document.getElementById('bn').onclick=val;go(1);
-}
-
-function val(){
-  const f=F[S.ty];let ok=true;
-  f.forEach(x=>{
-    const e=document.getElementById('e-'+x.k);
-    if(x.chips){
-      if(!S.d[x.k]){e.textContent=t('req');e.style.display='block';ok=false}
-      else{e.style.display='none'}
-    } else {
-      const i=document.getElementById('f-'+x.k),v=i.value.trim();
-      if(!v){e.textContent=t('req');e.style.display='block';i.style.borderColor='var(--red)';ok=false}
-      else if(x.pat&&!x.pat.test(v)){e.textContent=t('inv');e.style.display='block';i.style.borderColor='var(--red)';ok=false}
-      else{e.style.display='none';i.style.borderColor='var(--border)';S.d[x.k]=v}
-    }
-  });
-  S.d.contact=document.getElementById('f-ct').value.trim()||'@'+(U.username||'');
-  S.d.region=S.rg||'';
-  if(ok){haptic('medium');go(2)}else{haptic('medium');try{tg?.HapticFeedback?.notificationOccurred('error')}catch(e){}}
-}
-
-document.querySelectorAll('#vg .g').forEach(b=>b.onclick=()=>{haptic();
-  document.querySelectorAll('#vg .g').forEach(x=>x.classList.remove('on'));
-  b.classList.add('on');S.vol=b.dataset.v;setTimeout(bR,200)});
-
-function bR(){
-  S.d.volume=S.vol;S.d.partner_type=S.ty;
-  const el=document.getElementById('s3');
-  const lb={name:{ko:'이름',en:'Name',tw:'名稱'},entity:{ko:'팀',en:'Team',tw:'團隊'},company:{ko:'회사',en:'Company',tw:'公司'},uid:{ko:'UID',en:'UID',tw:'UID'},channel:{ko:'채널',en:'Channel',tw:'頻道'},followers:{ko:'팔로워',en:'Followers',tw:'追蹤者'},members:{ko:'멤버',en:'Members',tw:'成員'},strategy:{ko:'전략',en:'Strategy',tw:'策略'},exchange:{ko:'거래소',en:'Exchange',tw:'交易所'},aum:{ko:'AUM',en:'AUM',tw:'AUM'},service:{ko:'서비스',en:'Service',tw:'服務'},contact:{ko:'연락처',en:'Contact',tw:'聯繫'},region:{ko:'지역',en:'Region',tw:'地區'},volume:{ko:'거래량',en:'Volume',tw:'交易量'}};
-  let h=`<div class="lbl">${t('rev')}</div>`;
-  for(const[k,v]of Object.entries(S.d)){if(v&&k!=='partner_type'){h+=`<div class="rr"><span class="k">${lb[k]?.[LN]||lb[k]?.en||k}</span><span class="v">${v}</span></div>`}}
-  h+=`<button class="btn bp" id="bs">${t('sub')}</button><button class="btn bs" onclick="go(1)">${t('edit')}</button>`;
-  el.innerHTML=h;document.getElementById('bs').onclick=doS;go(3);
-}
-
-function doS(){
-  const b=document.getElementById('bs');b.disabled=true;b.innerHTML='<span class="spinner"></span>'+t('wait');
-  document.getElementById('su-t').textContent=t('done');
-  document.getElementById('su-b').innerHTML='1. '+t('s1')+'<br>2. '+t('s2')+'<br>3. '+t('s3');
-  haptic('medium');
-  try{tg?.HapticFeedback?.notificationOccurred('success')}catch(e){}
-  const p=JSON.stringify({action:'partner_apply',type:S.ty,lang:LN,...S.d,tg_id:U.id,tg_user:U.username});
-  if(tg){tg.sendData(p)}else{document.getElementById('ref-id').textContent='OKX-DEMO-0001';go(4)}
-}
-
-uP();
-if(LN){const _ut=_ps.get('tab');if(_ut&&['faq','rates'].includes(_ut))goT(_ut);}
+applyCopy();
+renderStepper();
+renderVolumes();
+const requestedTab = params.get("tab");
+if (["apply", "programs", "rates", "faq"].includes(requestedTab)) setTab(requestedTab);
 </script>
 </body>
 </html>
