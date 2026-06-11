@@ -1006,7 +1006,7 @@ const fieldSchema = {
     { key: "social_link", required: true },
     { key: "followers", required: true },
     { key: "competitor_affiliate", required: false },
-    { key: "region", required: true, choices: ["KR", "TW", "MN", "HK", "Global"] },
+    { key: "region", required: true, choices: ["KR", "Global"] },
     { key: "contact", required: true }
   ],
   community: [
@@ -1017,7 +1017,7 @@ const fieldSchema = {
     { key: "social_link", required: true },
     { key: "members", required: true },
     { key: "competitor_affiliate", required: false },
-    { key: "region", required: true, choices: ["KR", "TW", "MN", "HK", "Global"] },
+    { key: "region", required: true, choices: ["KR", "Global"] },
     { key: "contact", required: true }
   ],
   trading: [
@@ -1026,7 +1026,7 @@ const fieldSchema = {
     { key: "strategy", required: true, choices: ["Market Making", "Arbitrage", "HFT", "Systematic", "Prop"] },
     { key: "exchange", required: true },
     { key: "competitor_affiliate", required: false },
-    { key: "region", required: true, choices: ["KR", "TW", "MN", "HK", "Global"] },
+    { key: "region", required: true, choices: ["KR", "Global"] },
     { key: "contact", required: true }
   ],
   wealthtech: [
@@ -1035,7 +1035,7 @@ const fieldSchema = {
     { key: "aum", required: true },
     { key: "service", required: true, choices: ["Wealth Mgmt", "Robo-advisory", "Fintech", "Broker", "Other"] },
     { key: "competitor_affiliate", required: false },
-    { key: "region", required: true, choices: ["KR", "TW", "MN", "HK", "Global"] },
+    { key: "region", required: true, choices: ["KR", "Global"] },
     { key: "contact", required: true }
   ],
   api: [
@@ -1044,7 +1044,7 @@ const fieldSchema = {
     { key: "usecase", required: true, choices: ["Broker", "Trading Bot", "Signal", "Data Feed", "Other"] },
     { key: "exchange", required: true },
     { key: "competitor_affiliate", required: false },
-    { key: "region", required: true, choices: ["KR", "TW", "MN", "HK", "Global"] },
+    { key: "region", required: true, choices: ["KR", "Global"] },
     { key: "contact", required: true }
   ],
   other: [
@@ -1054,7 +1054,7 @@ const fieldSchema = {
     { key: "social_link", required: false },
     { key: "description", required: true, textarea: true },
     { key: "competitor_affiliate", required: false },
-    { key: "region", required: true, choices: ["KR", "TW", "MN", "HK", "Global"] },
+    { key: "region", required: true, choices: ["KR", "Global"] },
     { key: "contact", required: true }
   ]
 };
