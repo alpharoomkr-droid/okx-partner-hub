@@ -837,14 +837,20 @@ const copy = {
     ratesNote: "표는 신청 전 이해를 돕기 위한 요약입니다. 최종 조건은 OKX 정책과 지역/자격 요건에 따라 달라질 수 있습니다.",
     labels: {
       name: "활동명", community_name: "커뮤니티명", entity: "팀/법인명", company: "회사명", uid: "OKX UID",
+      social_type: "소셜 미디어 유형", social_name: "소셜 미디어 이름", social_link: "소셜 미디어 링크",
       channel: "채널 링크", followers: "팔로워 수", members: "멤버 수", strategy: "전략", exchange: "현재 거래소",
-      aum: "AUM", service: "서비스", usecase: "연동 목적", description: "파트너십 설명", region: "지역", contact: "Telegram", volume: "규모"
+      aum: "AUM", service: "서비스", usecase: "연동 목적", description: "파트너십 설명",
+      competitor_affiliate: "경쟁사 어필리에이트 (선택)",
+      region: "지역", contact: "Telegram", volume: "규모"
     },
-    hints: { uid: "KYC 완료 계정 기준", contact: "@handle 또는 연락 가능한 계정" },
+    hints: { uid: "KYC 완료 계정 기준", contact: "@handle 또는 연락 가능한 계정", competitor_affiliate: "고 요율 희망 시 기입" },
     placeholder: {
       name: "채널명 또는 활동명", community_name: "커뮤니티/그룹명", entity: "팀 또는 법인명", company: "회사/서비스명",
-      uid: "숫자 UID", channel: "https://", followers: "예: 50K", members: "예: 10K", exchange: "예: Binance, Bybit",
-      aum: "예: $5M", description: "원하는 협업 방향을 짧게 적어주세요", contact: "@handle"
+      uid: "숫자 UID", social_name: "예: CryptoKing", social_link: "https://...",
+      channel: "https://", followers: "예: 50K", members: "예: 10K", exchange: "예: Binance, Bybit",
+      aum: "예: $5M", description: "원하는 협업 방향을 짧게 적어주세요",
+      competitor_affiliate: "예: Binance 30%, Bybit 40%",
+      contact: "@handle"
     },
     types: {
       kol: ["KOL / Creator", "콘텐츠, 숏폼, 방송, 뉴스레터", "KOL"],
@@ -892,14 +898,20 @@ const copy = {
     ratesNote: "This is a simplified pre-application summary. Final terms may vary by OKX policy, region, and eligibility.",
     labels: {
       name: "Name", community_name: "Community", entity: "Team / Entity", company: "Company", uid: "OKX UID",
+      social_type: "Social Media Type", social_name: "Social Media Name", social_link: "Social Media Link",
       channel: "Channel Link", followers: "Followers", members: "Members", strategy: "Strategy", exchange: "Current Exchange",
-      aum: "AUM", service: "Service", usecase: "Use Case", description: "Partnership Description", region: "Region", contact: "Telegram", volume: "Scale"
+      aum: "AUM", service: "Service", usecase: "Use Case", description: "Partnership Description",
+      competitor_affiliate: "Competitor Affiliate (optional)",
+      region: "Region", contact: "Telegram", volume: "Scale"
     },
-    hints: { uid: "KYC-verified account", contact: "@handle or reachable account" },
+    hints: { uid: "KYC-verified account", contact: "@handle or reachable account", competitor_affiliate: "Required for higher rate requests" },
     placeholder: {
       name: "Channel or creator name", community_name: "Community/group name", entity: "Team or entity", company: "Company/service",
-      uid: "Numeric UID", channel: "https://", followers: "e.g. 50K", members: "e.g. 10K", exchange: "e.g. Binance, Bybit",
-      aum: "e.g. $5M", description: "Briefly describe the partnership", contact: "@handle"
+      uid: "Numeric UID", social_name: "e.g. CryptoKing", social_link: "https://...",
+      channel: "https://", followers: "e.g. 50K", members: "e.g. 10K", exchange: "e.g. Binance, Bybit",
+      aum: "e.g. $5M", description: "Briefly describe the partnership",
+      competitor_affiliate: "e.g. Binance 30%, Bybit 40%",
+      contact: "@handle"
     },
     types: {
       kol: ["KOL / Creator", "Content, shorts, streams, newsletters", "KOL"],
@@ -947,13 +959,17 @@ const copy = {
     ratesNote: "此為申請前摘要。最終條件可能依 OKX 政策、地區與資格而不同。",
     labels: {
       name: "名稱", community_name: "社群名稱", entity: "團隊/公司", company: "公司", uid: "OKX UID",
+      social_type: "社交媒體類型", social_name: "社交媒體名稱", social_link: "社交媒體連結",
       channel: "頻道連結", followers: "追蹤者", members: "成員數", strategy: "策略", exchange: "目前交易所",
-      aum: "AUM", service: "服務", usecase: "用途", description: "合作說明", region: "地區", contact: "Telegram", volume: "規模"
+      aum: "AUM", service: "服務", usecase: "用途", description: "合作說明",
+      competitor_affiliate: "競爭對手聯盟（選填）",
+      region: "地區", contact: "Telegram", volume: "規模"
     },
-    hints: { uid: "已完成 KYC 的帳戶", contact: "@handle 或可聯繫帳號" },
+    hints: { uid: "已完成 KYC 的帳戶", contact: "@handle 或可聯繫帳號", competitor_affiliate: "申請高費率時需填寫" },
     placeholder: {
       name: "頻道或創作者名稱", community_name: "社群/群組名稱", entity: "團隊或公司", company: "公司/服務",
-      uid: "數字 UID", channel: "https://", followers: "例：50K", members: "例：10K", exchange: "例：Binance, Bybit",
+      uid: "數字 UID", social_name: "例：CryptoKing", social_link: "https://...",
+      channel: "https://", followers: "例：50K", members: "例：10K", exchange: "例：Binance, Bybit",
       aum: "例：$5M", description: "簡短描述合作方向", contact: "@handle"
     },
     types: {
@@ -985,16 +1001,22 @@ const fieldSchema = {
   kol: [
     { key: "name", required: true },
     { key: "uid", required: true, uid: true },
-    { key: "channel", required: true },
+    { key: "social_type", required: true, choices: ["YouTube", "X/Twitter", "Instagram", "TikTok", "Telegram", "Twitch", "Blog", "Other"] },
+    { key: "social_name", required: true },
+    { key: "social_link", required: true },
     { key: "followers", required: true },
+    { key: "competitor_affiliate", required: false },
     { key: "region", required: true, choices: ["KR", "TW", "MN", "HK", "Global"] },
     { key: "contact", required: true }
   ],
   community: [
     { key: "community_name", required: true },
     { key: "uid", required: true, uid: true },
-    { key: "channel", required: true },
+    { key: "social_type", required: true, choices: ["Telegram", "Discord", "KakaoTalk", "Naver Cafe", "Facebook", "Other"] },
+    { key: "social_name", required: true },
+    { key: "social_link", required: true },
     { key: "members", required: true },
+    { key: "competitor_affiliate", required: false },
     { key: "region", required: true, choices: ["KR", "TW", "MN", "HK", "Global"] },
     { key: "contact", required: true }
   ],
@@ -1003,6 +1025,7 @@ const fieldSchema = {
     { key: "uid", required: true, uid: true },
     { key: "strategy", required: true, choices: ["Market Making", "Arbitrage", "HFT", "Systematic", "Prop"] },
     { key: "exchange", required: true },
+    { key: "competitor_affiliate", required: false },
     { key: "region", required: true, choices: ["KR", "TW", "MN", "HK", "Global"] },
     { key: "contact", required: true }
   ],
@@ -1011,6 +1034,7 @@ const fieldSchema = {
     { key: "uid", required: true, uid: true },
     { key: "aum", required: true },
     { key: "service", required: true, choices: ["Wealth Mgmt", "Robo-advisory", "Fintech", "Broker", "Other"] },
+    { key: "competitor_affiliate", required: false },
     { key: "region", required: true, choices: ["KR", "TW", "MN", "HK", "Global"] },
     { key: "contact", required: true }
   ],
@@ -1019,13 +1043,17 @@ const fieldSchema = {
     { key: "uid", required: true, uid: true },
     { key: "usecase", required: true, choices: ["Broker", "Trading Bot", "Signal", "Data Feed", "Other"] },
     { key: "exchange", required: true },
+    { key: "competitor_affiliate", required: false },
     { key: "region", required: true, choices: ["KR", "TW", "MN", "HK", "Global"] },
     { key: "contact", required: true }
   ],
   other: [
     { key: "name", required: true },
     { key: "uid", required: true, uid: true },
+    { key: "social_type", required: false, choices: ["YouTube", "X/Twitter", "Instagram", "Telegram", "Blog", "Other"] },
+    { key: "social_link", required: false },
     { key: "description", required: true, textarea: true },
+    { key: "competitor_affiliate", required: false },
     { key: "region", required: true, choices: ["KR", "TW", "MN", "HK", "Global"] },
     { key: "contact", required: true }
   ]
