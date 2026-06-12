@@ -68,7 +68,7 @@ button { border: 0; color: inherit; cursor: pointer; background: none; padding: 
 .hello-copy b { display: block; font-size: 14px; letter-spacing: -.01em; }
 .hello-copy span { display: block; font-size: 11.5px; color: var(--muted); margin-top: 1px; }
 .lang { display: flex; gap: 2px; padding: 3px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); }
-.lang button { min-width: 34px; height: 27px; border-radius: 7px; font-size: 11.5px; font-weight: 700; color: var(--muted); }
+.lang button { min-width: 40px; height: 36px; border-radius: 7px; font-size: 11.5px; font-weight: 700; color: var(--muted); }
 .lang button.active { background: var(--text); color: #000; }
 
 .headline { padding: 6px 0 4px; }
@@ -390,9 +390,6 @@ ko: {
   kicker: "OKX OFFICIAL PARTNER",
   h1: '내 오디언스의 거래 수수료,<br>최대 <em>50%</em>가 내 수익이 됩니다.',
   h1Sub: "유튜브·텔레그램·커뮤니티·트레이딩팀 — 규모에 맞는 파트너 트랙을 2분 안에 신청하세요.",
-  calcTitle: "예상 월 수익", calcPer: "/월 · USDT", calcBasis: "추천 유저 수 기준",
-  calcDetail: (u, r, p) => `유저 <b>${u}명</b> · 1명당 <b>$${p}</b>/월 · 커미션 <b>${r}%</b>`,
-  calcNote: "유저 1명이 월 평균 $20K 거래한다고 가정한 추정치입니다. 유저당 거래량이 클수록 수익은 그 이상이며, 매시간 USDT로 자동 정산됩니다.",
   proof1: "최대 커미션", proof2num: "매시간", proof2: "USDT 자동정산", proof3: "전담 BD 검토",
   linkRates: "수수료 등급", linkFaq: "FAQ",
   hostSub: "OKX Northeast Asia BD · 신청을 직접 검토합니다",
@@ -405,7 +402,6 @@ ko: {
   ],
   chH2: { kol: "채널을 알려주세요", community: "커뮤니티를 알려주세요", trading: "팀을 알려주세요", api: "회사를 알려주세요" },
   chP: "규모가 클수록 높은 커미션 구간에서 시작합니다.",
-  liveEstLabel: "팔로워 0.5%만 유저가 되어도",
   ctH2: "마지막 단계입니다", ctP: "OKX UID는 아직 없어도 됩니다 — 승인 과정에서 함께 만듭니다.",
   rvH2: "제출 전 확인", rvP: "수정하려면 뒤로 가세요. 제출하면 Joshua에게 바로 전달됩니다.",
   compliance: "<b>컴플라이언스:</b> OKX 사칭, 브랜드 키워드 광고, 유사 URL, 자기추천은 금지됩니다. 제출 시 OKX Affiliate 약관에 따른 검토에 동의하는 것으로 간주합니다.",
@@ -423,7 +419,7 @@ ko: {
     ["승인 후 무엇을 받나요?", "전용 레퍼럴 링크, 마케팅 소재, 성과 대시보드, 그리고 Joshua의 1:1 서포트를 받습니다."]
   ],
   btn: { start: "파트너 시작하기", next: "다음", review: "확인하기", submit: "신청 제출", submitting: "전송 중…", close: "닫기" },
-  err: { required: "필수 항목입니다", uid: "UID는 6자리 이상 숫자입니다", url: "올바른 링크를 입력해주세요" },
+  err: { required: "필수 항목입니다", uid: "UID는 6자리 이상 숫자입니다", url: "올바른 링크를 입력해주세요", num: "숫자로 입력해주세요 (예: 50000)" },
   f: {
     name: ["활동명", "채널명 또는 활동명", ""],
     community_name: ["커뮤니티명", "커뮤니티/그룹 이름", ""],
@@ -449,9 +445,6 @@ en: {
   kicker: "OKX OFFICIAL PARTNER",
   h1: 'Up to <em>50%</em> of your audience\'s trading fees, paid to you.',
   h1Sub: "YouTube, Telegram, communities, trading teams — apply for the right partner track in under 2 minutes.",
-  calcTitle: "Estimated monthly earnings", calcPer: "/mo · USDT", calcBasis: "by referred users",
-  calcDetail: (u, r, p) => `<b>${u}</b> users · <b>$${p}</b>/mo each · <b>${r}%</b> tier`,
-  calcNote: "Assumes each user trades ~$20K/mo on average. Heavier traders earn you more — settled hourly in USDT, uncapped.",
   proof1: "Max commission", proof2num: "Hourly", proof2: "USDT auto-payout", proof3: "Direct BD review",
   linkRates: "Rate tiers", linkFaq: "FAQ",
   hostSub: "OKX Northeast Asia BD · reviews every application",
@@ -464,7 +457,6 @@ en: {
   ],
   chH2: { kol: "Tell us about your channel", community: "Tell us about your community", trading: "Tell us about your team", api: "Tell us about your company" },
   chP: "Bigger reach starts at a higher commission tier.",
-  liveEstLabel: "If just 0.5% of followers become users",
   ctH2: "Last step", ctP: "No OKX UID yet? No problem — we'll set it up during approval.",
   rvH2: "Review & submit", rvP: "Go back to edit. Submitting sends this directly to Joshua.",
   compliance: "<b>Compliance:</b> OKX impersonation, brand-keyword ads, look-alike URLs and self-referrals are prohibited. Submitting means you agree to review under the OKX Affiliate terms.",
@@ -482,7 +474,7 @@ en: {
     ["What do I get after approval?", "Your referral link, marketing assets, a performance dashboard, and 1:1 support from Joshua."]
   ],
   btn: { start: "Become a Partner", next: "Next", review: "Review", submit: "Submit application", submitting: "Sending…", close: "Close" },
-  err: { required: "Required", uid: "UID must be 6+ digits", url: "Enter a valid link" },
+  err: { required: "Required", uid: "UID must be 6+ digits", url: "Enter a valid link", num: "Enter a number (e.g. 50000)" },
   f: {
     name: ["Creator name", "Channel or stage name", ""],
     community_name: ["Community name", "Community / group name", ""],
@@ -508,9 +500,6 @@ tw: {
   kicker: "OKX OFFICIAL PARTNER",
   h1: '您的受眾交易手續費，最高 <em>50%</em> 成為您的收益。',
   h1Sub: "YouTube、Telegram、社群、交易團隊 — 2 分鐘內申請最適合的合作通道。",
-  calcTitle: "預估月收益", calcPer: "/月 · USDT", calcBasis: "依推薦用戶數",
-  calcDetail: (u, r, p) => `<b>${u}</b> 位用戶 · 每位 <b>$${p}</b>/月 · <b>${r}%</b> 級別`,
-  calcNote: "假設每位用戶月均交易 $20K。交易量越大收益越高 — 每小時以 USDT 自動結算，無上限。",
   proof1: "最高佣金", proof2num: "每小時", proof2: "USDT 自動結算", proof3: "專屬 BD 審核",
   linkRates: "佣金級別", linkFaq: "FAQ",
   hostSub: "OKX 東北亞 BD · 親自審核每份申請",
@@ -523,7 +512,6 @@ tw: {
   ],
   chH2: { kol: "介紹您的頻道", community: "介紹您的社群", trading: "介紹您的團隊", api: "介紹您的公司" },
   chP: "規模越大，起始佣金級別越高。",
-  liveEstLabel: "只要 0.5% 追蹤者成為用戶",
   ctH2: "最後一步", ctP: "還沒有 OKX UID？沒關係 — 審核時一起建立。",
   rvH2: "確認後送出", rvP: "可返回修改。送出後直接傳給 Joshua。",
   compliance: "<b>合規：</b>禁止冒充 OKX、品牌關鍵字廣告、相似網址與自我推薦。送出即表示同意依 OKX Affiliate 條款審核。",
@@ -541,7 +529,7 @@ tw: {
     ["通過後會得到什麼？", "專屬推薦連結、行銷素材、成效儀表板，以及 Joshua 的 1:1 支援。"]
   ],
   btn: { start: "成為合作夥伴", next: "下一步", review: "確認", submit: "送出申請", submitting: "傳送中…", close: "關閉" },
-  err: { required: "必填欄位", uid: "UID 須為 6 位以上數字", url: "請輸入有效連結" },
+  err: { required: "必填欄位", uid: "UID 須為 6 位以上數字", url: "請輸入有效連結", num: "請輸入數字（例：50000）" },
   f: {
     name: ["創作者名稱", "頻道或藝名", ""],
     community_name: ["社群名稱", "社群 / 群組名稱", ""],
@@ -580,7 +568,7 @@ const SCHEMA = {
       { k: "name", req: 1 },
       { k: "social_type", chips: SOCIAL.kol, req: 1 },
       { k: "social_link", url: 1, req: 1 },
-      { k: "followers", num: 1, req: 1, est: 1 },
+      { k: "followers", num: 1, req: 1 },
       { k: "region", chips: REGIONS, req: 1 }
     ],
     contact: [
@@ -594,7 +582,7 @@ const SCHEMA = {
       { k: "community_name", req: 1 },
       { k: "social_type", chips: SOCIAL.community, req: 1 },
       { k: "social_link", url: 1, req: 1 },
-      { k: "members", num: 1, req: 1, est: 1 },
+      { k: "members", num: 1, req: 1 },
       { k: "region", chips: REGIONS, req: 1 }
     ],
     contact: [
@@ -723,6 +711,7 @@ function renderFields(part) {
     if (def.chips) {
       box.querySelectorAll("[data-chip]").forEach(btn => btn.addEventListener("click", () => {
         state.data[def.k] = btn.dataset.chip;
+        if (def.k === "social_type") delete state.data._st_auto;
         box.querySelectorAll("[data-chip]").forEach(b => b.classList.toggle("sel", b === btn));
         clearErr(box); hapticSel(); saveDraft();
       }));
@@ -733,15 +722,21 @@ function renderFields(part) {
       input.value = "@" + tgUser.username;
       state.data[def.k] = input.value;
     }
+    input.addEventListener("focus", () => {
+      setTimeout(() => { try { input.scrollIntoView({ behavior: "smooth", block: "center" }); } catch (_) {} }, 250);
+    });
     input.addEventListener("input", () => {
       state.data[def.k] = input.value.trim();
       clearErr(box); saveDraft();
       if (def.url) {
+        const allowed = (SCHEMA[state.type]?.channel || []).find(d => d.k === "social_type")?.chips || [];
         const hit = URL_PLATFORM.find(([re]) => re.test(input.value));
-        if (hit && !state.data.social_type) {
-          state.data.social_type = hit[1];
+        const detected = hit && allowed.includes(hit[1]) ? hit[1] : "";
+        // 자동 설정된 값만 갱신/해제 — 사용자가 직접 고른 칩은 건드리지 않는다
+        if (detected && (!state.data.social_type || state.data._st_auto)) {
+          state.data.social_type = detected; state.data._st_auto = 1;
           const stBox = wrap.querySelector('[data-k="social_type"]');
-          stBox?.querySelectorAll("[data-chip]").forEach(b => b.classList.toggle("sel", b.dataset.chip === hit[1]));
+          stBox?.querySelectorAll("[data-chip]").forEach(b => b.classList.toggle("sel", b.dataset.chip === detected));
           hapticSel();
         }
       }
@@ -769,6 +764,7 @@ function validate(part) {
     let msg = "";
     if (def.req && !val) msg = c.err.required;
     else if (def.uid && val && !/^\d{6,}$/.test(val.replace(/\s/g, ""))) msg = c.err.uid;
+    else if (def.num && !def.uid && val && !/\d/.test(val)) msg = c.err.num;
     else if (def.url && val && !/^https?:\/\/.+\..+/.test(val) && !/^@?[\w.]{2,}$/.test(val)) msg = c.err.url;
     if (msg) {
       box.querySelector("input")?.classList.add("bad");
@@ -875,6 +871,7 @@ function advance() {
   else if (screen === "success") closeApp();
 }
 function goBack() {
+  if (submitting) return;
   haptic("light");
   if (screen === "review") setScreen("contact");
   else if (screen === "contact") setScreen("channel");
@@ -907,9 +904,9 @@ function submit() {
       setTimeout(() => { submitting = false; setScreen("success"); markNotDelivered(); }, 900);
       return;
     }
-    clearDraft();
     submitting = false;
     setScreen("success");
+    markNotDelivered();
   }, 250);
 }
 
@@ -933,6 +930,7 @@ function saveDraft() {
   }, 400);
 }
 function clearDraft() {
+  clearTimeout(draftTimer);
   try { ver("6.9") && tg.CloudStorage.removeItem("draft_v2", () => {}); } catch (_) {}
 }
 function loadDraft(cb) {
@@ -942,7 +940,11 @@ function loadDraft(cb) {
       if (!err && val) {
         try {
           const d = JSON.parse(val);
-          if (d && d.type && SCHEMA[d.type]) { state.type = d.type; Object.assign(state.data, d.data || {}); }
+          if (d && d.type && SCHEMA[d.type]) {
+            state.type = d.type;
+            const allow = new Set([...SCHEMA[d.type].channel, ...SCHEMA[d.type].contact].map(x => x.k));
+            for (const [k, v] of Object.entries(d.data || {})) if (allow.has(k)) state.data[k] = v;
+          }
         } catch (_) {}
       }
       cb();
