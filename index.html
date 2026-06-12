@@ -855,6 +855,16 @@ function syncCta() {
   }
 }
 
+function closeApp() {
+  // 어떤 클라이언트/런치 경로에서든 닫히도록 다중 시도. 그래도 살아 있으면 훅으로 복귀.
+  try { tg?.close(); } catch (_) {}
+  try { window.Telegram?.WebApp?.close(); } catch (_) {}
+  setTimeout(() => {
+    try { window.close(); } catch (_) {}
+    setScreen("hook");
+  }, 400);
+}
+
 function advance() {
   if (submitting) return;
   haptic("light");
@@ -862,7 +872,7 @@ function advance() {
   else if (screen === "channel") { if (validate("channel")) setScreen("contact"); }
   else if (screen === "contact") { if (validate("contact")) setScreen("review"); }
   else if (screen === "review") submit();
-  else if (screen === "success") { try { tg?.close(); } catch (_) {} }
+  else if (screen === "success") closeApp();
 }
 function goBack() {
   haptic("light");
