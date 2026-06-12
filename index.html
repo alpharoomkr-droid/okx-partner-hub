@@ -272,15 +272,6 @@ input[type=range]::-webkit-slider-thumb {
       <p id="h1-sub"></p>
     </div>
 
-    <div class="calc">
-      <div class="calc-head"><b id="calc-title">예상 월 수익</b><span id="calc-basis"></span></div>
-      <div class="calc-num"><span id="calc-amount">$0</span><small id="calc-per">/월 · USDT</small></div>
-      <div class="calc-sub" id="calc-detail"></div>
-      <input type="range" id="calc-slider" min="0" max="100" value="60" aria-label="referred users">
-      <div class="calc-range"><span>10</span><span id="calc-followers">240</span><span>2,000</span></div>
-      <div class="calc-note" id="calc-note"></div>
-    </div>
-
     <div class="proof">
       <div><b>50%</b><span id="proof-1">최대 커미션</span></div>
       <div><b id="proof-2-num">매시간</b><span id="proof-2">USDT 자동정산</span></div>
@@ -307,7 +298,6 @@ input[type=range]::-webkit-slider-thumb {
   <!-- S2 CHANNEL -->
   <section class="screen" id="s-channel">
     <div class="step-head"><h2 id="ch-h2"></h2><p id="ch-p"></p></div>
-    <div class="live-est hidden" id="live-est"><span id="live-est-label"></span><b id="live-est-num"></b></div>
     <div id="channel-fields"></div>
   </section>
 
@@ -654,29 +644,6 @@ const hapticSel = () => { try { ver("6.1") && tg.HapticFeedback.selectionChanged
 const hapticNote = k => { try { ver("6.1") && tg.HapticFeedback.notificationOccurred(k); } catch (_) {} };
 const escapeHtml = s => String(s).replace(/[&<>"']/g, m => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
 
-/* ═══════════ earnings calculator (하부 유저 기준) ═══════════ */
-const VOL_PER_USER = 20000; // 유저 1명 평균 월 거래량 가정 ($20K)
-function sliderUsers(v) { return Math.round(10 * Math.pow(200, v / 100)); } // 10 → 2,000 log
-function fmtCount(n) {
-  if (n >= 1e6) return (n / 1e6).toFixed(n % 1e6 ? 1 : 0) + "M";
-  if (n >= 1e4) return Math.round(n / 1e3) + "K";
-  return n.toLocaleString("en-US");
-}
-function estimate(users) {
-  const volume = users * VOL_PER_USER;
-  const rate = volume >= 1e7 ? 50 : volume >= 5e6 ? 45 : volume >= 1e6 ? 40 : volume >= 5e5 ? 35 : 30;
-  const earn = volume * 0.0006 * (rate / 100);         // blended fee 0.06%
-  const perUser = VOL_PER_USER * 0.0006 * (rate / 100);
-  return { earn: Math.max(0, Math.round(earn / 10) * 10), rate, perUser: Math.round(perUser * 10) / 10 };
-}
-function renderCalc() {
-  const u = sliderUsers(Number($("calc-slider").value));
-  const { earn, rate, perUser } = estimate(u);
-  $("calc-amount").textContent = "$" + earn.toLocaleString("en-US");
-  $("calc-followers").textContent = fmtCount(u);
-  $("calc-detail").innerHTML = t().calcDetail(fmtCount(u), rate, perUser);
-}
-
 /* ═══════════ rendering ═══════════ */
 function renderStatic() {
   const c = t();
@@ -688,10 +655,6 @@ function renderStatic() {
   $("kicker").textContent = c.kicker;
   $("h1").innerHTML = c.h1;
   $("h1-sub").textContent = c.h1Sub;
-  $("calc-title").textContent = c.calcTitle;
-  $("calc-per").textContent = c.calcPer;
-  $("calc-basis").textContent = c.calcBasis;
-  $("calc-note").textContent = c.calcNote;
   $("proof-1").textContent = c.proof1;
   $("proof-2-num").textContent = c.proof2num;
   $("proof-2").textContent = c.proof2;
@@ -722,7 +685,6 @@ function renderStatic() {
     `<button class="card${state.type === key ? " sel" : ""}" data-type="${key}">
       <div class="ic">${ic}</div><div><b>${escapeHtml(title)}</b><span>${escapeHtml(sub)}</span></div><div class="arr">›</div>
     </button>`).join("");
-  renderCalc();
 }
 
 function fieldHtml(def) {
@@ -762,7 +724,7 @@ function renderFields(part) {
       box.querySelectorAll("[data-chip]").forEach(btn => btn.addEventListener("click", () => {
         state.data[def.k] = btn.dataset.chip;
         box.querySelectorAll("[data-chip]").forEach(b => b.classList.toggle("sel", b === btn));
-        clearErr(box); hapticSel(); saveDraft(); updateLiveEst();
+        clearErr(box); hapticSel(); saveDraft();
       }));
       return;
     }
@@ -774,7 +736,6 @@ function renderFields(part) {
     input.addEventListener("input", () => {
       state.data[def.k] = input.value.trim();
       clearErr(box); saveDraft();
-      if (def.est) updateLiveEst();
       if (def.url) {
         const hit = URL_PLATFORM.find(([re]) => re.test(input.value));
         if (hit && !state.data.social_type) {
@@ -788,20 +749,8 @@ function renderFields(part) {
   });
 
   if (part === "channel") {
-    const hasEst = defs.some(d => d.est);
-    $("live-est").classList.toggle("hidden", !hasEst);
-    $("live-est-label").textContent = t().liveEstLabel;
     $("ch-h2").textContent = t().chH2[state.type] || "";
-    updateLiveEst();
   }
-}
-
-function updateLiveEst() {
-  const raw = state.data.followers || state.data.members || "";
-  const n = parseInt(String(raw).replace(/[^\d]/g, ""), 10) || 0;
-  const users = Math.round(n * 0.005);   // 팔로워의 0.5%만 유저 전환 가정
-  const { earn } = estimate(users);
-  $("live-est-num").textContent = users ? `≈ $${earn.toLocaleString("en-US")}${t().calcPer}` : "—";
 }
 
 function clearErr(box) {
@@ -996,7 +945,6 @@ function openSheet(id) { $(id).classList.add("on"); haptic("light"); }
 function closeSheets() { document.querySelectorAll(".sheet-wrap").forEach(s => s.classList.remove("on")); }
 
 /* ═══════════ wiring ═══════════ */
-$("calc-slider").addEventListener("input", () => { renderCalc(); hapticSel(); });
 $("open-rates").addEventListener("click", () => openSheet("sheet-rates"));
 $("open-faq").addEventListener("click", () => openSheet("sheet-faq"));
 document.querySelectorAll("[data-close]").forEach(el => el.addEventListener("click", closeSheets));
