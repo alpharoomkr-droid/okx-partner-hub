@@ -372,7 +372,8 @@ input[type=range]::-webkit-slider-thumb {
 <script>
 /* ═══════════ Telegram bootstrap ═══════════ */
 const tg = window.Telegram?.WebApp;
-const inTg = Boolean(tg?.initData);
+// 주의: 키보드 버튼으로 띄운 미니앱은 initData가 비어 온다 — platform으로 판별해야 함.
+const inTg = Boolean(tg && tg.platform && tg.platform !== "unknown");
 const ver = v => { try { return Boolean(tg?.isVersionAtLeast?.(v)); } catch (_) { return false; } };
 if (tg) {
   tg.ready();
@@ -419,6 +420,7 @@ ko: {
   rvH2: "제출 전 확인", rvP: "수정하려면 뒤로 가세요. 제출하면 Joshua에게 바로 전달됩니다.",
   compliance: "<b>컴플라이언스:</b> OKX 사칭, 브랜드 키워드 광고, 유사 URL, 자기추천은 금지됩니다. 제출 시 OKX Affiliate 약관에 따른 검토에 동의하는 것으로 간주합니다.",
   okH2: "신청 완료!", okP: "텔레그램 채팅으로 접수 확인을 보내드렸습니다.",
+  ndH2: "한 단계만 더!", ndP: "이 화면에서는 제출이 전달되지 않습니다. 봇 채팅 하단의 '▶ 파트너 신청' 버튼으로 열면 입력 내용이 그대로 복원되어 바로 제출됩니다.",
   tl1: "신청 접수 완료", tl2: "Joshua가 1~2영업일 내 검토", tl3: "승인 → 레퍼럴 링크 + 온보딩 키트 전달",
   ratesH3: "Affiliate 커미션 등급", thVol: "월 거래량", thTraders: "트레이더",
   ratesNote: "신청 전 이해를 돕기 위한 요약입니다. 최종 조건은 OKX 정책·지역·자격 요건에 따라 1:1로 확정됩니다. VIP/기관/마켓메이커는 별도 협의.",
@@ -477,6 +479,7 @@ en: {
   rvH2: "Review & submit", rvP: "Go back to edit. Submitting sends this directly to Joshua.",
   compliance: "<b>Compliance:</b> OKX impersonation, brand-keyword ads, look-alike URLs and self-referrals are prohibited. Submitting means you agree to review under the OKX Affiliate terms.",
   okH2: "Application sent!", okP: "A confirmation has been sent to your Telegram chat.",
+  ndH2: "One more step!", ndP: "Submissions can't be delivered from this view. Open via the '▶ Apply Now' button in the bot chat — your answers are saved and will be restored.",
   tl1: "Application received", tl2: "Joshua reviews within 1–2 business days", tl3: "Approval → referral link + onboarding kit",
   ratesH3: "Affiliate commission tiers", thVol: "Monthly vol.", thTraders: "Traders",
   ratesNote: "Pre-application summary. Final terms are confirmed 1:1 per OKX policy, region and eligibility. VIP / institutional / MM reviewed separately.",
@@ -535,6 +538,7 @@ tw: {
   rvH2: "確認後送出", rvP: "可返回修改。送出後直接傳給 Joshua。",
   compliance: "<b>合規：</b>禁止冒充 OKX、品牌關鍵字廣告、相似網址與自我推薦。送出即表示同意依 OKX Affiliate 條款審核。",
   okH2: "申請已送出！", okP: "確認訊息已發送至您的 Telegram。",
+  ndH2: "還差一步！", ndP: "此視窗無法傳送申請。請透過機器人聊天下方的「▶ 立即申請」按鈕開啟 — 您的輸入已保存並會自動復原。",
   tl1: "申請已接收", tl2: "Joshua 於 1–2 個工作日內審核", tl3: "通過 → 推薦連結 + 入駐套件",
   ratesH3: "Affiliate 佣金級別", thVol: "月交易量", thTraders: "交易者",
   ratesNote: "申請前參考摘要。最終條件依 OKX 政策、地區與資格 1:1 確認。VIP / 機構 / 做市商另議。",
@@ -934,15 +938,30 @@ function submit() {
     tg_user: tgUser.username || ""
   };
   hapticNote("success");
-  clearDraft();
   try { if (ver("6.2")) tg.disableClosingConfirmation(); } catch (_) {}
   setTimeout(() => {
     if (inTg) {
-      try { tg.sendData(JSON.stringify(payload)); return; } catch (_) {} // closes the app
+      clearDraft();
+      try { tg.sendData(JSON.stringify(payload)); } catch (_) {}
+      // sendData는 키보드 버튼 런치에서만 동작하며 성공 시 앱을 즉시 닫는다.
+      // 900ms 후에도 살아 있으면 인라인/메뉴 런치라 전송이 안 된 것 — 안내로 전환.
+      setTimeout(() => { submitting = false; setScreen("success"); markNotDelivered(); }, 900);
+      return;
     }
+    clearDraft();
     submitting = false;
     setScreen("success");
   }, 250);
+}
+
+function markNotDelivered() {
+  // 인라인/메뉴 버튼으로 열린 경우 sendData가 무시됨 — 키보드 버튼으로 재제출 안내.
+  // 입력값은 CloudStorage 드래프트에 남아 있어 다시 열면 그대로 복원된다.
+  const c = t();
+  $("ok-h2").textContent = c.ndH2;
+  $("ok-p").textContent = c.ndP;
+  saveDraft();   // 전달 실패 — 키보드 버튼으로 다시 열 때 복원되도록 유지
+  hapticNote("warning");
 }
 
 /* ═══════════ draft persistence (CloudStorage) ═══════════ */
