@@ -234,6 +234,13 @@ input[type=range]::-webkit-slider-thumb {
 .sheet th { text-align: left; color: var(--dim); font-weight: 600; padding: 7px 6px; border-bottom: 1px solid var(--line); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
 .sheet td { padding: 9px 6px; border-bottom: 1px solid var(--line); }
 .sheet td.g { color: var(--okx); font-weight: 700; }
+.rates-sub { margin-top: 26px; }
+.broker-hero { margin: 2px 0 12px; font-size: 13px; color: var(--muted); display: flex; align-items: baseline; gap: 8px; }
+.broker-hero b { font-size: 26px; color: var(--okx); letter-spacing: -.02em; }
+.broker-facts { list-style: none; margin: 14px 0 0; padding: 0; }
+.broker-facts li { position: relative; padding: 5px 0 5px 15px; font-size: 13px; color: var(--muted); line-height: 1.45; }
+.broker-facts li::before { content: "·"; position: absolute; left: 3px; color: var(--okx); font-weight: 700; }
+.broker-fit { margin-top: 12px; font-size: 12px; color: var(--dim); line-height: 1.5; }
 .faq-item { border-bottom: 1px solid var(--line); }
 .faq-item button { width: 100%; display: flex; justify-content: space-between; gap: 10px; padding: 14px 2px; font-size: 14px; font-weight: 600; text-align: left; }
 .faq-item button i { font-style: normal; color: var(--dim); transition: transform .2s; flex: none; }
@@ -354,6 +361,19 @@ input[type=range]::-webkit-slider-thumb {
         <tr><td><b>L5</b></td><td>$10M+</td><td>200+</td><td class="g">50%</td></tr>
       </tbody>
     </table>
+
+    <h3 id="broker-h3" class="rates-sub">Broker / API 프로그램</h3>
+    <div class="broker-hero"><b class="g">50%</b><span id="broker-hero-label"></span></div>
+    <table>
+      <thead><tr><th id="broker-th-model">모델</th><th id="broker-th-link">연동</th><th id="broker-th-settle">정산</th></tr></thead>
+      <tbody>
+        <tr><td><b>API Broker</b></td><td id="broker-api-desc"></td><td>T+1 USDT</td></tr>
+        <tr><td><b>OAuth Broker</b></td><td id="broker-oauth-desc"></td><td>T+1 USDT</td></tr>
+      </tbody>
+    </table>
+    <ul class="broker-facts" id="broker-facts"></ul>
+    <div class="broker-fit" id="broker-fit"></div>
+
     <div class="notice" id="rates-note"></div>
   </div>
 </div>
@@ -418,6 +438,12 @@ ko: {
   tl1: "신청 접수 완료", tl2: "Joshua가 1~2영업일 내 검토", tl3: "승인 → 레퍼럴 링크 + 온보딩 키트 전달",
   ratesH3: "Affiliate 커미션 등급", thVol: "월 거래량", thTraders: "트레이더",
   ratesNote: "신청 전 이해를 돕기 위한 요약입니다. 최종 조건은 OKX 정책·지역·자격 요건에 따라 1:1로 확정됩니다. VIP/기관/마켓메이커는 별도 협의.",
+  brokerH3: "Broker / API 프로그램",
+  brokerHeroLabel: "최대 커미션 · 거래량 기반",
+  brokerThModel: "모델", brokerThLink: "연동", brokerThSettle: "정산",
+  brokerApiDesc: "API Key 바인딩", brokerOauthDesc: "OAuth 인증",
+  brokerFacts: ["신규 + 기존 유저 모두 커미션 적립", "어필리에이트와 중복 적립 가능", "서브브로커 커미션 분배 설정", "매시간 USDT 자동 정산 · 매월 등급 상향"],
+  brokerFit: "트레이딩 봇·아그리게이터·전략 플랫폼·자산운용·소셜 트레이딩에 적합합니다.",
   faqH3: "자주 묻는 질문",
   faq: [
     ["승인까지 얼마나 걸리나요?", "보통 1~2영업일 내 Joshua가 직접 검토하고 텔레그램으로 결과를 알려드립니다."],
@@ -472,6 +498,12 @@ en: {
   tl1: "Application received", tl2: "Joshua reviews within 1–2 business days", tl3: "Approval → referral link + onboarding kit",
   ratesH3: "Affiliate commission tiers", thVol: "Monthly vol.", thTraders: "Traders",
   ratesNote: "Pre-application summary. Final terms are confirmed 1:1 per OKX policy, region and eligibility. VIP / institutional / MM reviewed separately.",
+  brokerH3: "Broker / API Program",
+  brokerHeroLabel: "max commission · volume-based",
+  brokerThModel: "Model", brokerThLink: "Integration", brokerThSettle: "Settlement",
+  brokerApiDesc: "Bind via API Key", brokerOauthDesc: "OAuth authorization",
+  brokerFacts: ["Commission on both new & existing users", "Stacks with the Affiliate program", "Configurable sub-broker revenue sharing", "Hourly USDT settlement · monthly tier upgrades"],
+  brokerFit: "Ideal for trading bots, aggregators, strategy platforms, asset management and social trading.",
   faqH3: "FAQ",
   faq: [
     ["How long does approval take?", "Joshua personally reviews within 1–2 business days and replies via Telegram."],
@@ -526,6 +558,12 @@ tw: {
   tl1: "申請已接收", tl2: "Joshua 於 1–2 個工作日內審核", tl3: "通過 → 推薦連結 + 入駐套件",
   ratesH3: "Affiliate 佣金級別", thVol: "月交易量", thTraders: "交易者",
   ratesNote: "申請前參考摘要。最終條件依 OKX 政策、地區與資格 1:1 確認。VIP / 機構 / 做市商另議。",
+  brokerH3: "Broker / API 計畫",
+  brokerHeroLabel: "最高佣金 · 基於交易量",
+  brokerThModel: "模式", brokerThLink: "對接", brokerThSettle: "結算",
+  brokerApiDesc: "API Key 綁定", brokerOauthDesc: "OAuth 授權",
+  brokerFacts: ["新舊用戶皆可獲得佣金", "可與 Affiliate 計畫疊加", "可設定子經紀商佣金分配", "每小時 USDT 結算 · 每月升級"],
+  brokerFit: "適合交易機器人、聚合器、策略平台、資產管理與社交交易。",
   faqH3: "常見問題",
   faq: [
     ["審核需要多久？", "Joshua 通常於 1–2 個工作日內親自審核，並透過 Telegram 回覆。"],
@@ -674,6 +712,15 @@ function renderStatic() {
   $("th-vol").textContent = c.thVol;
   $("th-traders").textContent = c.thTraders;
   $("rates-note").innerHTML = c.ratesNote;
+  $("broker-h3").textContent = c.brokerH3;
+  $("broker-hero-label").textContent = c.brokerHeroLabel;
+  $("broker-th-model").textContent = c.brokerThModel;
+  $("broker-th-link").textContent = c.brokerThLink;
+  $("broker-th-settle").textContent = c.brokerThSettle;
+  $("broker-api-desc").textContent = c.brokerApiDesc;
+  $("broker-oauth-desc").textContent = c.brokerOauthDesc;
+  $("broker-facts").innerHTML = c.brokerFacts.map(f => `<li>${escapeHtml(f)}</li>`).join("");
+  $("broker-fit").textContent = c.brokerFit;
   $("faq-h3").textContent = c.faqH3;
   $("faq-list").innerHTML = c.faq.map(([q, a], i) =>
     `<div class="faq-item" data-i="${i}"><button>${escapeHtml(q)}<i>＋</i></button><div class="a">${escapeHtml(a)}</div></div>`).join("");
