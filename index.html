@@ -141,6 +141,9 @@ input[type=range]::-webkit-slider-thumb {
   display: grid; place-items: center; font-size: 19px; flex: none;
 }
 .card.sel .ic { background: var(--okx); }
+.card .ic { color: var(--text); }
+.card .ic svg { width: 22px; height: 22px; }
+.card.sel .ic { color: #000; }
 .card b { display: block; font-size: 15px; letter-spacing: -.01em; }
 .card span { display: block; margin-top: 2px; font-size: 12px; color: var(--muted); }
 .card .arr { margin-left: auto; color: var(--dim); font-size: 17px; flex: none; }
@@ -258,8 +261,7 @@ input[type=range]::-webkit-slider-thumb {
   <section class="screen on" id="s-hook">
     <div class="hook-top">
       <div class="hello">
-        <div class="avatar" id="avatar"></div>
-        <div class="hello-copy"><b id="hello-name">안녕하세요 👋</b><span id="hello-sub">Joshua · 파트너 온보딩</span></div>
+        <div class="hello-copy"><b id="hello-name">Joshua</b><span id="hello-sub">파트너 온보딩</span></div>
       </div>
       <div class="lang" id="lang-switch">
         <button data-lang="ko">KO</button><button data-lang="en">EN</button><button data-lang="tw">繁</button>
@@ -279,8 +281,8 @@ input[type=range]::-webkit-slider-thumb {
     </div>
 
     <div class="hook-links">
-      <button id="open-rates">📊 <span id="link-rates">수수료 등급</span></button>
-      <button id="open-faq">💬 <span id="link-faq">FAQ</span></button>
+      <button id="open-rates"><span id="link-rates">수수료 등급</span></button>
+      <button id="open-faq"><span id="link-faq">FAQ</span></button>
     </div>
 
     <div class="host">
@@ -385,8 +387,7 @@ let lang = normLang(params.get("lang") || tgUser.language_code || "ko");
 
 const T = {
 ko: {
-  helloSub: "Joshua · 파트너 온보딩",
-  hello: n => n ? `${n}님, 반갑습니다 👋` : "안녕하세요 👋",
+  helloSub: "파트너 온보딩",
   kicker: "PARTNER ONBOARDING",
   h1: '추천 유저의 거래 수수료,<br>최대 <em>50%</em>가 내 수익이 됩니다.',
   h1Sub: "유튜브·텔레그램·커뮤니티·트레이딩팀 — 규모에 맞는 파트너 트랙을 2분 안에 신청하세요.",
@@ -395,10 +396,10 @@ ko: {
   hostSub: "OKX Northeast Asia BD · 신청을 직접 검토합니다",
   typeH2: "어떤 파트너이신가요?", typeP: "하나만 선택하세요. 트랙에 맞는 질문만 드립니다.",
   types: [
-    ["kol", "🎥", "KOL / 크리에이터", "유튜브, X, 인스타, 틱톡, 방송"],
-    ["community", "👥", "커뮤니티 / 교육", "텔레그램, 카페, 디스코드, 리딩방"],
-    ["trading", "📈", "트레이딩 / 퀀트", "프롭, 자동매매, 시그널, 데스크"],
-    ["api", "🏦", "기관 / API / 브로커", "플랫폼, 자산운용, 핀테크, 연동"]
+    ["kol", "", "KOL / 크리에이터", "유튜브, X, 인스타, 틱톡, 방송"],
+    ["community", "", "커뮤니티 / 교육", "텔레그램, 카페, 디스코드, 리딩방"],
+    ["trading", "", "트레이딩 / 퀀트", "프롭, 자동매매, 시그널, 데스크"],
+    ["api", "", "기관 / API / 브로커", "플랫폼, 자산운용, 핀테크, 연동"]
   ],
   chH2: { kol: "채널을 알려주세요", community: "커뮤니티를 알려주세요", trading: "팀을 알려주세요", api: "회사를 알려주세요" },
   chP: "규모가 클수록 높은 커미션 구간에서 시작합니다.",
@@ -440,8 +441,7 @@ ko: {
   }
 },
 en: {
-  helloSub: "Joshua · Partner Onboarding",
-  hello: n => n ? `Hey ${n} 👋` : "Hey there 👋",
+  helloSub: "Partner Onboarding",
   kicker: "PARTNER ONBOARDING",
   h1: 'Up to <em>50%</em> of your referred users\' trading fees, paid to you.',
   h1Sub: "YouTube, Telegram, communities, trading teams — apply for the right partner track in under 2 minutes.",
@@ -450,10 +450,10 @@ en: {
   hostSub: "OKX Northeast Asia BD · reviews every application",
   typeH2: "What kind of partner are you?", typeP: "Pick one — we'll only ask what's relevant.",
   types: [
-    ["kol", "🎥", "KOL / Creator", "YouTube, X, Instagram, TikTok, streaming"],
-    ["community", "👥", "Community / Education", "Telegram, Discord, groups, academies"],
-    ["trading", "📈", "Trading / Quant", "Prop, algo, signals, desks"],
-    ["api", "🏦", "Institution / API / Broker", "Platforms, asset mgmt, fintech"]
+    ["kol", "", "KOL / Creator", "YouTube, X, Instagram, TikTok, streaming"],
+    ["community", "", "Community / Education", "Telegram, Discord, groups, academies"],
+    ["trading", "", "Trading / Quant", "Prop, algo, signals, desks"],
+    ["api", "", "Institution / API / Broker", "Platforms, asset mgmt, fintech"]
   ],
   chH2: { kol: "Tell us about your channel", community: "Tell us about your community", trading: "Tell us about your team", api: "Tell us about your company" },
   chP: "Bigger reach starts at a higher commission tier.",
@@ -495,8 +495,7 @@ en: {
   }
 },
 tw: {
-  helloSub: "Joshua · 夥伴入駐",
-  hello: n => n ? `${n}，您好 👋` : "您好 👋",
+  helloSub: "夥伴入駐",
   kicker: "PARTNER ONBOARDING",
   h1: '您推薦用戶的交易手續費，最高 <em>50%</em> 成為您的收益。',
   h1Sub: "YouTube、Telegram、社群、交易團隊 — 2 分鐘內申請最適合的合作通道。",
@@ -505,10 +504,10 @@ tw: {
   hostSub: "OKX 東北亞 BD · 親自審核每份申請",
   typeH2: "您是哪種合作夥伴？", typeP: "選擇一項 — 只問與您相關的問題。",
   types: [
-    ["kol", "🎥", "KOL / 創作者", "YouTube、X、IG、TikTok、直播"],
-    ["community", "👥", "社群 / 教育", "Telegram、Discord、群組、學院"],
-    ["trading", "📈", "交易 / 量化", "自營、程式交易、訊號、交易台"],
-    ["api", "🏦", "機構 / API / 經紀商", "平台、資產管理、金融科技"]
+    ["kol", "", "KOL / 創作者", "YouTube、X、IG、TikTok、直播"],
+    ["community", "", "社群 / 教育", "Telegram、Discord、群組、學院"],
+    ["trading", "", "交易 / 量化", "自營、程式交易、訊號、交易台"],
+    ["api", "", "機構 / API / 經紀商", "平台、資產管理、金融科技"]
   ],
   chH2: { kol: "介紹您的頻道", community: "介紹您的社群", trading: "介紹您的團隊", api: "介紹您的公司" },
   chP: "規模越大，起始佣金級別越高。",
@@ -621,6 +620,12 @@ const SCHEMA = {
 const routeOf = { kol: "affiliate", community: "affiliate", trading: "institutional", api: "institutional" };
 
 /* ═══════════ state ═══════════ */
+const TYPE_ICONS = {
+  kol: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="M15.5 10.2l5-2.7v9l-5-2.7"/></svg>',
+  community: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8" r="3"/><path d="M2.8 19.5c0-3 2.6-5 5.7-5s5.7 2 5.7 5"/><path d="M16 5.4a3 3 0 010 5.2"/><path d="M18.4 19.5c0-2-.9-3.6-2.6-4.4"/></svg>',
+  trading: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16.5l5-5 3.5 2.5L20 6"/><path d="M15.5 6H20v4.5"/></svg>',
+  api: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5l9-5.5 9 5.5"/><path d="M5.5 10.5v8M18.5 10.5v8M9.5 10.5v8M14.5 10.5v8"/><path d="M3.5 19.5h17"/></svg>'
+};
 const SCREENS = ["hook", "type", "channel", "contact", "review", "success"];
 let screen = "hook";
 let submitting = false;
@@ -635,11 +640,8 @@ const escapeHtml = s => String(s).replace(/[&<>"']/g, m => ({ "&": "&amp;", "<":
 /* ═══════════ rendering ═══════════ */
 function renderStatic() {
   const c = t();
-  const first = (tgUser.first_name || "").trim();
-  $("hello-name").textContent = c.hello(first);
+  $("hello-name").textContent = "Joshua";
   $("hello-sub").textContent = c.helloSub;
-  if (tgUser.photo_url) { $("avatar").style.backgroundImage = `url(${tgUser.photo_url})`; $("avatar").textContent = ""; }
-  else $("avatar").textContent = first ? first[0].toUpperCase() : "✦";
   $("kicker").textContent = c.kicker;
   $("h1").innerHTML = c.h1;
   $("h1-sub").textContent = c.h1Sub;
@@ -671,7 +673,7 @@ function renderStatic() {
   document.querySelectorAll("#lang-switch button").forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
   $("type-cards").innerHTML = c.types.map(([key, ic, title, sub]) =>
     `<button class="card${state.type === key ? " sel" : ""}" data-type="${key}">
-      <div class="ic">${ic}</div><div><b>${escapeHtml(title)}</b><span>${escapeHtml(sub)}</span></div><div class="arr">›</div>
+      <div class="ic">${TYPE_ICONS[key] || ""}</div><div><b>${escapeHtml(title)}</b><span>${escapeHtml(sub)}</span></div><div class="arr">›</div>
     </button>`).join("");
 }
 
