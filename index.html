@@ -230,17 +230,25 @@ input[type=range]::-webkit-slider-thumb {
 @keyframes up { from { transform: translateY(40%); opacity: .4; } }
 .sheet .grab { width: 38px; height: 4px; border-radius: 2px; background: var(--surface-3); margin: 4px auto 16px; }
 .sheet h3 { margin: 0 0 14px; font-size: 18px; letter-spacing: -.02em; }
-.sheet table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-.sheet th { text-align: left; color: var(--dim); font-weight: 600; padding: 7px 6px; border-bottom: 1px solid var(--line); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
-.sheet td { padding: 9px 6px; border-bottom: 1px solid var(--line); }
-.sheet td.g { color: var(--okx); font-weight: 700; }
-.rates-sub { margin-top: 26px; }
-.broker-hero { margin: 2px 0 12px; font-size: 13px; color: var(--muted); display: flex; align-items: baseline; gap: 8px; }
-.broker-hero b { font-size: 26px; color: var(--okx); letter-spacing: -.02em; }
-.broker-facts { list-style: none; margin: 14px 0 0; padding: 0; }
+.rate-sec { margin-bottom: 30px; }
+.rate-sec:last-of-type { margin-bottom: 8px; }
+.rate-label { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--okx); margin-bottom: 7px; }
+.rate-label .rdot { width: 6px; height: 6px; border-radius: 50%; background: var(--okx); }
+.rate-sub { margin: 0 0 15px; font-size: 13px; color: var(--muted); line-height: 1.45; }
+.rt { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.rt th { text-align: left; color: var(--dim); font-weight: 600; font-size: 10.5px; text-transform: uppercase; letter-spacing: .04em; padding: 0 4px 9px; border-bottom: 1px solid var(--line); }
+.rt th:not(:first-child), .rt td:not(:first-child) { text-align: right; }
+.rt td { padding: 12px 4px; border-bottom: 1px solid var(--line); color: var(--text); }
+.rt tbody tr:last-child td { border-bottom: 0; }
+.rt td.g { color: var(--okx); font-weight: 700; font-variant-numeric: tabular-nums; }
+.rate-foot { margin: 12px 0 0; font-size: 11.5px; color: var(--dim); line-height: 1.5; }
+.broker-hero { margin: 2px 0 14px; display: flex; align-items: baseline; gap: 9px; }
+.broker-hero b { font-size: 30px; color: var(--okx); letter-spacing: -.02em; }
+.broker-hero span { font-size: 13px; color: var(--muted); }
+.broker-facts { list-style: none; margin: 16px 0 0; padding: 0; }
 .broker-facts li { position: relative; padding: 5px 0 5px 15px; font-size: 13px; color: var(--muted); line-height: 1.45; }
 .broker-facts li::before { content: "·"; position: absolute; left: 3px; color: var(--okx); font-weight: 700; }
-.broker-fit { margin-top: 12px; font-size: 12px; color: var(--dim); line-height: 1.5; }
+.broker-fit { margin-top: 13px; font-size: 12px; color: var(--dim); line-height: 1.5; }
 .faq-item { border-bottom: 1px solid var(--line); }
 .faq-item button { width: 100%; display: flex; justify-content: space-between; gap: 10px; padding: 14px 2px; font-size: 14px; font-weight: 600; text-align: left; }
 .faq-item button i { font-style: normal; color: var(--dim); transition: transform .2s; flex: none; }
@@ -350,33 +358,53 @@ input[type=range]::-webkit-slider-thumb {
   <div class="sheet-bg" data-close></div>
   <div class="sheet">
     <div class="grab"></div>
-    <h3 id="rates-h3">Affiliate 커미션 등급</h3>
-    <table>
-      <thead><tr><th>Tier</th><th id="th-vol">월 거래량</th><th id="th-traders">트레이더</th><th>Rate</th></tr></thead>
-      <tbody>
-        <tr><td><b>L1</b></td><td>$100K+</td><td>25+</td><td class="g">30%</td></tr>
-        <tr><td><b>L2</b></td><td>$500K+</td><td>25+</td><td class="g">35%</td></tr>
-        <tr><td><b>L3</b></td><td>$1M+</td><td>50+</td><td class="g">40%</td></tr>
-        <tr><td><b>L4</b></td><td>$5M+</td><td>100+</td><td class="g">45%</td></tr>
-        <tr><td><b>L5</b></td><td>$10M+</td><td>200+</td><td class="g">50%</td></tr>
-      </tbody>
-    </table>
 
-    <h3 id="broker-h3" class="rates-sub">Broker / API 프로그램</h3>
-    <div class="broker-hero"><b class="g">50%</b><span id="broker-hero-label"></span></div>
-    <table>
-      <thead><tr><th id="broker-th-model">모델</th><th id="broker-th-link">연동</th><th id="broker-th-settle">정산</th></tr></thead>
-      <tbody>
-        <tr><td><b>API Broker</b></td><td id="broker-api-desc"></td><td>T+1 USDT</td></tr>
-        <tr><td><b>OAuth Broker</b></td><td id="broker-oauth-desc"></td><td>T+1 USDT</td></tr>
-      </tbody>
-    </table>
-    <ul class="broker-facts" id="broker-facts"></ul>
-    <div class="broker-fit" id="broker-fit"></div>
+    <div class="rate-sec">
+      <div class="rate-label"><span class="rdot"></span><span id="fee-label"></span></div>
+      <p class="rate-sub" id="fee-sub"></p>
+      <table class="rt">
+        <thead><tr><th id="fee-th-product"></th><th>Maker</th><th>Taker</th></tr></thead>
+        <tbody>
+          <tr><td id="fee-spot"></td><td class="g">0.08%</td><td class="g">0.10%</td></tr>
+          <tr><td id="fee-perp"></td><td class="g">0.02%</td><td class="g">0.05%</td></tr>
+        </tbody>
+      </table>
+      <p class="rate-foot" id="fee-foot"></p>
+    </div>
+
+    <div class="rate-sec">
+      <div class="rate-label"><span class="rdot"></span><span id="aff-label"></span></div>
+      <p class="rate-sub" id="aff-sub"></p>
+      <table class="rt">
+        <thead><tr><th>Tier</th><th id="th-vol"></th><th id="th-traders"></th><th>Rate</th></tr></thead>
+        <tbody>
+          <tr><td><b>L1</b></td><td>$100K+</td><td>25+</td><td class="g">30%</td></tr>
+          <tr><td><b>L2</b></td><td>$500K+</td><td>25+</td><td class="g">35%</td></tr>
+          <tr><td><b>L3</b></td><td>$1M+</td><td>50+</td><td class="g">40%</td></tr>
+          <tr><td><b>L4</b></td><td>$5M+</td><td>100+</td><td class="g">45%</td></tr>
+          <tr><td><b>L5</b></td><td>$10M+</td><td>200+</td><td class="g">50%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rate-sec">
+      <div class="rate-label"><span class="rdot"></span><span id="brk-label"></span></div>
+      <div class="broker-hero"><b class="g">50%</b><span id="broker-hero-label"></span></div>
+      <table class="rt">
+        <thead><tr><th id="broker-th-model"></th><th id="broker-th-link"></th><th id="broker-th-settle"></th></tr></thead>
+        <tbody>
+          <tr><td><b>API Broker</b></td><td id="broker-api-desc"></td><td>T+1 USDT</td></tr>
+          <tr><td><b>OAuth Broker</b></td><td id="broker-oauth-desc"></td><td>T+1 USDT</td></tr>
+        </tbody>
+      </table>
+      <ul class="broker-facts" id="broker-facts"></ul>
+      <div class="broker-fit" id="broker-fit"></div>
+    </div>
 
     <div class="notice" id="rates-note"></div>
   </div>
 </div>
+
 <div class="sheet-wrap" id="sheet-faq">
   <div class="sheet-bg" data-close></div>
   <div class="sheet">
@@ -438,6 +466,13 @@ ko: {
   tl1: "신청 접수 완료", tl2: "Joshua가 1~2영업일 내 검토", tl3: "승인 → 레퍼럴 링크 + 온보딩 키트 전달",
   ratesH3: "Affiliate 커미션 등급", thVol: "월 거래량", thTraders: "트레이더",
   ratesNote: "신청 전 이해를 돕기 위한 요약입니다. 최종 조건은 OKX 정책·지역·자격 요건에 따라 1:1로 확정됩니다. VIP/기관/마켓메이커는 별도 협의.",
+  feeLabel: "거래 수수료",
+  feeSub: "내 유저가 내는 수수료 — 업계 최저 수준이라 추천하기 쉽습니다.",
+  feeThProduct: "상품", feeSpot: "현물 (Spot)", fePerp: "선물 (Perp)",
+  feeFoot: "VIP 등급에서 더 낮아집니다 — 상위 등급은 메이커 네거티브.",
+  affLabel: "내 커미션 · Affiliate",
+  affSub: "추천 유저의 거래 수수료에서 — 평생 정산됩니다.",
+  brkLabel: "내 커미션 · Broker / API",
   brokerH3: "Broker / API 프로그램",
   brokerHeroLabel: "최대 커미션 · 거래량 기반",
   brokerThModel: "모델", brokerThLink: "연동", brokerThSettle: "정산",
@@ -498,6 +533,13 @@ en: {
   tl1: "Application received", tl2: "Joshua reviews within 1–2 business days", tl3: "Approval → referral link + onboarding kit",
   ratesH3: "Affiliate commission tiers", thVol: "Monthly vol.", thTraders: "Traders",
   ratesNote: "Pre-application summary. Final terms are confirmed 1:1 per OKX policy, region and eligibility. VIP / institutional / MM reviewed separately.",
+  feeLabel: "Trading fees",
+  feeSub: "What your users pay — among the lowest in the industry, easy to recommend.",
+  feeThProduct: "Product", feeSpot: "Spot", fePerp: "Perpetual",
+  feeFoot: "Even lower at VIP tiers — top tiers earn negative maker fees.",
+  affLabel: "Your commission · Affiliate",
+  affSub: "From your referred users' trading fees — for life.",
+  brkLabel: "Your commission · Broker / API",
   brokerH3: "Broker / API Program",
   brokerHeroLabel: "max commission · volume-based",
   brokerThModel: "Model", brokerThLink: "Integration", brokerThSettle: "Settlement",
@@ -558,6 +600,13 @@ tw: {
   tl1: "申請已接收", tl2: "Joshua 於 1–2 個工作日內審核", tl3: "通過 → 推薦連結 + 入駐套件",
   ratesH3: "Affiliate 佣金級別", thVol: "月交易量", thTraders: "交易者",
   ratesNote: "申請前參考摘要。最終條件依 OKX 政策、地區與資格 1:1 確認。VIP / 機構 / 做市商另議。",
+  feeLabel: "交易手續費",
+  feeSub: "您的用戶支付的手續費 — 業界最低，容易推薦。",
+  feeThProduct: "產品", feeSpot: "現貨 (Spot)", fePerp: "合約 (Perp)",
+  feeFoot: "VIP 等級更低 — 高等級享負 Maker 手續費。",
+  affLabel: "您的佣金 · Affiliate",
+  affSub: "來自推薦用戶的交易手續費 — 終身結算。",
+  brkLabel: "您的佣金 · Broker / API",
   brokerH3: "Broker / API 計畫",
   brokerHeroLabel: "最高佣金 · 基於交易量",
   brokerThModel: "模式", brokerThLink: "對接", brokerThSettle: "結算",
@@ -708,11 +757,18 @@ function renderStatic() {
   $("ok-h2").textContent = c.okH2;
   $("ok-p").textContent = c.okP;
   $("tl-1").textContent = c.tl1; $("tl-2").textContent = c.tl2; $("tl-3").textContent = c.tl3;
-  $("rates-h3").textContent = c.ratesH3;
+  $("fee-label").textContent = c.feeLabel;
+  $("fee-sub").textContent = c.feeSub;
+  $("fee-th-product").textContent = c.feeThProduct;
+  $("fee-spot").textContent = c.feeSpot;
+  $("fee-perp").textContent = c.fePerp;
+  $("fee-foot").textContent = c.feeFoot;
+  $("aff-label").textContent = c.affLabel;
+  $("aff-sub").textContent = c.affSub;
   $("th-vol").textContent = c.thVol;
   $("th-traders").textContent = c.thTraders;
   $("rates-note").innerHTML = c.ratesNote;
-  $("broker-h3").textContent = c.brokerH3;
+  $("brk-label").textContent = c.brkLabel;
   $("broker-hero-label").textContent = c.brokerHeroLabel;
   $("broker-th-model").textContent = c.brokerThModel;
   $("broker-th-link").textContent = c.brokerThLink;
