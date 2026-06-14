@@ -505,7 +505,8 @@ ko: {
     region: ["주 활동 지역", "", ""],
     uid: ["OKX UID", "숫자 UID", "선택 — 없으면 비워두세요"],
     contact: ["텔레그램 핸들", "@handle", "연락 받으실 계정"],
-    competitor_affiliate: ["타사 어필리에이트 요율", "예: Binance 40%", "선택 — 더 나은 조건으로 검토"]
+    competitor_affiliate: ["타사 어필리에이트 요율", "예: Binance 40%", "선택 — 더 나은 조건으로 검토"],
+    competitor_volume: ["타사 월 거래량", "예: 월 $5M", "선택 — 티어 산정에 참고"]
   }
 },
 en: {
@@ -572,7 +573,8 @@ en: {
     region: ["Primary region", "", ""],
     uid: ["OKX UID", "Numeric UID", "Optional — leave blank if none"],
     contact: ["Telegram handle", "@handle", "Where we reach you"],
-    competitor_affiliate: ["Competitor rate", "e.g. Binance 40%", "Optional — we'll beat it where possible"]
+    competitor_affiliate: ["Competitor rate", "e.g. Binance 40%", "Optional — we'll beat it where possible"],
+    competitor_volume: ["Monthly volume elsewhere", "e.g. $5M/mo", "Optional — helps us set your tier"]
   }
 },
 tw: {
@@ -639,7 +641,8 @@ tw: {
     region: ["主要地區", "", ""],
     uid: ["OKX UID", "數字 UID", "選填 — 沒有可留空"],
     contact: ["Telegram 帳號", "@handle", "聯繫您的帳號"],
-    competitor_affiliate: ["他所費率", "例：Binance 40%", "選填 — 盡可能提供更佳條件"]
+    competitor_affiliate: ["他所費率", "例：Binance 40%", "選填 — 盡可能提供更佳條件"],
+    competitor_volume: ["他所月交易量", "例：每月 $5M", "選填 — 供分級參考"]
   }
 }
 };
@@ -667,7 +670,8 @@ const SCHEMA = {
     contact: [
       { k: "contact", req: 1, prefill: "tg" },
       { k: "uid", num: 1, uid: 1 },
-      { k: "competitor_affiliate" }
+      { k: "competitor_affiliate" },
+      { k: "competitor_volume" }
     ]
   },
   community: {
@@ -681,7 +685,8 @@ const SCHEMA = {
     contact: [
       { k: "contact", req: 1, prefill: "tg" },
       { k: "uid", num: 1, uid: 1 },
-      { k: "competitor_affiliate" }
+      { k: "competitor_affiliate" },
+      { k: "competitor_volume" }
     ]
   },
   trading: {
